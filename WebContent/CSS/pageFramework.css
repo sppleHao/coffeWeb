@@ -1,0 +1,99 @@
+@charset "UTF-8";
+/*
+	该css表规定了框架元素的样式，可以根据需要在此基础上添加和覆盖		
+*/
+body{
+	height: 874.87px;
+    background: #f7f7f7;
+	display: block;
+	line-height: 160%;
+	margin: 0;
+	font-size: 16px;
+	font-weight: 700;
+}
+a{
+	color: #FFF;
+	text-decoration:none;
+}
+#app-view{
+	height:100%;
+	width: 100%;
+}
+#nav{
+	height:100%;
+	width: 30%;
+	max-height:874.87px;
+	top: 0;
+	position: fixed;
+	overflow: hidden;
+	font-size: 16px;
+	font-weight: 700;
+	background: rgba(174, 174, 174, 1);
+}
+.header{
+	box-sizing: content-box;
+	padding: 24px;
+	position: relative;
+	letter-spacing: 0.4px;	
+	display:flex;
+	justify-content:space-around;
+	line-height: 34.5px;
+}
+.footer{
+	box-sizing: content-box;
+	position:absolute;
+	width:100%;
+	bottom:0px;
+	letter-spacing: 0.4px;
+	background-color: rgba(215, 215, 215, 1);
+}
+.footer a{
+	margin-left: 50px;
+}
+.body{
+	height: calc(90% - 98px);
+    display: table;
+    width: 100%;
+}
+.label{
+	box-sizing: content-box;
+	position: relative;
+	letter-spacing: 0.4px;	
+	display:flex;
+	font-size: 21px;
+	font-weight: 700;
+	line-height: 31px;
+}
+.label img{
+	margin-right: 25px;
+}
+.bar{
+	box-sizing: border-box;
+	margin-left:23%;
+	margin-top: 48%;
+}
+.bar-menu ul{	
+	margin: 0;
+	margin-left: 40px;
+    list-style: none;
+    display: inline-block;
+    padding: 0;
+    white-space: nowrap;
+}
+li{
+	margin: 10px;
+}
+#body{
+	left: auto;
+    margin-left: 30%;	
+    width: 70%;
+    height:100%;
+    position: relative;
+    display: block;
+}
+.body-background{
+	position:absolute;
+	height:100%;
+	margin-top:0%;
+	width:100%;
+}

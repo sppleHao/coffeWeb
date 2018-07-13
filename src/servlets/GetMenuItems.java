@@ -1,0 +1,88 @@
+package servlets;
+
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import beans.Food;
+import dao.FoodDao;
+
+/**
+ * 菜单界面得到所有菜品并显示给用户
+ */
+@WebServlet("/Menu/GetMenuItems")
+public class GetMenuItems extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public GetMenuItems() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		try {
+			FoodDao fd = new FoodDao();
+			HttpSession session = request.getSession();
+			
+			//餐品列表
+			List<Food> allFoodList = fd.selectFood("*");
+				//列表不为空则查找所有有关的菜品
+				if (!allFoodList.isEmpty()) {
+					List<Food> selectFoodList = new LinkedList<Food>();
+					//查找关键字
+					String selectParam = request.getParameter("selectParam");
+					//关键字不为空
+					if (selectParam!=null&&!selectParam.isEmpty()) {
+						for (Food food : allFoodList) {
+							if (food.getFoodNo().equals(selectParam)||
+									food.getFoodName().toLowerCase().contains(selectParam.toLowerCase())||
+									food.getFoodType().equals(selectParam)
+									) {
+								selectFoodList.add(food);
+							}
+						}
+					}
+					else {//关键字为空，所有菜品
+						selectFoodList = allFoodList;
+					}
+					
+					//查找结束
+					if (!selectFoodList.isEmpty()) {//不为空，设置属性
+						session.setAttribute("selectFood", selectFoodList);
+						request.getRequestDispatcher("menu.jsp").forward(request, response);
+					}
+					else {//为空，显示查找不到菜品
+						session.setAttribute("selectFood", selectFoodList);
+						request.getRequestDispatcher("menu.jsp").forward(request, response);
+					}
+				}
+				else {//列表没有菜品
+					//TODO no food in database
+				}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doGet(request, response);
+	}
+
+}

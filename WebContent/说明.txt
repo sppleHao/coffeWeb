@@ -1,0 +1,17 @@
+﻿0.网页头部的编码必须是UTF-8否则无法保存中文，可以参考userLogin的头部使用html5规范
+1.框架可参考userLogin.jsp的设计，已有元素的id、class不要更改（否则有些jquery找不到元素）
+2.<% %>内是java代码，<%= %>为取值，需根据顺序照搬
+3.<c:xxxx></c:xxxxx>是jstl标签，用于在jsp中写出逻辑控制(选择、循环、设置元素等等),必须在顶部加上<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+4.${xxx.yyy}相当于<%=xxx.getYYY()%>相当于从一个对象中取出单元
+5.写css时，'.'是class选择器,'#'是ID选择器，input[type(name...)='']选择input元素
+6.记得在顶部加上外部样式表 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+7.记得在顶部加上<script type="text/javascript" src="/coffeWeb/JS/ajax.js"></script>
+		<script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
+  前者为ajax原版的函数，后者为jQuery库
+
+其他技术可以了解
+js内容：
+1.jquery 通过$()来选择元素进行操作，比如$("#hello")为选择id为hello的元素，和css类似
+2.ajax 	和服务器异步通信来获得信息
+	原版的ajax放在JS文件夹下，通过sendRequest函数调用
+	jQuery版本的以$.ajax()为开头
