@@ -80,6 +80,32 @@ public class GetUsers extends HttpServlet {
 			
 			if(!selectUers.isEmpty()) {
 				Integer allPages = (selectUers.size()-1)/pageSize + 1;
+				out.println("<table>");
+				out.println("<tbody>");
+				out.println("<tr>");
+				out.print("<td/>");
+				out.println("<td class='userNo'>用户名</td>");
+				out.println("<td class='userName'>昵称</td>");
+				out.println("<td class='password'>密码</td>");
+				out.println("<td class='tel'>电话</td>");
+				out.println("<td class='email'>邮箱</td>");
+				out.println("</tr>");
+
+				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectUers.size())?(pageNo*pageSize):(selectUers.size()));i++) {
+					R_User user = selectUers.get(i);
+					out.println("<tr>");
+					out.println("<td class='unchecked'></div>");
+					out.println("<input type='radio' name='select' id='select'>");
+					out.println("<td class='userNo'>"+user.getUserNo()+"</td>");
+					out.println("<td class='userName'>"+user.getUserName()+"</td>");
+					out.println("<td class='password'>"+user.getPassword()+"</td>");
+					out.println("<td class='tel'>"+user.getTel()+"</td>");
+					out.println("<td class='email'>"+user.getEmail()+"</td>");
+					out.println("</tr>");
+				}
+				out.println("</tbody>");
+				out.println("</table>");
+				
 				out.println("共"+selectUers.size()+"条记录");
 				out.println("共"+allPages+"页");
 				if (pageNo>1) {
@@ -90,31 +116,6 @@ public class GetUsers extends HttpServlet {
 				if (pageNo<allPages) {
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+(pageNo+1)+"'>下一页</a>");
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+allPages+"'>尾页</a>");
-				}			
-				out.println("<ul>");
-				out.println("<li>");
-				out.println("<div class='items'>");
-				out.println("<div class='userNo'>用户名</div>");
-				out.println("<div class='userName'>昵称</div>");
-				out.println("<div class='password'>密码</div>");
-				out.println("<div class='tel'>电话</div>");
-				out.println("<div class='email'>邮箱</div>");
-				out.println("</div>");
-				out.println("</li>");
-
-				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectUers.size())?(pageNo*pageSize):(selectUers.size()));i++) {
-					R_User user = selectUers.get(i);
-					out.println("<li>");
-					out.println("<div class='items'>");
-					out.println("<div class='unchecked'></div>");
-					out.println("<input type='radio' name='select' id='select'>");
-					out.println("<div class='userNo'>"+user.getUserNo()+"</div>");
-					out.println("<div class='userName'>"+user.getUserName()+"</div>");
-					out.println("<div class='password'>"+user.getPassword()+"</div>");
-					out.println("<div class='tel'>"+user.getTel()+"</div>");
-					out.println("<div class='email'>"+user.getEmail()+"</div>");
-					out.println("</div>");
-					out.println("</li>");
 				}
 			}
 			else {
