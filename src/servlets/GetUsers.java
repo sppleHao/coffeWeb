@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.R_User;
 import dao.UserDao;
+import net.sf.json.JSONArray;
 
 /**
  * 管理员在所有用户中查找相应的用户，并将信息返回到界面
@@ -79,26 +80,30 @@ public class GetUsers extends HttpServlet {
 			
 			
 			if(!selectUers.isEmpty()) {
+				//所有页面
 				Integer allPages = (selectUers.size()-1)/pageSize + 1;
+//				JSONArray jsonArray = JSONArray.fromObject(selectUers);
+//				out.println(jsonArray);
+				
 				out.println("<table>");
 				out.println("<tbody>");
 				out.println("<tr>");
 				out.print("<td/>");
 				out.println("<td class='userNo'>用户名</td>");
 				out.println("<td class='userName'>昵称</td>");
-				out.println("<td class='password'>密码</td>");
+//				out.println("<td class='password'>密码</td>");
 				out.println("<td class='tel'>电话</td>");
 				out.println("<td class='email'>邮箱</td>");
 				out.println("</tr>");
 
 				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectUers.size())?(pageNo*pageSize):(selectUers.size()));i++) {
 					R_User user = selectUers.get(i);
-					out.println("<tr>");
+					out.println("<tr class='info'>");
 					out.println("<td class='unchecked'></div>");
 					out.println("<input type='radio' name='select' id='select'>");
 					out.println("<td class='userNo'>"+user.getUserNo()+"</td>");
 					out.println("<td class='userName'>"+user.getUserName()+"</td>");
-					out.println("<td class='password'>"+user.getPassword()+"</td>");
+//					out.println("<td class='password'>"+user.getPassword()+"</td>");
 					out.println("<td class='tel'>"+user.getTel()+"</td>");
 					out.println("<td class='email'>"+user.getEmail()+"</td>");
 					out.println("</tr>");

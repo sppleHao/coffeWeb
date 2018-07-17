@@ -26,11 +26,11 @@ function updateUI(){
 		timeout:5000,
 		success:function(data){
 			$("#userOP").html(data);
-			$(".items").bind("click",function(){
+			$("tr.info").bind("click",function(){
 				var div = $(this);
 				var userNoDiv = div.children(".userNo");
 				var userNameDiv = div.children(".userName");
-				var passwordDiv = div.children(".password");
+				//var passwordDiv = div.children(".password");
 				var telDiv = div.children(".tel");
 				var emailDiv = div.children(".email");
 				
@@ -45,7 +45,7 @@ function updateUI(){
 					
 					$("#userNo").val(userNoDiv.text());
 					$("#userName").val(userNameDiv.text());
-					$("#password").val(passwordDiv.text());
+					//$("#password").val(passwordDiv.text());
 					$("#tel").val(telDiv.text());
 					$("#email").val(emailDiv.text());
 				}
@@ -55,7 +55,7 @@ function updateUI(){
 					
 					$("#userNo").val("");
 					$("#userName").val("");
-					$("#password").val("");
+					//$("#password").val("");
 					$("#tel").val("");
 					$("#email").val("");
 				}
@@ -67,16 +67,58 @@ $(document).ready(function(){
 	$("#userOPBtn").click(function(){
 		updateUI();
 	});
-	$("#submit").click(function(){
+	$("#insert").click(function(){
 		$.ajax({
 			url: 'AdminUserOP',
 			type:'POST',
 			async:true,
 			data:{
-				opName: $("input[name='userOP']:checked").attr("id"),
+				opName: "insert",
 				userNo: $("#userNo").val(),
 				userName: $("#userName").val(),
-				password: $("#password").val(),
+				//password: $("#password").val(),
+				tel: $("#tel").val(),
+				email: $("#email").val()
+			},
+			timeout:5000,
+			success:function(data){
+				alert(data);
+				updateUI();
+			}
+		});
+	});
+	$("#delete").click(function(){
+		if(confirm("确认删除")){
+			$.ajax({
+				url: 'AdminUserOP',
+				type:'POST',
+				async:true,
+				data:{
+					opName: "delete",
+					userNo: $("#userNo").val(),
+					userName: $("#userName").val(),
+					//password: $("#password").val(),
+					tel: $("#tel").val(),
+					email: $("#email").val()
+				},
+				timeout:5000,
+				success:function(data){
+					alert(data);
+					updateUI();
+				}
+			});
+		}
+	});
+	$("#update").click(function(){
+		$.ajax({
+			url: 'AdminUserOP',
+			type:'POST',
+			async:true,
+			data:{
+				opName: "update",
+				userNo: $("#userNo").val(),
+				userName: $("#userName").val(),
+				//password: $("#password").val(),
 				tel: $("#tel").val(),
 				email: $("#email").val()
 			},
@@ -133,8 +175,10 @@ input[type="radio"]#select{
 	<!-- 原导航栏 -->
 	<jsp:include page="adminGuide.jsp"></jsp:include>
 	
-	
-	<!-- 搜索栏 -->
+	<button type="button" id="insert">添加</button>
+	<button type="button" id="delete">删除</button>
+	<button type="button" id="update">修改</button>
+ 	<!-- 搜索栏 -->
 	关键字:<input type="text" name="selectUserParam" id="selectUserParam">
 	<input type="button" value="查找用户" id="userOPBtn"><br>
 	
@@ -145,15 +189,10 @@ input[type="radio"]#select{
 	
 	<!-- 底部表单 -->
 	<form>
-		<input type="radio" name="userOP" id="update" checked="checked">修改
-		<input type="radio" name="userOP" id="delete">删除
-		<br>
 		用户名:<input type="text" name="userNo" id="userNo">
 		昵称:<input type="text" name="userName" id="userName">
-		密码:<input type="text" name="password" id="password">
 		电话：<input type="text" name="tel" id="tel">
 		邮箱：<input type="text" name="email" id="email">
-		<button type="button" id="submit">提交</button>
 	</form>
 </body>
 </html>
