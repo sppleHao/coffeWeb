@@ -31,6 +31,7 @@ public class AdminFoodOP extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		try {
 			String opName = request.getParameter("opName");
 			String foodNo = request.getParameter("foodNo");
@@ -50,11 +51,11 @@ public class AdminFoodOP extends HttpServlet {
 			}
 			if (opName.equals("update")) {
 				fd.update(food);
-			}
-			PrintWriter out = response.getWriter();
+			}		
 			out.print("ok");
 		} catch (Exception e) {
 			e.printStackTrace();
+			out.print(e.getMessage());
 		}
 	}
 

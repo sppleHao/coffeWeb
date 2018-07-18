@@ -87,6 +87,32 @@ public class GetFood extends HttpServlet {
 			//输出
 			if (!selectFoodList.isEmpty()) {
 				Integer allPages = (selectFoodList.size()-1)/pageSize + 1;
+				
+				out.println("<table>");
+				out.println("<tbody>");
+				out.println("<tr>");
+				out.println("<td>");
+				out.println("<td class='foodNo'>餐品号</td>");
+				out.println("<td class='foodName'>餐品名</td>");
+				out.println("<td class='foodPrice'>餐品单价</td>");
+				out.println("<td class='foodMount'>餐品库存</td>");
+				out.println("<td class='foodType'>餐品类型</td>");
+				out.println("</tr>");
+				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectFoodList.size())?(pageNo*pageSize):(selectFoodList.size()));i++) {
+					Food food = selectFoodList.get(i);
+					out.println("<tr class='info'>");
+					out.println("<td class='unchecked'></div>");
+					out.println("<input type='radio' name='select' id='select'>");
+					out.println("<td class='foodNo'>"+food.getFoodNo()+"</div>");
+					out.println("<td class='foodName'>"+food.getFoodName()+"</div>");
+					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</div>");
+					out.println("<td class='foodMount'>"+food.getFoodMount()+"</div>");
+					out.println("<td class='foodType'>"+food.getFoodType()+"</div>");
+					out.println("</tr>");
+				}
+				out.println("</tbody>");
+				out.println("</table>");
+				
 				out.println("共"+selectFoodList.size()+"条记录");
 				out.println("共"+allPages+"页");
 				if (pageNo>1) {
@@ -97,37 +123,11 @@ public class GetFood extends HttpServlet {
 				if (pageNo<allPages) {
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+(pageNo+1)+"'>下一页</a>");
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+allPages+"'>尾页</a>");
-				}			
-				out.println("<ul>");
-				out.println("<li>");
-				out.println("<div class='items'>");
-				out.println("<div class='foodNo'>餐品号</div>");
-				out.println("<div class='foodName'>餐品名</div>");
-				out.println("<div class='foodPrice'>餐品单价</div>");
-				out.println("<div class='foodMount'>餐品库存</div>");
-				out.println("<div class='foodType'>餐品类型</div>");
-				out.println("</div>");
-				out.println("</li>");
-				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectFoodList.size())?(pageNo*pageSize):(selectFoodList.size()));i++) {
-					Food food = selectFoodList.get(i);
-					out.println("<li>");
-					out.println("<div class='items'>");
-					out.println("<div class='unchecked'></div>");
-					out.println("<input type='radio' name='select' id='select'>");
-					out.println("<div class='foodNo'>"+food.getFoodNo()+"</div>");
-					out.println("<div class='foodName'>"+food.getFoodName()+"</div>");
-					out.println("<div class='foodPrice'>"+food.getFoodPrice()+"</div>");
-					out.println("<div class='foodMount'>"+food.getFoodMount()+"</div>");
-					out.println("<div class='foodType'>"+food.getFoodType()+"</div>");
-					out.println("</div>");
-					out.println("</li>");
 				}
-				out.println("</ul>");
 			}
 			else {
 				out.println("查找不到该食物!");
 			}
-			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

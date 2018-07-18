@@ -27,7 +27,7 @@ function updateUI(){
 		timeout:5000,
 		success:function(data){
 			$("#foodOP").html(data);
-			$(".items").bind("click",function(){
+			$(".info").bind("click",function(){
 				var div = $(this);
 				var foodNoDiv = div.children(".foodNo");
 				var foodNameDiv = div.children(".foodName");
@@ -67,13 +67,53 @@ $(document).ready(function(){
 	$("#foodOPBtn").click(function(){
 		updateUI();
 	});
-	$("#submit").click(function(){
+	$("#insert").click(function(){
 		$.ajax({
 			url: 'AdminFoodOP',
 			type:'POST',
 			async:true,
 			data:{
-				opName: $("input[name='foodOP']:checked").attr("id"),
+				opName: "insert",
+				foodNo: $("#foodNo").val(),
+				foodName: $("#foodName").val(),
+				foodPrice: $("#foodPrice").val(),
+				foodMount: $("#foodMount").val(),
+				foodType: $("#foodType").val()
+			},
+			timeout:5000,
+			success:function(data){
+				alert(data);
+				updateUI();
+			}
+		});
+	});
+	$("#update").click(function(){
+		$.ajax({
+			url: 'AdminFoodOP',
+			type:'POST',
+			async:true,
+			data:{
+				opName: "update",
+				foodNo: $("#foodNo").val(),
+				foodName: $("#foodName").val(),
+				foodPrice: $("#foodPrice").val(),
+				foodMount: $("#foodMount").val(),
+				foodType: $("#foodType").val()
+			},
+			timeout:5000,
+			success:function(data){
+				alert(data);
+				updateUI();
+			}
+		});
+	});
+	$("#delete").click(function(){
+		$.ajax({
+			url: 'AdminFoodOP',
+			type:'POST',
+			async:true,
+			data:{
+				opName: "delete",
 				foodNo: $("#foodNo").val(),
 				foodName: $("#foodName").val(),
 				foodPrice: $("#foodPrice").val(),
@@ -133,6 +173,9 @@ input[type="radio"]#select{
 	<!-- 原导航栏 -->
 	<jsp:include page="adminGuide.jsp"></jsp:include>
 	
+	<button type="button" id="insert">添加</button>
+	<button type="button" id="delete">删除</button>
+	<button type="button" id="update">修改</button>
 	<!-- 搜索栏 -->
 	关键字:<input type="text" name="selectFoodParam" id="selectFoodParam">
 	<button type="button" id="foodOPBtn">查找菜品</button>
@@ -144,9 +187,6 @@ input[type="radio"]#select{
 	
 	<!-- 底部表单 -->
 	<form>
-		<!-- 单选按钮 -->
-		<input type="radio" name="foodOP" id="update" checked="checked">修改
-		<input type="radio" name="foodOP" id="delete">删除
 		<br>
 		<!-- 文本框输入 -->
 		餐品号:<input type="text" name="foodNo" id="foodNo">
@@ -154,7 +194,6 @@ input[type="radio"]#select{
 		餐品单价:<input type="text" name="foodPrice" id="foodPrice">
 		餐品库存：<input type="text" name="foodMount" id="foodMount">
 		餐品类型：<input type="text" name="foodType" id="foodType">
-		<button type="button" id="submit">提交</button>
 	</form>
 </body>
 </html>
