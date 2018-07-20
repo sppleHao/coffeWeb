@@ -12,7 +12,7 @@ import beans.R_User;
 import dao.UserDao;
 
 /**
- * 用户修改用户的信息
+ * 用户修改自身信息
  */
 @WebServlet("/User/UpdateUserConfig")
 public class UpdateUserConfig extends HttpServlet {
@@ -31,14 +31,19 @@ public class UpdateUserConfig extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			
 			//获得新参数
 			HttpSession session = request.getSession();
 			String userNo = (String) session.getAttribute("userNo");
+			
+			//获取表单
 			String userName = request.getParameter("userName");
 			String tel = request.getParameter("tel");
 			String email = request.getParameter("email");
+			
 			UserDao ud = new UserDao();
 			R_User userConfig = ud.selectUser(userNo).get(0);
+			
 			//修改
 			userConfig.setUserName(userName);
 			userConfig.setTel(tel);

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.R_User;
 import dao.UserDao;
-import net.sf.json.JSONArray;
 
 /**
  * 管理员在所有用户中查找相应的用户，并将信息返回到界面

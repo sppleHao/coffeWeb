@@ -38,32 +38,29 @@ public class CheckUserSignIn extends HttpServlet {
 		String password =request.getParameter("password");
 		String tel =request.getParameter("tel");
 		String eamil =request.getParameter("email");
+		
+		//TODO 检查是否正确输入
+		
+		R_User user = new R_User();
+		user.setUserNo(userNo);
+		user.setUserName(userName);
+		user.setPassword(password);
+		user.setTel(tel);
+		user.setEmail(eamil);
 		try {
-			UserDao ud = new UserDao();
-			
+			UserDao ud = new UserDao();	
 			List<R_User> users = ud.selectUser(userNo);
 			if (users.isEmpty()) {
-				//如果不存在，注册成功，将user加入数据库
-				R_User user = new R_User();
-				user.setUserNo(userNo);
-				user.setUserName(userName);
-				user.setPassword(password);
-				user.setTel(tel);
-				user.setEmail(eamil);
+				//如果不存在，注册成功，将user加入数据库			
 				ud.add(user);
-				
 				HttpSession session = request.getSession();
 				session.setAttribute("userConfig",user);
 				session.setAttribute("userNo", user.getUserNo());
-//				session.setAttribute("userName", userName);
-//				session.setAttribute("password", password);
-//				session.setAttribute("tel", tel);
-//				session.setAttribute("email", eamil);
-				
 				request.getRequestDispatcher("userConfig.jsp").forward(request, response);
 			}
 			else {
 				//用户存在，注册失败，返回
+				request.getSession().setAttribute("uSMsg", "已存在用户");
 				request.getRequestDispatcher("userSignIn.jsp").forward(request, response);
 			}
 		} catch (Exception e) {

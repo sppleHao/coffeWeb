@@ -32,20 +32,23 @@ public class AdminUserOP extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		//操作名
 		String opName = request.getParameter("opName");
-		PrintWriter out = response.getWriter();
-		R_User user = new R_User();
-		UserDao ud = new UserDao();
+	
 		//用户信息
 		String userNo = request.getParameter("userNo");
-		String userName = request.getParameter("userName");
-		
+		String userName = request.getParameter("userName");	
 		String tel = request.getParameter("tel");
 		String email = request.getParameter("email");
 		
 		try {
 			
+			R_User user = new R_User();
+			UserDao ud = new UserDao();
 			UserDao userDao = new UserDao();
 			if(opName.equals("delete")) {
 				//删除
@@ -63,16 +66,16 @@ public class AdminUserOP extends HttpServlet {
 				userDao.update(user);
 			}
 			if (opName.equals("insert")) {
-				//插入一个用户，初始密码为6位
+				//插入一个用户，初始密码为123456
 				user.setUserNo(userNo);
 				user.setUserName(userName);
 				user.setEmail(email);
 				user.setTel(tel);
 				user.setPassword("123456");
 				userDao.add(user);
+				out.print("新建用户"+userNo+"，密码为123456");
 			}
-			
-			out.print("ok");
+			out.print("操作成功");
 		
 		} catch (Exception e) {
 			e.printStackTrace();

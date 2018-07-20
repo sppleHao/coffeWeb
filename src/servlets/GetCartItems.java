@@ -38,6 +38,7 @@ public class GetCartItems extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			
 			HttpSession session = request.getSession();
 			String userNo = (String) session.getAttribute("userNo");
 			CartDao cd = new CartDao();
@@ -48,7 +49,7 @@ public class GetCartItems extends HttpServlet {
 			allFoodList = fd.selectFood("*");
 			session.setAttribute("allFoodList", allFoodList);
 			
-			//Map<String, List<Food>> foodMap=allFoodList.stream().collect(Collectors.groupingBy(Food::getFoodNo));
+			//得到食物的Map
 			Map<String, Food> foodMap = allFoodList.stream().
 													collect(Collectors.toMap(Food::getFoodNo,Function.identity()));
 			session.setAttribute("foodMap", foodMap);

@@ -20,7 +20,7 @@ import beans.Food;
 import dao.FoodDao;
 
 /**
- * Servlet implementation class Upload
+ * 添加餐品与上传图片
  */
 @WebServlet("/Upload")
 public class Upload extends HttpServlet {
@@ -69,6 +69,7 @@ public class Upload extends HttpServlet {
 			
 //			fd.add(food);
 			
+			//图片地址
 			String fileName= list.get(5).getName();
 //			if(!fileName.toLowerCase().endsWith("jpg")){
 //                System.out.println("图片格式不是jpg");
@@ -77,7 +78,10 @@ public class Upload extends HttpServlet {
 //                return;
 //            }
 			
+			//保存地址
 			String saveDirectory = "d:\\test"+foodName+".png";
+			
+			//保存图片
 			File file = new File(saveDirectory);
 			list.get(5).write(file);
 			

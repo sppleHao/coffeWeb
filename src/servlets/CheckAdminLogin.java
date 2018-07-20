@@ -42,10 +42,12 @@ public class CheckAdminLogin extends HttpServlet {
 			List<Admin> admins = ad.selectAdmin(admin.getAdminNo());
 			if (admins.isEmpty()) {
 				//list为空，用户名无效,回到注册界面
+				request.getSession().setAttribute("msg","用户名无效");
 				request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
 			}
 			else if (!admins.get(0).getPassword().equals(admin.getPassword())) {
-				//密码错误 TODO
+				//密码错误
+				request.getSession().setAttribute("msg","密码错误");
 				request.getRequestDispatcher("adminLogin.jsp").forward(request, response);
 			}
 			else {

@@ -19,7 +19,7 @@ import dao.FoodDao;
 import dao.OrderDao;
 
 /**
- * Servlet implementation class getOrderItems
+ * 获得订单的详细信息
  */
 @WebServlet("/Order/GetOrderItems")
 public class GetOrderItems extends HttpServlet {
@@ -38,13 +38,16 @@ public class GetOrderItems extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
+			//得到订单号
 			HttpSession session = request.getSession();
 			String orderNo =request.getParameter("orderNo");
 			
+			//查询订单的所有餐品
 			OrderDao od = new OrderDao();
 			List<R_Order> orderItems = od.selectOrder(orderNo);
 			session.setAttribute("orderItems", orderItems);
 			
+			//获得订单的所有
 			List<Food> allFoodList;
 			FoodDao fd = new FoodDao();
 			allFoodList = fd.selectFood("*");
