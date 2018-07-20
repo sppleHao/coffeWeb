@@ -10,19 +10,6 @@
 <script type="text/javascript" src="/coffeWeb/JS/ajax.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-function addToCart(){
-	var url = "AddFoodToCart";
-    var param="addFoodNum="+addFoodNum.value;
-    sendRequest(url,param,'POST' ,function() {
-        if (xmlHttpRequest.readyState==4) {
-            if (xmlHttpRequest.status==200) {
-                alert("已加入购物车！");
-                window.location.href='/coffeWeb/Menu/menu.jsp';
-            }
-        }
-    });
-}
-
 $(document).ready(function(){
   $("button#add").click(function(){
 	  var num =$("input#addFoodNum").val();
@@ -45,6 +32,34 @@ $(document).ready(function(){
 		  $("input#addFoodNum").val(parseInt(num)-1);
 		}
   });
+  $("#addToCart").click(function(){
+	 $.ajax({
+		 url:'AddFoodToCart',
+		 type:'POST',
+		 async:true,
+		 data:{
+				addFoodNum: $("#addFoodNum").val()
+			},
+		success:function(data){
+			alert(data);
+			if(data=='已加入购物车'){
+				window.location.href='/coffeWeb/Menu/menu.jsp';
+			}
+		}
+	 });
+  });
+  $("#addFoodNum").bind('input propertychange',function(){
+	  var num =$("input#addFoodNum").val();
+	  var mount = '<%=request.getParameter("addFoodMount")%>';
+	  if(parseInt(num) >= parseInt(mount)){
+		  alert("数量不能超过库存量!");
+		  $("input#addFoodNum").val(parseInt(mount));
+	  }
+	  if (parseInt(num) <1) {
+		  alert("数量必须是正数!");
+		  $("input#addFoodNum").val(1);
+		}
+	});
 });
 </script>
 <style type="text/css">
@@ -80,7 +95,7 @@ img.foodImg{
 		<button type="button" id="sub">sub</button>
 		<br>
 	<!-- 加入购物车按钮 -->
-	<button  onclick="addToCart()">加入购物车</button>
+	<button id="addToCart">加入购物车</button>
 	
 	
 </body>

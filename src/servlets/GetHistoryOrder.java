@@ -1,10 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -37,10 +35,6 @@ public class GetHistoryOrder extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
-			//设置编码类型
-//			response.setContentType("text/html;charset=UTF-8");
-//			request.setCharacterEncoding("UTF-8");
-//			PrintWriter out = response.getWriter();
 			
 			//从session中获得用户名参数
 			HttpSession session = request.getSession();
@@ -56,14 +50,10 @@ public class GetHistoryOrder extends HttpServlet {
 			Map<String, List<R_Order>> groupByOrderNo = 
 					orders.stream().collect(Collectors.groupingBy(R_Order::getOrderNo));
 			
-			//得到map的key
-//			Set<String> orderNos = groupByOrderNo.keySet();
+			//设置map属性
 			session.setAttribute("groupByOrderNoMap", groupByOrderNo);
-//			for (String orderNo : orderNos) {
-//				//遍历，输出订单记录
-//				List<R_Order> orderItems = groupByOrderNo.get(orderNo);
-//				System.out.printf("%s\t %s\t \n",orderNo,orderItems.get(0).getOrderTime());
-//			}
+			
+			//转到历史订单界面
 			request.getRequestDispatcher("historyOrder.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
