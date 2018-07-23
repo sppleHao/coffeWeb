@@ -88,7 +88,7 @@ public class GetFood extends HttpServlet {
 			if (!selectFoodList.isEmpty()) {
 				Integer allPages = (selectFoodList.size()-1)/pageSize + 1;
 				
-				out.println("<table>");
+				out.println("<table width=\"100%\" class=\"am-table am-table-compact am-table-striped tpl-table-black \">");
 				out.println("<tbody>");
 				out.println("<tr>");
 				out.println("<td>");
@@ -101,29 +101,34 @@ public class GetFood extends HttpServlet {
 				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectFoodList.size())?(pageNo*pageSize):(selectFoodList.size()));i++) {
 					Food food = selectFoodList.get(i);
 					out.println("<tr class='info'>");
-					out.println("<td class='unchecked'></div>");
+					out.println("<td class='unchecked'></td>");
 					out.println("<input type='radio' name='select' id='select'>");
-					out.println("<td class='foodNo'>"+food.getFoodNo()+"</div>");
-					out.println("<td class='foodName'>"+food.getFoodName()+"</div>");
-					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</div>");
-					out.println("<td class='foodMount'>"+food.getFoodMount()+"</div>");
-					out.println("<td class='foodType'>"+food.getFoodType()+"</div>");
+					out.println("<td class='foodNo'>"+food.getFoodNo()+"</td>");
+					out.println("<td class='foodName'>"+food.getFoodName()+"</td>");
+					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</td>");
+					out.println("<td class='foodMount'>"+food.getFoodMount()+"</td>");
+					out.println("<td class='foodType'>"+food.getFoodType()+"</td>");
 					out.println("</tr>");
 				}
 				out.println("</tbody>");
 				out.println("</table>");
-				
-				out.println("共"+selectFoodList.size()+"条记录");
-				out.println("共"+allPages+"页");
+				out.println("<div>");
+				out.println("<div class='page_info'>");
+				out.println("共 "+selectFoodList.size()+" 条记录		");
+				out.println("共 "+allPages+" 页");
+				out.println("</div>");
+				out.println("<div class='page_show'>");
 				if (pageNo>1) {
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo=1'>首页</a>");
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+(pageNo-1)+"'>上一页</a>");
 				}
-				out.println("这是第"+pageNo+"页");
+				out.println("	这是第 "+pageNo+" 页		");
 				if (pageNo<allPages) {
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+(pageNo+1)+"'>下一页</a>");
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+allPages+"'>尾页</a>");
 				}
+				out.println("</div>");
+				out.println("</div>");
 			}
 			else {
 				out.println("查找不到该食物!");

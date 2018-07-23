@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.R_User;
 import dao.UserDao;
+import net.sf.json.JSONArray;
 
 /**
  * 管理员在所有用户中查找相应的用户，并将信息返回到界面
@@ -84,7 +85,7 @@ public class GetUsers extends HttpServlet {
 //				JSONArray jsonArray = JSONArray.fromObject(selectUers);
 //				out.println(jsonArray);
 				
-				out.println("<table>");
+				out.println("<table width=\"100%\" class=\"am-table am-table-compact am-table-striped tpl-table-black \" id=\"example-r\">");
 				out.println("<tbody>");
 				out.println("<tr>");
 				out.print("<td/>");
@@ -109,9 +110,12 @@ public class GetUsers extends HttpServlet {
 				}
 				out.println("</tbody>");
 				out.println("</table>");
-				
+				out.println("<div>");
+				out.println("<div class='page_info'>");
 				out.println("共"+selectUers.size()+"条记录");
 				out.println("共"+allPages+"页");
+				out.println("</div>");
+				out.println("<div class='page_show'>");
 				if (pageNo>1) {
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo=1'>首页</a>");
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+(pageNo-1)+"'>上一页</a>");
@@ -121,6 +125,8 @@ public class GetUsers extends HttpServlet {
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+(pageNo+1)+"'>下一页</a>");
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+allPages+"'>尾页</a>");
 				}
+				out.println("</div>");
+				out.println("</div>");
 			}
 			else {
 				out.println("查找不到该用户!");
