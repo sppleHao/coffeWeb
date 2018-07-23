@@ -33,11 +33,7 @@ public class Encoding implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-<<<<<<< HEAD
-		request.setCharacterEncoding("UTF-8");
-=======
 		request.setCharacterEncoding("utf-8");
->>>>>>> check
 		chain.doFilter(request, response);
 	}
 

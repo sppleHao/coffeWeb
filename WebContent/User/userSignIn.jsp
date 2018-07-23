@@ -87,7 +87,7 @@ $(document).ready(function() {
 input[type='text'],input[type='password']{
 	font-size:23px;
 	font-weight:400;
-	margin:25px;
+	margin:2px;
 	width: 313px;
     height: 55px;
 }
