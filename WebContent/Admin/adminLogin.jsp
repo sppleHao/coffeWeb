@@ -14,9 +14,8 @@
 		密码:<input type="password" name="adminPassword" value="${param.adminPassword}"/><br/>
 		<input type="submit" value="登陆" onclick="adminLoginForm.action='CheckAdminLogin'" />
 		<!-- <input type="submit" value="To Sign In" onclick="loginForm.action='toSignPage'"/>  -->
-		<div>
-			${sessionScope.msg}
-		</div>
+		<!-- 服务器信息提示 -->
+		<div id="msg"><span>${msg}</span></div>
 	</form>
 </body>
 </html>

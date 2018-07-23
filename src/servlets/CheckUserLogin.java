@@ -46,12 +46,12 @@ public class CheckUserLogin extends HttpServlet {
 				users = ud.selectUser(userNo);
 				if (users.isEmpty()) {
 					//list为空，用户名无效
-					request.getSession().setAttribute("uMsg","用户名无效");
+					request.setAttribute("uMsg","用户名无效");
 					request.getRequestDispatcher("userLogin.jsp").forward(request, response);
 				}
 				else if (!users.get(0).getPassword().equals(user.getPassword())) {
 					//密码错误
-					request.getSession().setAttribute("uMsg","密码错误");
+					request.setAttribute("uMsg","密码错误");
 					request.getRequestDispatcher("userLogin.jsp").forward(request, response);
 				}
 				else {

@@ -4,6 +4,38 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>登陆</title>
+<script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
+<script type="text/javascript">
+$.validator.setDefaults({
+    submitHandler: function() {
+    	form.submit();
+    	//$(form).ajaxSubmit();     
+    }
+});
+$(document).ready(function() {
+    $("#login-form").validate({
+    	rules:{
+    		userNo:{
+    			required:true,
+    			digits:true,
+    			rangelength:[9,9]
+    		},
+    		password:"required"
+    	},
+    	errorElement: "span",
+    	messages:{
+    		userNo:{
+    			required:"用户名不能为空",
+    			digits:"用户名不能含有除数字外的其他字符",
+    			rangelength:"用户名必须为长度为9位的数字"
+    		},	
+    		password:"密码不能为空"
+    	}
+    });
+});
+</script>
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 .body-background{
@@ -93,12 +125,14 @@ input[type='submit']{
 				<!-- 功能模块(更改) -->
 				<div class="user-login-div">
 					<!-- 表单 -->
-					<form method="post" name="login-form" action="/coffeWeb/User/CheckUserLogin">
+					<form method="post" id="login-form" name="login-form" action="/coffeWeb/User/CheckUserLogin">
 					<!-- 输入文本框 -->
 					<input type="text" id="userNo" name="userNo" placeholder="用户名/邮箱/手机" value="${param.userNo}"/><br/>
 					<input type="password" id="password" name="password" placeholder="密码" value="${param.password}"/><br/>
 					<!-- 登陆按钮 -->
 					<input type="submit" value="登陆" />
+					<!-- 服务器信息提示 -->
+					<div id="uMsg"><span>${uMsg}</span></div>
 					</form>
 				</div>
 			</div>

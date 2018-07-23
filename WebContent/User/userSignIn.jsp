@@ -4,6 +4,67 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>用户注册</title>
+<script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
+<script type="text/javascript">
+$.validator.setDefaults({
+    submitHandler: function() {
+    	form.submit();
+    	//$(form).ajaxSubmit();     
+    }
+});
+$(document).ready(function() {
+    $("#user-signIn-form").validate({
+    	rules:{
+    		userName:{
+    			required:true,
+    			maxlength:8,
+    		},
+    		password:{
+    			required:true,
+    			maxlength:18
+    		},
+    		confirm_password: {
+    	        required: true,
+    	        maxlength:18,
+    	        equalTo: "#password"
+    	    },
+    	    email: {
+    	        required: true,
+    	        email: true
+    	    },
+    	    tel:{
+    	    	required: true,
+    	    	digits:true,
+    	    	rangelength:[11,11]
+     	    }
+    		
+    	},
+    	errorElement: "span",
+    	messages:{
+    		userName:{
+    			required:"昵称不能为空",
+    			maxlength:"昵称长度不能超过8位",
+    		},
+    		password:{
+    			required:"密码不能为空",
+    			maxlength:"密码长度不能超过18位",
+    		},
+    		confirm_password: {
+    			required: "请再次输入密码",
+    	        equalTo: "两次输入的密码不相同"
+    	      },
+    	   email:"请输入一个正确的邮箱",
+    	   tel:{
+    		   required:"请输入长度位11位的个人电话",
+    		   digits:"电话中只能含数字",
+   	    	   rangelength:"电话号码长度为11位"
+    	   }
+    	}
+    });
+});
+</script>
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 .body-background{
@@ -87,13 +148,14 @@ input[type='submit']{
 			<div class="body-background">
 				<!-- 功能模块(更改) -->
 				<div class="user-sign-div">
-					<form method="post" name="user-signIn-form">
-						<input type="text" name="userNo" placeholder="用户名(9位)"/><br/>
-						<input type="text" name="userName" placeholder="昵称"/><br/>
-						<input type="password" name="password" placeholder="密码"/><br/>
-						<input type="text" name="tel" placeholder="电话"/><br/>
-						<input type="text" name="email" placeholder="邮箱"/><br/>
-						<input type="submit" value="注册" onclick="user-signIn-form.action='CheckUserSignIn'">
+					<form method="post" id="user-signIn-form" name="user-signIn-form" action="CheckUserSignIn">
+						<input type="text" id="userNo" name="userNo" placeholder="用户名(9位)"/><br/>
+						<input type="text" id="userName" name="userName" placeholder="昵称"/><br/>
+						<input type="password" id="password" name="password" placeholder="密码"/><br/>
+						<input type="password" id="confirm_password" name="confirm_password"placeholder="确认密码"><br>
+						<input type="text" id="tel" name="tel" placeholder="电话"/><br/>
+						<input type="text" id="email" name="email" placeholder="邮箱"/><br/>
+						<input type="submit" value="注册">
 					</form>
 				</div>
 			</div>
