@@ -4,17 +4,28 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>新增餐品</title>
-<link rel="stylesheet" href="/coffeWeb/CSS/zyUpload.css" type="text/css">
 <script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
-
 $(document).ready(function(){
+	//ajax提交表单
+	$("#uploadForm").validate({
+        submitHandler:function(form){
+        	if(confirm("确认")){
+        		$("#uploadForm").ajaxSubmit();
+        	}
+        } 
+    });
+	//点击按钮
 	$(".filePicker").bind("click", function(e){
     	$("#fileImage").click();
     });
 });
 
-function changepic() {
+//计算图片大小
+function computeSize() {
 	var reads= new FileReader();
     var file=document.getElementById('fileImage').files[0];
     reads.readAsDataURL(file);
@@ -34,33 +45,38 @@ function changepic() {
 </head>
 <body>
 	<div id="demo" class="demo" style="width: 650px; height: 400px;">
-		<form id="uploadForm" name="uploadForm" method="post" action="../Upload" enctype="multipart/form-data">
+		<!-- 表单 -->
+		<form id="uploadForm" name="uploadForm" method="post" action="foodUpload" enctype="multipart/form-data">
 			<div class="upload_box">
 				<div class="upload_main">			
 					<div class="convent_choice">
 						<div class="andArea">
 							<div id="preview" class="upload_preview">
  							<div class="uploadImg" style="width:105px">
- 							<img id="uploadImage" class="upload_image" src="/coffeWeb/Img/add_img.png">
+ 							<img id="uploadImage" class="upload_image" src="/coffeWeb/Img/add_img.png" style="width:105px; height:100px;">
  							</div>
  							</div>
+ 							<!-- 选择文件图片 -->
 							<div class="filePicker">点击选择文件</div>
-							<input id="fileImage" onchange="changepic(this)" type="file" name="fileselect[]" accept="image/png, image/jpeg, image/gif, image/jpg">
+							<!-- 隐藏的表单 -->
+							<input id="fileImage" onchange="computeSize(this)" type="file" name="fileselect[]" accept="image/png, image/jpeg, image/gif, image/jpg">
  						</div>
+ 						<!-- 大小显示 -->
  						<div class="status_bar">
  							<div id="status_info" class="status_info"></div>
  						</div>
  					</div>
- 				</div>		
- 				餐品号:<input type="text" name="foodNo" id="foodNo"><br>
-				餐品名:<input type="text" name="foodName" id="foodName"><br>
-				餐品单价:<input type="text" name="foodPrice" id="foodPrice"><br>
-				餐品库存：<input type="text" name="foodMount" id="foodMount"><br>
-				餐品类型：<input type="text" name="foodType" id="foodType">
+ 				</div>
+ 				<!-- 餐品信息 -->
+ 				操作名称：<input type="text" name="opName" id="opName" readonly="readonly"><br>
+ 				餐品号:<input type="text" name="foodNoInput" id="foodNoInput"><br>
+				餐品名:<input type="text" name="foodNameInput" id="foodNameInput"><br>
+				餐品单价:<input type="text" name="foodPriceInput" id="foodPriceInput"><br>
+				餐品库存：<input type="text" name="foodMountInput" id="foodMountInput"><br>
+				餐品类型：<input type="text" name="foodTypeInput" id="foodTypeInput">
 				<input type="submit" value="提交" >
  			</div>
 		</form>
-		
 	</div>
 </body> 
 </html> 

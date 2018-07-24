@@ -4,10 +4,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <title>菜品操作</title>
-<script type="text/javascript" src="/coffeWeb/JS/ajax.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
-//js代码，不用修改
+//显示信息
 function updateUI(){
 	<%
 		String pageNo="1";
@@ -62,40 +64,28 @@ function updateUI(){
 		}
 	});
 };
+
 $(document).ready(function(){
-	$(".filePicker").bind("click", function(e){
-    	$("#fileImage").click();
-    });
+	
+	//搜索关键字
 	$("#foodOPBtn").click(function(){
 		updateUI();
 	});
-	$("#insert").click(function() {
-		var isHaveChecked = false;
-
-		$(".unchecked").each(function(){
-			var bt= $(this);
-			if(bt.hasClass('checked')){
-				//是否有东西被选中
-				isHaveChecked = true;
-			}
-		});
-		
-		if(isHaveChecked){
-			/*
-			$("#foodNoInput").val($("#foodNo").val());
-			$("#foodNameInput").val($("#foodName").val());
-			$("#foodPriceInput").val($("#foodPrice").val());
-			$("#foodMountInput").val($("#foodMount").val());
-			$("#foodTypeInput").val($("#foodType").val());
-			*/
-		    var $modal = $('#your-modal');
-		    $modal.modal();	    
-		}
-		else{
-			alert("请先选中一栏");
-		}
-		
+	
+	//新增按钮
+	$("#insert").click(function() {	
+		    var $modal = $('#modal');
+		    $modal.modal();
+		    
+		    $("#opName").val("insert");
+		    $("#foodNoInput").val("");
+			$("#foodNameInput").val($("").val());
+			$("#foodPriceInput").val($("").val());
+			$("#foodMountInput").val($("").val());
+			$("#foodTypeInput").val($("").val());
 	 });
+	
+	//修改按钮
 	$("#update").click(function(){
 		
 		var isHaveChecked = false;
@@ -109,26 +99,16 @@ $(document).ready(function(){
 		});
 		
 		if(isHaveChecked){
-			if(confirm("确认修改")){
-				$.ajax({
-					url: 'AdminFoodOP',
-					type:'POST',
-					async:true,
-					data:{
-						opName: "update",
-						foodNo: $("#foodNo").val(),
-						foodName: $("#foodName").val(),
-						foodPrice: $("#foodPrice").val(),
-						foodMount: $("#foodMount").val(),
-						foodType: $("#foodType").val()
-					},
-					timeout:5000,
-					success:function(data){
-						alert(data);
-						updateUI();
-					}
-				});
-			}
+			
+		    var $modal = $('#modal');
+		    $modal.modal();
+		    
+		    $("#opName").val("update");
+		    $("#foodNoInput").val($("#foodNo").val());
+			$("#foodNameInput").val($("#foodName").val());
+			$("#foodPriceInput").val($("#foodPrice").val());
+			$("#foodMountInput").val($("#foodMount").val());
+			$("#foodTypeInput").val($("#foodType").val());
 		}
 		else{
 			alert("请先选中一栏");
@@ -173,8 +153,10 @@ $(document).ready(function(){
 			alert("请先选中一栏");
 		}
 	});
+	
 	updateUI();
 });
+
 </script>
 <style type="text/css">
 .foodNo,.foodName,.foodPrice,.foodType,.foodMount{
@@ -518,42 +500,14 @@ input[type="radio"]#select{
         </div>
     </div>
     
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="your-modal">
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="modal">
   		<div class="am-modal-dialog">
-    		<div class="am-modal-hd">Modal 标题
+    		<div class="am-modal-hd">
       			<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
     		</div>
     		<!-- 模态内容 -->
    			 <div class="am-modal-bd">
-      			<div id="demo" class="demo" style="width: 650px; height: 400px;">
-					<form id="uploadForm" name="uploadForm" method="post" action="../Upload" enctype="multipart/form-data">
-						<div class="upload_box">
-							<div class="upload_main">			
-								<div class="convent_choice">
-									<div class="andArea">
-										<div id="preview" class="upload_preview">
-			 							<div class="uploadImg" style="width:105px">
-			 							<img id="uploadImage" class="upload_image" src="/coffeWeb/Img/add_img.png">
-			 							</div>
-			 							</div>
-										<div class="filePicker">点击选择文件</div>
-										<input id="fileImage" onchange="changepic(this)" type="file" name="fileselect[]" accept="image/png, image/jpeg, image/gif, image/jpg">
-			 						</div>
-			 						<div class="status_bar">
-			 							<div id="status_info" class="status_info"></div>
-			 						</div>
-			 					</div>
-			 				</div>		
-			 				餐品号:<input type="text" name="foodNo" id="foodNoInput"><br>
-							餐品名:<input type="text" name="foodName" id="foodNameInput"><br>
-							餐品单价:<input type="text" name="foodPrice" id="foodPriceInput"><br>
-							餐品库存：<input type="text" name="foodMount" id="foodMountInput"><br>
-							餐品类型：<input type="text" name="foodType" id="foodTypeInput">
-							<input type="submit" value="提交" >
- 			</div>
-		</form>
-		
-	</div>
+   			 	<jsp:include page="addNewFood.jsp"></jsp:include>
     		</div>
   		</div>
 	</div>

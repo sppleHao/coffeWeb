@@ -22,7 +22,7 @@ import dao.FoodDao;
 /**
  * 添加餐品与上传图片
  */
-@WebServlet("/Upload")
+@WebServlet("/Admin/foodUpload")
 public class Upload extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -38,12 +38,13 @@ public class Upload extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	
 		DiskFileItemFactory factoy=new DiskFileItemFactory();
         //创建解析器
         ServletFileUpload sfu=new ServletFileUpload(factoy);
         //解析request
-        
+
+//      操作名称：<input type="text" name="opName" id="opName" readonly="readonly"><br>
 //      餐品号:<input type="text" name="foodNo" id="foodNo">
 //		餐品名:<input type="text" name="foodName" id="foodName">
 //		餐品单价:<input type="text" name="foodPrice" id="foodPrice">
@@ -53,41 +54,62 @@ public class Upload extends HttpServlet {
         
         try {
 			@SuppressWarnings("unchecked")
+			
+			//request 对象内容
 			List<FileItem> list = sfu.parseRequest(request);
+			
+			//操作名
+			String opName = list.get(1).getString();
+			for (int i=1;i<7;i++) {
+				System.out.println(list.get(i).getString());
+			}
+			
+			//食物信息
 			Food food = new Food();
 			FoodDao fd = new FoodDao();
-			String foodNo = list.get(0).getString("utf-8");
+			
+			String foodNo = list.get(2).getString("utf-8");
 			food.setFoodNo(foodNo);
-			String foodName = list.get(1).getString("utf-8");
+			
+			String foodName = list.get(3).getString("utf-8");
 			food.setFoodName(foodName);
-			String foodPrice = list.get(2).getString("utf-8");
+			
+			String foodPrice = list.get(4).getString("utf-8");
 			food.setFoodPrice(Integer.parseInt(foodPrice));
-			String foodMount = list.get(3).getString("utf-8");
+			
+			String foodMount = list.get(5).getString("utf-8");
 			food.setFoodMount(Integer.parseInt(foodMount));
-			String foodType = list.get(4).getString("utf-8");
+			
+			String foodType = list.get(6).getString("utf-8");
 			food.setFoodType(foodType);
 			
-//			fd.add(food);
 			
-			//图片地址
-			String fileName= list.get(5).getName();
+			if(opName.equals("insert")) {
+				fd.add(food);
+			}
+			else {
+				fd.update(food);
+			}
+			
+			//设置图片
+			String fileName= list.get(0).getName();
 //			if(!fileName.toLowerCase().endsWith("jpg")){
 //                System.out.println("图片格式不是jpg");
 //                request.setAttribute("msg", "你的图片格式不是jpg格式");
 //                request.getRequestDispatcher("/adminjsps/admin/book/add.jsp").forward(request, response);
 //                return;
 //            }
-			
-			//保存地址
+			//设置保存地址
 			String saveDirectory = "d:\\test"+foodName+".png";
 			
 			//保存图片
 			File file = new File(saveDirectory);
-			list.get(5).write(file);
+			list.get(0).write(file);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("server at");
 	}
 
 	/**
