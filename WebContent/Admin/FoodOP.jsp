@@ -484,11 +484,11 @@ input[type="radio"]#select{
 										<form>
 											<br>
 											<!-- 文本框输入 -->
-										餐品号:<input type="text" name="foodNo" id="foodNo">
-										餐品名:<input type="text" name="foodName" id="foodName">
-										餐品单价:<input type="text" name="foodPrice" id="foodPrice">
-										餐品库存：<input type="text" name="foodMount" id="foodMount">
-										餐品类型：<input type="text" name="foodType" id="foodType">
+										餐品号:<input type="text" name="foodNo" id="foodNo" readonly="readonly" disabled="disabled">
+										餐品名:<input type="text" name="foodName" id="foodName" readonly="readonly" disabled="disabled">
+										餐品单价:<input type="text" name="foodPrice" id="foodPrice" readonly="readonly" disabled="disabled">
+										餐品库存：<input type="text" name="foodMount" id="foodMount" readonly="readonly" disabled="disabled">
+										餐品类型：<input type="text" name="foodType" id="foodType" readonly="readonly" disabled="disabled">
 										</form>                                  
                                 </div>
                                 

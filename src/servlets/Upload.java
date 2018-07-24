@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -39,6 +40,11 @@ public class Upload extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
+		//设置传输格式
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		DiskFileItemFactory factoy=new DiskFileItemFactory();
         //创建解析器
         ServletFileUpload sfu=new ServletFileUpload(factoy);
@@ -60,9 +66,6 @@ public class Upload extends HttpServlet {
 			
 			//操作名
 			String opName = list.get(1).getString();
-			for (int i=1;i<7;i++) {
-				System.out.println(list.get(i).getString());
-			}
 			
 			//食物信息
 			Food food = new Food();
@@ -100,16 +103,19 @@ public class Upload extends HttpServlet {
 //                return;
 //            }
 			//设置保存地址
-			String saveDirectory = "d:\\test"+foodName+".png";
+			String saveDirectory = "d:\\test\\"+foodName+".png";
 			
 			//保存图片
 			File file = new File(saveDirectory);
 			list.get(0).write(file);
 			
+			out.print("操作成功!");
+			
 		} catch (Exception e) {
+			out.print(e.getMessage());
 			e.printStackTrace();
 		}
-		System.out.println("server at");
+        
 	}
 
 	/**

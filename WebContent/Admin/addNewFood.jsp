@@ -10,11 +10,19 @@
 <script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	var ajax_option={
+			url:"foodUpload",
+			success:function(data){
+				alert(data);
+				location.reload();
+			}
+		};
+	
 	//ajax提交表单
 	$("#uploadForm").validate({
         submitHandler:function(form){
         	if(confirm("确认")){
-        		$("#uploadForm").ajaxSubmit();
+        		$("#uploadForm").ajaxSubmit(ajax_option);
         	}
         } 
     });
@@ -46,7 +54,7 @@ function computeSize() {
 <body>
 	<div id="demo" class="demo" style="width: 650px; height: 400px;">
 		<!-- 表单 -->
-		<form id="uploadForm" name="uploadForm" method="post" action="foodUpload" enctype="multipart/form-data">
+		<form id="uploadForm" name="uploadForm" method="post" enctype="multipart/form-data">
 			<div class="upload_box">
 				<div class="upload_main">			
 					<div class="convent_choice">
