@@ -46,7 +46,72 @@ var pageData = {
         // 百度图表A http://echarts.baidu.com/
         // ==========================
 
-        var echartsA = echarts.init(document.getElementById('tpl-echarts'));
+        var myChart= echarts.init(document.getElementById('tpl-echarts'));
+        
+        myChart.showLoading();
+        
+        $.ajax({
+        	type:'POST',
+        	url:'GetStsc',
+        	async:true,
+        	success:function(data){
+    			if(data){
+    				var obj = eval('(' + data + ')');
+    				myChart.hideLoading();
+    				var option = {
+    	                	    title : {
+    	                	        text: '菜品欢迎程度分析',
+    	                	        subtext: '数据来源于本网站'
+    	                	    },
+    	                	    tooltip : {
+    	                	        trigger: 'axis'
+    	                	    },
+    	                	    legend: {
+    	                	        data:['数量']
+    	                	    },
+    	                	    toolbox: {
+    	                	        show : true,
+    	                	        feature : {
+    	                	            mark : {show: true},
+    	                	            dataView : {show: true, readOnly: false},
+    	                	            magicType: {show: true, type: ['line', 'bar']},
+    	                	            restore : {show: true},
+    	                	            saveAsImage : {show: true}
+    	                	        }
+    	                	    },
+    	                	    calculable : true,
+    	                	    xAxis : [
+    	                	        {
+    	                	            type : 'value',
+    	                	            boundaryGap : [0, 0.01]
+    	                	        }
+    	                	    ],
+    	                	    yAxis : [
+    	                	        {
+    	                	            type : 'category',
+    	                	            data : obj.foodNames
+    	                	        }
+    	                	    ],
+    	                	    series : [
+    	                	        {
+    	                	            name:'数量',
+    	                	            type:'bar',
+    	                	            data: obj.foodNums
+    	                	        }
+    	                	    ]
+    	                	};
+    				
+    				 myChart.setOption(option); 
+
+    			}
+    		},		
+	        error : function(errorMsg) {
+	            //请求失败时执行该函数
+	        alert("请求数据失败!");
+	        myChart.hideLoading();
+	        }
+        });
+        
         option = {
             tooltip: {
                 trigger: 'axis'
