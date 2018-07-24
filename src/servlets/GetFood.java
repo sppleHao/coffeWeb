@@ -102,7 +102,7 @@ public class GetFood extends HttpServlet {
 					Food food = selectFoodList.get(i);
 					out.println("<tr class='info'>");
 					out.println("<td class='unchecked'></td>");
-					out.println("<input type='radio' name='select' id='select'>");
+					//out.println("<input type='radio' name='select' id='select'>");
 					out.println("<td class='foodNo'>"+food.getFoodNo()+"</td>");
 					out.println("<td class='foodName'>"+food.getFoodName()+"</td>");
 					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</td>");

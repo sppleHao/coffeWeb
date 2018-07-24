@@ -100,7 +100,7 @@ public class GetUsers extends HttpServlet {
 					R_User user = selectUers.get(i);
 					out.println("<tr class='info'>");
 					out.println("<td class='unchecked'></div>");
-					out.println("<input type='radio' name='select' id='select'>");
+//					out.println("<input type='radio' name='select' id='select'>");
 					out.println("<td class='userNo'>"+user.getUserNo()+"</td>");
 					out.println("<td class='userName'>"+user.getUserName()+"</td>");
 //					out.println("<td class='password'>"+user.getPassword()+"</td>");

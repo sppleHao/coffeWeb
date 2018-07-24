@@ -13,10 +13,6 @@
     <script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
     <script type="text/javascript">
     	
-	
-    	//服务器传
-    	var foodNames = ['提拉米苏1','提拉米苏2','提拉米苏3','提拉米苏4','提拉米苏5','提拉米苏6'];
-    	var foodNums = ['10','20','30','40','50','200'];
     
         // 路径配置
         require.config({

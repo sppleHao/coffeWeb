@@ -27,30 +27,31 @@ function updateUI(){
 		success:function(data){
 			$("#foodOP").html(data);
 			$(".info").bind("click",function(){
-				var div = $(this);
-				var foodNoDiv = div.children(".foodNo");
-				var foodNameDiv = div.children(".foodName");
-				var foodPriceDiv = div.children(".foodPrice");
-				var foodMountDiv = div.children(".foodMount");
-				var foodTypeDiv = div.children(".foodType");
-							
+				var tr = $(this);
+				//tr内元素
+				var foodNoTd = tr.children(".foodNo");
+				var foodNameTd = tr.children(".foodName");
+				var foodPriceTd = tr.children(".foodPrice");
+				var foodMountTd = tr.children(".foodMount");
+				var foodTypeTd = tr.children(".foodType");
+				
+				//按钮图标
 				var bt=$(this).children(".unchecked");
-				var inputBt =bt.siblings("input");
-				if(!inputBt.is(':checked')){
+				
+				
+				if(!bt.hasClass('checked')){
 					//no checked
 					$(".checked").removeClass("checked");
-					inputBt.prop("checked",true);
 					bt.addClass("checked");
 					
-					$("#foodNo").val(foodNoDiv.text());
-					$("#foodName").val(foodNameDiv.text());
-					$("#foodPrice").val(foodPriceDiv.text());
-					$("#foodMount").val(foodMountDiv.text());
-					$("#foodType").val(foodTypeDiv.text());
+					$("#foodNo").val(foodNoTd.text());
+					$("#foodName").val(foodNameTd.text());
+					$("#foodPrice").val(foodPriceTd.text());
+					$("#foodMount").val(foodMountTd.text());
+					$("#foodType").val(foodTypeTd.text());
 				}
 				else{
 					bt.removeClass("checked");
-					inputBt.prop("checked",false);
 					$("#foodNo").val("");
 					$("#foodName").val("");
 					$("#foodPrice").val("");
@@ -61,70 +62,116 @@ function updateUI(){
 		}
 	});
 };
-
 $(document).ready(function(){
+	$(".filePicker").bind("click", function(e){
+    	$("#fileImage").click();
+    });
 	$("#foodOPBtn").click(function(){
 		updateUI();
 	});
-	$("#insert").click(function(){
-		$.ajax({
-			url: 'AdminFoodOP',
-			type:'POST',
-			async:true,
-			data:{
-				opName: "insert",
-				foodNo: $("#foodNo").val(),
-				foodName: $("#foodName").val(),
-				foodPrice: $("#foodPrice").val(),
-				foodMount: $("#foodMount").val(),
-				foodType: $("#foodType").val()
-			},
-			timeout:5000,
-			success:function(data){
-				alert(data);
-				updateUI();
+	$("#insert").click(function() {
+		var isHaveChecked = false;
+
+		$(".unchecked").each(function(){
+			var bt= $(this);
+			if(bt.hasClass('checked')){
+				//是否有东西被选中
+				isHaveChecked = true;
 			}
 		});
-	});
+		
+		if(isHaveChecked){
+			/*
+			$("#foodNoInput").val($("#foodNo").val());
+			$("#foodNameInput").val($("#foodName").val());
+			$("#foodPriceInput").val($("#foodPrice").val());
+			$("#foodMountInput").val($("#foodMount").val());
+			$("#foodTypeInput").val($("#foodType").val());
+			*/
+		    var $modal = $('#your-modal');
+		    $modal.modal();	    
+		}
+		else{
+			alert("请先选中一栏");
+		}
+		
+	 });
 	$("#update").click(function(){
-		$.ajax({
-			url: 'AdminFoodOP',
-			type:'POST',
-			async:true,
-			data:{
-				opName: "update",
-				foodNo: $("#foodNo").val(),
-				foodName: $("#foodName").val(),
-				foodPrice: $("#foodPrice").val(),
-				foodMount: $("#foodMount").val(),
-				foodType: $("#foodType").val()
-			},
-			timeout:5000,
-			success:function(data){
-				alert(data);
-				updateUI();
+		
+		var isHaveChecked = false;
+
+		$(".unchecked").each(function(){
+			var bt= $(this);
+			if(bt.hasClass('checked')){
+				//是否有东西被选中
+				isHaveChecked = true;
 			}
 		});
+		
+		if(isHaveChecked){
+			if(confirm("确认修改")){
+				$.ajax({
+					url: 'AdminFoodOP',
+					type:'POST',
+					async:true,
+					data:{
+						opName: "update",
+						foodNo: $("#foodNo").val(),
+						foodName: $("#foodName").val(),
+						foodPrice: $("#foodPrice").val(),
+						foodMount: $("#foodMount").val(),
+						foodType: $("#foodType").val()
+					},
+					timeout:5000,
+					success:function(data){
+						alert(data);
+						updateUI();
+					}
+				});
+			}
+		}
+		else{
+			alert("请先选中一栏");
+		}
+		
 	});
 	$("#delete").click(function(){
-		$.ajax({
-			url: 'AdminFoodOP',
-			type:'POST',
-			async:true,
-			data:{
-				opName: "delete",
-				foodNo: $("#foodNo").val(),
-				foodName: $("#foodName").val(),
-				foodPrice: $("#foodPrice").val(),
-				foodMount: $("#foodMount").val(),
-				foodType: $("#foodType").val()
-			},
-			timeout:5000,
-			success:function(data){
-				alert(data);
-				updateUI();
+		
+		var isHaveChecked = false;
+
+		$(".unchecked").each(function(){
+			var bt= $(this);
+			if(bt.hasClass('checked')){
+				//是否有东西被选中
+				isHaveChecked = true;
 			}
 		});
+		
+		if(isHaveChecked){
+			if(confirm("确认删除")){
+			$.ajax({
+				url: 'AdminFoodOP',
+				type:'POST',
+				async:true,
+				data:{
+					opName: "delete",
+					foodNo: $("#foodNo").val(),
+					foodName: $("#foodName").val(),
+					foodPrice: $("#foodPrice").val(),
+					foodMount: $("#foodMount").val(),
+					foodType: $("#foodType").val()
+				},
+				timeout:5000,
+				success:function(data){
+					alert(data);
+					updateUI();
+				}
+			});
+			}
+		}
+		else{
+			alert("请先选中一栏");
+		}
 	});
 	updateUI();
 });
@@ -453,7 +500,7 @@ input[type="radio"]#select{
 										<div id="foodOP"></div>
                                        <!-- 底部表单 -->
 										<form>
-											</br>
+											<br>
 											<!-- 文本框输入 -->
 										餐品号:<input type="text" name="foodNo" id="foodNo">
 										餐品名:<input type="text" name="foodName" id="foodName">
@@ -470,6 +517,47 @@ input[type="radio"]#select{
             </div>
         </div>
     </div>
+    
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="your-modal">
+  		<div class="am-modal-dialog">
+    		<div class="am-modal-hd">Modal 标题
+      			<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+    		</div>
+    		<!-- 模态内容 -->
+   			 <div class="am-modal-bd">
+      			<div id="demo" class="demo" style="width: 650px; height: 400px;">
+					<form id="uploadForm" name="uploadForm" method="post" action="../Upload" enctype="multipart/form-data">
+						<div class="upload_box">
+							<div class="upload_main">			
+								<div class="convent_choice">
+									<div class="andArea">
+										<div id="preview" class="upload_preview">
+			 							<div class="uploadImg" style="width:105px">
+			 							<img id="uploadImage" class="upload_image" src="/coffeWeb/Img/add_img.png">
+			 							</div>
+			 							</div>
+										<div class="filePicker">点击选择文件</div>
+										<input id="fileImage" onchange="changepic(this)" type="file" name="fileselect[]" accept="image/png, image/jpeg, image/gif, image/jpg">
+			 						</div>
+			 						<div class="status_bar">
+			 							<div id="status_info" class="status_info"></div>
+			 						</div>
+			 					</div>
+			 				</div>		
+			 				餐品号:<input type="text" name="foodNo" id="foodNoInput"><br>
+							餐品名:<input type="text" name="foodName" id="foodNameInput"><br>
+							餐品单价:<input type="text" name="foodPrice" id="foodPriceInput"><br>
+							餐品库存：<input type="text" name="foodMount" id="foodMountInput"><br>
+							餐品类型：<input type="text" name="foodType" id="foodTypeInput">
+							<input type="submit" value="提交" >
+ 			</div>
+		</form>
+		
+	</div>
+    		</div>
+  		</div>
+	</div>
+  
    
     <script src="/coffeWeb/assets/js/amazeui.min.js"></script>
     <script src="/coffeWeb/assets/js/app.js"></script>

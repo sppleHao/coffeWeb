@@ -92,11 +92,6 @@ pre{font-family:'simsun';}
     vertical-align: middle;
     background-color: #FFFFFF;
 }
-.info{
-	float:left;
-	color:#666666;
-	display: inline-block;
-}
 .btns{
 	position: absolute;
 	right: 16px;

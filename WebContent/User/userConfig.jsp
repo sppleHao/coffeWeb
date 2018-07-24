@@ -55,6 +55,17 @@ $(document).ready(function(){
 	        }
 	    });
 	});
+	$.ajax({
+		url:'GetLastestOrders',
+		type:'POST',
+		async:true,
+		success:function(data){
+			$("#show-order").html(data);
+		},
+		error:function(){
+			alert("error");
+		}
+	});
 });
 </script>
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
@@ -166,7 +177,7 @@ input[type='submit']{
 				<!-- 图标 -->
 				<img class="icon" src="/coffeWeb/Img/icon.png">
 				<!-- 导航超链接 -->
-				<a>主页</a>
+				<a href="/coffeWeb/MainPage/index.jsp">主页</a>
 				<a href="/coffeWeb/User/userConfig.jsp">个人中心</a>
 				<a class="" href="/coffeWeb/Menu/menu.jsp">菜单</a>
 			</header>

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" 
            uri="http://java.sun.com/jsp/jstl/core" %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html">
@@ -52,6 +52,7 @@ img.foodImg{
 </style>
 </head>
 <body>
+	
 	<jsp:include page="../MainPage/guide.jsp"></jsp:include>
 	<form action="GetMenuItems">
 		关键字:<input type="text" name="selectParam"/>

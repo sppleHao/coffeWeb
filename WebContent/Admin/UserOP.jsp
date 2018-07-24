@@ -67,6 +67,7 @@ $(document).ready(function(){
 		updateUI();
 	});
 	$("#insert").click(function(){
+		if(confirm("确认修改")){
 		$.ajax({
 			url: 'AdminUserOP',
 			type:'POST',
@@ -85,6 +86,7 @@ $(document).ready(function(){
 				updateUI();
 			}
 		});
+		};
 	});
 	$("#delete").click(function(){
 		if(confirm("确认删除")){
