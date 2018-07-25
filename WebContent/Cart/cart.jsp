@@ -18,6 +18,7 @@ function computeSum(){
 		var bt= $(this);
 		var foodMount = bt.parent().siblings(".foodNum").children("input").val();
 		var foodPrice = bt.parent().siblings(".foodPrice").text();
+		bt.parent().siblings(".multy-price").text(parseInt(foodMount)*parseFloat(foodPrice));
 		//alert(foodMount);
 		//alert(foodPrice);
 		if(!bt.hasClass('unchecked')){
@@ -99,6 +100,13 @@ $(document).ready(function(){
 		div.remove();
 		computeSum();
 	});
+	$("button.delete-all").click(function(){
+		$("button.delete").each(function(){
+			var div = $(this).parent().parent();
+			div.remove();
+		});
+		computeSum();
+	});
 	$("#sumPrice").ready(function(){
 		computeSum();
 	});
@@ -155,6 +163,7 @@ input[type="button"]{
 		<th class="foodName">名称</th>
 		<th class="foodPrice">单价</th>
 		<th class="foodNum">数量</th>
+		<th class="multy-price">总价</th>
 		<th></th>
 	</tr>
 	
@@ -182,6 +191,7 @@ input[type="button"]{
 				<input type="text" class="foodNumText" value="<%=cart.getFoodMount()%>">
 				<button class="add" type="button">+</button>
 			</td>
+			<td class="multy-price"><%=food.getFoodPrice()*cart.getFoodMount()%></td>
 			<td><button class='delete'>删除</button></td>
 	</tr>
 	<%}; %>
@@ -191,8 +201,9 @@ input[type="button"]{
 	<tr>
 		<th>全选</th>
 		<th></th>
-		<th>总价</th>
+		<th></th>
 		<th>总数</th>
+		<th>合计</th>
 		<th></th>
 	</tr>
 	<tr>
@@ -200,9 +211,10 @@ input[type="button"]{
 			<td><div id="allSelected" class="checked all"></div></td>
 			<!-- 总价和总数 -->
 			<td></td>
-			<td><div id="sumPrice"></div></td>
-			<td><div id="sumNum"></div></td>
 			<td></td>
+			<td><div id="sumNum"></div></td>
+			<td><div id="sumPrice"></div></td>
+			<td><button class="delete-all">清空购物车</button></td>
 			<!-- 结账按钮 -->
 	</tr>
 	</tbody>
