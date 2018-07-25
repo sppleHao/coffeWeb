@@ -13,21 +13,34 @@
 <script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	
+	//点击按钮
+	$("#addDiv").bind("click", function(e){
+    	$("#add").click();
+    });
+	
+	$("#subDiv").bind("click", function(e){
+    	$("#sub").click();
+    });
+	
+	$("#addToCartDiv").bind("click", function(e){
+    	$("#addToCart").click();
+    });
+	
 	var ajax_option={
 			url:'AddFoodToCart',
 			success:function(data){
 				alert(data);
 				if(data=='已加入购物车'){
-					window.location.href='/coffeWeb/Menu/menu.jsp';
+					//window.location.href='/coffeWeb/Menu/menu.jsp';
+					location.reload();
 				}
 			}
 	};
 
   $("#addItemsForm").validate({
 	  submitHandler:function(form){
-      	if(confirm("确认")){
       		$("#addItemsForm").ajaxSubmit(ajax_option);
-      	}
       },
 	  rules:{
 		  addFoodNum:{
@@ -85,46 +98,148 @@ $(document).ready(function(){
 </script>
 <style type="text/css">
 img.foodImg{
-	height:170px;
-	width:170px;
+	height:200px;
+	width:300px;
+}
+#food-img{
+	background-image: url(/coffeWeb/Img/pdbg.jpg);
+	background-size: 100% 100%;
+	width: 100%;
+	height: 50%;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	
+}
+#pd-bg{
+	width: 100%;
+	height: 100%;
+}
+#food-title{
+	text-align:center;
+	color:#f99d25;
+	border-bottom: 1px solid #000;
+}
+#food-config{
+	text-align:center;
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid #000;
+	padding: 20px;
+}
+table{
+	width:100%;
+}
+#food-op{
+	padding: 10px;
+}
+#add-and-sub{
+	align-items: center;	
+	display: flex;
+	justify-content: center;
+}
+#addDiv img,#subDiv img{
+	padding:5px;
+	width:50px;
+	height: 50px;
+}
+#addFoodNum{
+	text-align:center;
+	height: 40px;
+	font-size: 30px;
+	font-weight: 400;
+}
+#add,#sub,#addToCart{
+	display: none;
+}
+#submitDiv{
+	align-items: center;	
+	display: flex;
+	justify-content: center;
+}
+#addToCartDiv{
+	background: none repeat scroll 0 0 #f99d25;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    color: #000;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 18px;
+    font-weight:700;
+    height: 44px;
+    line-height: 44px;
+    width: 90%;
+    min-width:120px;
+    max-width:240px;
+    text-align:center;
+    overflow: hidden;
+    transition: background 0.2s;
+	-moz-transition: background 0.2s;
+	-webkit-transition: background 0.2s;
+	-o-transition: background 0.2s;
 }
 </style>
 </head>
 <body>
-	<div id="window" class="window" style="width: 650px; height: 400px;">
-		<!-- 食物名标题 -->
-		<div class="title">
-			<h1>${param.addFoodName}</h1>
-		</div>
-		
+	<div id="window" class="window" style="width: 800px; height: 600px;">
 		<!-- 图片 -->
 		<div id="food-img" class="food-img">
 			<!-- jstl标签，如果type是drink，则显示drink文件夹的元素,snack同理 -->
-			<c:if test="${param.addFoodType=='drink'}">
-				<img class="foodImg" alt="${param.addFoodName}" src="/coffeWeb/Img/drink/${param.addFoodName}.png">
-			</c:if>
-			<c:if test="${param.addFoodType=='snack'}">
-				<img class="foodImg" alt="${param.addFoodName}" src="/coffeWeb/Img/snack/${param.addFoodName}.png">
-			</c:if>
+			<div>
+				<c:if test="${param.addFoodType=='drink'}">
+					<img class="foodImg" alt="${param.addFoodName}" src="/coffeWeb/Img/drink/${param.addFoodName}.png">
+				</c:if>
+				<c:if test="${param.addFoodType=='snack'}">
+					<img class="foodImg" alt="${param.addFoodName}" src="/coffeWeb/Img/snack/${param.addFoodName}.png">
+				</c:if>
+			</div>
+		</div>
+		
+		<div id="food-title">
+			<h1>${param.addFoodName}</h1>
 		</div>
 		
 		<!-- 餐品信息 -->
 		<div id="food-config" class="food-config">
-			餐品名:${param.addFoodName}<br>
-			餐品单价:${param.addFoodPrice}<br>
-			餐品库存数量:${param.addFoodMount}<br>
+			<table id="food-info">
+				<tbody>
+					<tr>
+						<th>单价</th>
+						<th>库存数量</th>
+					</tr>
+					<tr>
+						<td>￥${param.addFoodPrice}</td>
+						<td>${param.addFoodMount}</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		
+		<div id="food-op">
 		<form id="addItemsForm" name="addItemsForm" method="post">
 			<!-- 增减按钮和文本框 -->
-			<button type="button" id="add">add</button>
-				<input type="text" value="${param.addFoodNo}" name="addFoodNo" id="addFoodNo">
+			
+			<div id="add-and-sub">
+				<div id="subDiv">
+					<img alt="minus" src="/coffeWeb/Img/minus.png">
+				</div>
 				<input type="text" value="1" name="addFoodNum" id="addFoodNum">
-				<button type="button" id="sub">sub</button>
+				<div id="addDiv">
+					<img alt="plus" src="/coffeWeb/Img/plus.png">
+				</div>
+			</div>
+			<input type="text" readonly="readonly" value="${param.addFoodNo}" name="addFoodNo" id="addFoodNo" style="display: none;">
+			<button type="button" id="add">add</button>
+			<button type="button" id="sub">sub</button>
 				<br>
+				
+			<div id="submitDiv">
 			<!-- 加入购物车按钮 -->
-			<input type="submit" id="addTocart" value="加入购物车">
+			<div id="addToCartDiv">加入购物车</div>
+			<input type="submit" id="addToCart" value="加入购物车">
+			</div>
 		</form>
+		</div>
 	</div>
 	
 	
