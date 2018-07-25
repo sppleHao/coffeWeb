@@ -13,7 +13,6 @@
 <script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	
 	//点击按钮
 	$("#addDiv").bind("click", function(e){
     	$("#add").click();
@@ -34,6 +33,9 @@ $(document).ready(function(){
 				if(data=='已加入购物车'){
 					//window.location.href='/coffeWeb/Menu/menu.jsp';
 					location.reload();
+				}
+				if (data=='请先登陆') {
+					window.location.href='/coffeWeb/User/userLogin.jsp';
 				}
 			}
 	};
@@ -149,7 +151,7 @@ table{
 	font-size: 30px;
 	font-weight: 400;
 }
-#add,#sub,#addToCart{
+#add,#sub,#addToCart,#addFoodNo{
 	display: none;
 }
 #submitDiv{
@@ -186,17 +188,12 @@ table{
 		<div id="food-img" class="food-img">
 			<!-- jstl标签，如果type是drink，则显示drink文件夹的元素,snack同理 -->
 			<div>
-				<c:if test="${param.addFoodType=='drink'}">
-					<img class="foodImg" alt="${param.addFoodName}" src="/coffeWeb/Img/drink/${param.addFoodName}.png">
-				</c:if>
-				<c:if test="${param.addFoodType=='snack'}">
-					<img class="foodImg" alt="${param.addFoodName}" src="/coffeWeb/Img/snack/${param.addFoodName}.png">
-				</c:if>
+				<img class="foodImg" alt="${param.addFoodName}">
 			</div>
 		</div>
 		
 		<div id="food-title">
-			<h1>${param.addFoodName}</h1>
+			<h1></h1>
 		</div>
 		
 		<!-- 餐品信息 -->
@@ -208,8 +205,8 @@ table{
 						<th>库存数量</th>
 					</tr>
 					<tr>
-						<td>￥${param.addFoodPrice}</td>
-						<td>${param.addFoodMount}</td>
+						<td class='food-info-price'></td>
+						<td class='food-info-mount'></td>
 					</tr>
 				</tbody>
 			</table>
@@ -228,7 +225,7 @@ table{
 					<img alt="plus" src="/coffeWeb/Img/plus.png">
 				</div>
 			</div>
-			<input type="text" readonly="readonly" value="${param.addFoodNo}" name="addFoodNo" id="addFoodNo" style="display: none;">
+			<input type="text" readonly="readonly" value="" name="addFoodNo" id="addFoodNo">
 			<button type="button" id="add">add</button>
 			<button type="button" id="sub">sub</button>
 				<br>

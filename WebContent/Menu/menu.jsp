@@ -6,6 +6,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html">
+<script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery.validate.min.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
+<script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <title>菜单</title>
 <style type="text/css">
 
@@ -56,7 +60,8 @@ img.foodImg{
 	<form action="GetMenuItems">
 		关键字:<input type="text" name="selectParam"/>
 		<input type="submit" value="查找">
-	</form>	 
+	</form>
+	
 	<div>
 	<!-- 通过ul和li的样式设置排列方式 -->
 	<ul>

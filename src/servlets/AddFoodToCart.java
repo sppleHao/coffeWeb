@@ -34,6 +34,10 @@ public class AddFoodToCart extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		try {
 			
 			
@@ -42,6 +46,11 @@ public class AddFoodToCart extends HttpServlet {
 			String userNo =(String) session.getAttribute("userNo"); //用户名
 			String addFoodNo =request.getParameter("addFoodNo"); //餐品号
 			String addFoodNum =request.getParameter("addFoodNum"); //餐品数量
+			
+			if (userNo==null) {
+				out.print("请先登陆");
+				return;
+			}
 			
 			CartDao cd = new CartDao();
 			FoodDao fd = new FoodDao();
@@ -61,10 +70,6 @@ public class AddFoodToCart extends HttpServlet {
 			}
 			
 			int allMount = fd.selectFood(addFoodNo).get(0).getFoodMount();
-			
-			response.setContentType("text/html;charset=UTF-8");
-			request.setCharacterEncoding("UTF-8");
-			PrintWriter out = response.getWriter();
 			
 			//检查是否超过库存
 			if(Integer.parseInt(addFoodNum)+num>allMount) {

@@ -173,7 +173,7 @@
 
                         <!-- 退出 -->
                         <li class="am-text-sm">
-                            <a href="/coffeWeb/Admin/adminLogin.jsp">
+                            <a href="/coffeWeb/Admin/AdminSignOut">
                                 <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>

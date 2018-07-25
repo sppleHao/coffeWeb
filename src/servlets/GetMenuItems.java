@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -33,9 +34,14 @@ public class GetMenuItems extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
+		
 		try {
 			FoodDao fd = new FoodDao();
 			HttpSession session = request.getSession();
+			
 			
 			//餐品列表
 			List<Food> allFoodList = fd.selectFood("*");
@@ -59,14 +65,64 @@ public class GetMenuItems extends HttpServlet {
 						selectFoodList = allFoodList;
 					}
 					
+//					<!-- 通过ul和li的样式设置排列方式 -->
+//					<ul>
+//					<li>
+//					<div id="nav">
+//					<!-- jstl循环输出餐品 -->
+//					<c:forEach items="${sessionScope.selectFood}" var="food" varStatus="status">
+//						<!-- 每一个餐品的div -->
+//						<div id="food">
+//						<!-- 超链接，指向isAddToCartWindow.jsp页面 -->
+//						<a href="isAddToCartWindow.jsp?addFoodNo=${food.foodNo}
+//						&addFoodName=${food.foodName}&addFoodPrice=${food.foodPrice}
+//						&addFoodMount=${food.foodMount}&addFoodType=${food.foodType}" id="${food.foodNo}">
+//							<!-- 显示图片和信息的div -->
+//							<div>
+//							<!-- jstl标签，通过类型foodType选择显示的图片的文件夹，img元素显示图片 -->
+//							<c:if test="${food.foodType=='drink'}">
+//								<img class="foodImg" alt="${food.foodName}" src="/coffeWeb/Img/drink/${food.foodName}.png">
+//							</c:if>
+//							<c:if test="${food.foodType=='snack'}">
+//								<img class="foodImg" alt="${food.foodName}" src="/coffeWeb/Img/snack/${food.foodName}.png">
+//							</c:if>
+//							</div>
+//							<!-- 显示食物名 -->
+//							${food.foodName}
+//						</a>
+//						<!-- 价格和库存 -->
+//						<br>￥：${food.foodPrice}
+//						<br>库存：${food.foodMount}
+//					</c:forEach>
+//					<!-- 循环结束 -->
+//					</div>
+//					</li>
+//					</ul>
+					
+					
+					
 					//查找结束
 					if (!selectFoodList.isEmpty()) {//不为空，设置属性
-						session.setAttribute("selectFood", selectFoodList);
-						request.getRequestDispatcher("menu.jsp").forward(request, response);
+//						session.setAttribute("selectFood", selectFoodList);
+//						request.getRequestDispatcher("menu.jsp").forward(request, response);
+						for (Food food : selectFoodList) {
+							out.println("<div class='food-item' id='"+food.getFoodNo()+"'>");
+							out.println("<div class='food-item-img'>");
+							out.println("<img class='food-item-img-info' alt='' src='/coffeWeb/Img/"
+							+food.getFoodType()+"/"+food.getFoodName()+".png'>");
+							out.print("</div>");
+							out.print("<div class='food-item-info'>");
+							out.println("<div class='food-item-info-foodName'>"+food.getFoodName()+"</div>");
+							out.println("<div class='food-item-info-foodPrice'>￥"+food.getFoodPrice()+"</div>");
+							out.println("剩余数量:<div class='food-item-info-foodMount'>"+food.getFoodMount()+"</div>");
+							out.print("</div>");
+							out.print("</div>");
+							
+						}
 					}
 					else {//为空，显示查找不到菜品
-						session.setAttribute("selectFood", selectFoodList);
-						request.getRequestDispatcher("menu.jsp").forward(request, response);
+//						session.setAttribute("selectFood", selectFoodList);
+//						request.getRequestDispatcher("menu.jsp").forward(request, response);
 					}
 				}
 				else {//列表没有菜品
