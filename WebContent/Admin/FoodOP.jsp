@@ -83,6 +83,8 @@ $(document).ready(function(){
 			$("#foodPriceInput").val($("").val());
 			$("#foodMountInput").val($("").val());
 			$("#foodTypeInput").val($("").val());
+			
+			$("#uploadImage").attr('src','/coffeWeb/Img/add_img.png');
 	 });
 	
 	//修改按钮
@@ -109,6 +111,8 @@ $(document).ready(function(){
 			$("#foodPriceInput").val($("#foodPrice").val());
 			$("#foodMountInput").val($("#foodMount").val());
 			$("#foodTypeInput").val($("#foodType").val());
+			
+			$("#uploadImage").attr('src','/coffeWeb/Img/'+$("#foodType").val()+"/"+$("#foodName").val()+'.png');
 		}
 		else{
 			alert("请先选中一栏");
@@ -159,9 +163,13 @@ $(document).ready(function(){
 
 </script>
 <style type="text/css">
-.foodNo,.foodName,.foodPrice,.foodType,.foodMount{
+.foodNo,.foodName,.foodPrice,.foodType,.foodMount,.foodImg{
 	text-align:right;
 	
+}
+.foodImg img{
+	width: 25px;
+	height: 20px;
 }
 #foodNo,#foodName,#foodPrice,#foodType,#foodMount{
 	text-align:right;
@@ -178,9 +186,6 @@ $(document).ready(function(){
 	display:inline-block;
 	margin-left:70%;
 	text-align:right;
-}
-input[type="radio"]#select{
-	display:none;
 }
 .unchecked{
 	background-image:url(../Img/cbu.png);

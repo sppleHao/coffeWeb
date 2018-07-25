@@ -64,8 +64,15 @@ public class Upload extends HttpServlet {
 			//request 对象内容
 			List<FileItem> list = sfu.parseRequest(request);
 			
+			String fileName= list.get(0).getName();
+			
 			//操作名
 			String opName = list.get(1).getString();
+			
+			if (fileName==null&&opName.equals("insert")) {
+				out.println("must-img");
+				return;
+			}
 			
 			//食物信息
 			Food food = new Food();
@@ -87,6 +94,26 @@ public class Upload extends HttpServlet {
 			food.setFoodType(foodType);
 			
 			
+			if (list.get(0)!=null){
+				
+				//设置图片
+				
+//				if(!fileName.toLowerCase().endsWith("jpg")){
+//	                System.out.println("图片格式不是jpg");
+//	                request.setAttribute("msg", "你的图片格式不是jpg格式");
+//	                request.getRequestDispatcher("/adminjsps/admin/book/add.jsp").forward(request, response);
+//	                return;
+//	            }
+				//设置保存地址
+				String paht =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
+				
+				String saveDir = foodType+java.io.File.separator+foodName+".png";
+				
+				//保存图片
+				File file = new File(paht,saveDir);
+				list.get(0).write(file);
+			}
+			
 			if(opName.equals("insert")) {
 				fd.add(food);
 			}
@@ -94,24 +121,8 @@ public class Upload extends HttpServlet {
 				fd.update(food);
 			}
 			
-			//设置图片
-			String fileName= list.get(0).getName();
-//			if(!fileName.toLowerCase().endsWith("jpg")){
-//                System.out.println("图片格式不是jpg");
-//                request.setAttribute("msg", "你的图片格式不是jpg格式");
-//                request.getRequestDispatcher("/adminjsps/admin/book/add.jsp").forward(request, response);
-//                return;
-//            }
-			//设置保存地址
-			String paht =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
 			
-			String saveDir = foodType+java.io.File.separator+foodName+".png";
-			
-			//保存图片
-			File file = new File(paht,saveDir);
-			list.get(0).write(file);
-			
-			out.print("操作成功!");
+			out.print("success");
 			
 		} catch (Exception e) {
 			out.print(e.getMessage());

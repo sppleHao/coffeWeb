@@ -91,12 +91,13 @@ public class GetFood extends HttpServlet {
 				out.println("<table width=\"100%\" class=\"am-table am-table-compact am-table-striped tpl-table-black \">");
 				out.println("<tbody>");
 				out.println("<tr>");
-				out.println("<td>");
-				out.println("<td class='foodNo'>餐品号</td>");
-				out.println("<td class='foodName'>餐品名</td>");
-				out.println("<td class='foodPrice'>餐品单价</td>");
-				out.println("<td class='foodMount'>餐品库存</td>");
-				out.println("<td class='foodType'>餐品类型</td>");
+				out.println("<th/>");
+				out.println("<th class='foodNo'>餐品号</th>");
+				out.println("<th class='foodImg'>缩略图</th>");
+				out.println("<th class='foodName'>餐品名</th>");
+				out.println("<th class='foodPrice'>餐品单价</th>");
+				out.println("<th class='foodMount'>餐品库存</th>");
+				out.println("<th class='foodType'>餐品类型</th>");
 				out.println("</tr>");
 				for (int i=(pageNo-1)*pageSize;i<((pageNo*pageSize) < (selectFoodList.size())?(pageNo*pageSize):(selectFoodList.size()));i++) {
 					Food food = selectFoodList.get(i);
@@ -104,6 +105,7 @@ public class GetFood extends HttpServlet {
 					out.println("<td class='unchecked'></td>");
 					//out.println("<input type='radio' name='select' id='select'>");
 					out.println("<td class='foodNo'>"+food.getFoodNo()+"</td>");
+					out.println("<td class='foodImg'><img src='/coffeWeb/Img/"+food.getFoodType()+"/"+food.getFoodName()+".png' "+">");
 					out.println("<td class='foodName'>"+food.getFoodName()+"</td>");
 					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</td>");
 					out.println("<td class='foodMount'>"+food.getFoodMount()+"</td>");

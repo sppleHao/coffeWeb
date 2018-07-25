@@ -13,8 +13,14 @@ $(document).ready(function(){
 	var ajax_option={
 			url:"foodUpload",
 			success:function(data){
-				alert(data);
-				location.reload();
+				if (data='must-img') {
+					alert("请添加图片!");
+				}
+				else if(data='success') {
+					alert("成功!");
+					location.reload();
+				}
+				
 			}
 		};
 	
