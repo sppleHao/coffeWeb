@@ -16,54 +16,49 @@ function computeSum(){
 	var sumNum=0;
 	$(".checked.one").each(function(){
 		var bt= $(this);
-		var inputBt =bt.siblings("input");;
-		var foodMount = bt.siblings("div.foodNum").children("input").val();
-		var foodPrice = bt.siblings("div.foodPrice").text();
-		if(inputBt.is(':checked')){
+		var foodMount = bt.parent().siblings(".foodNum").children("input").val();
+		var foodPrice = bt.parent().siblings(".foodPrice").text();
+		//alert(foodMount);
+		//alert(foodPrice);
+		if(!bt.hasClass('unchecked')){
 			sumPrice+=(parseInt(foodMount)*parseFloat(foodPrice));
 			sumNum+=parseInt(foodMount);
 		}
 	});
-	$("div#sumPrice").html(sumPrice);
-	$("div#sumNum").html(sumNum);
+	$("#sumPrice").html(sumPrice);
+	$("#sumNum").html(sumNum);
 }
 $(document).ready(function(){	
 	$(".checked.one").click(function(){
 		var bt=$(this);
-		var inputBt =bt.siblings("input");
-		if(inputBt.is(':checked')){
-			inputBt.prop("checked",false);
+		if(!bt.hasClass('unchecked')){
 			bt.addClass("unchecked");
 		}
 		else{
-			inputBt.prop("checked",true);
 			bt.removeClass("unchecked");
 		}
 		computeSum();
 	});
 	$(".checked.all").click(function(){
 		var bt=$(this);
-		var btCheckBox =bt.siblings("input");
-		if(btCheckBox.is(':checked')){
-			$(":checkbox").prop("checked",false);
+		if(!bt.hasClass('unchecked')){
 			bt.addClass("unchecked");
 			$(".checked.one").addClass("unchecked");
 		}
 		else{
-			$(":checkbox").prop("checked",true);
 			bt.removeClass("unchecked");
 			$(".checked.one").removeClass("unchecked");
 		}
 		computeSum();
 	});
 	$("#checkOut").click(function(){
+		
 		var cartList =  new Array();
 		$(".checked.one").each(function(){
 			var cart = new Object();
 			var bt= $(this);
-			var foodMountDiv = bt.siblings("div.foodNum");
-			var btCheckBox =bt.siblings("input");
-			if(btCheckBox.is(':checked')){
+			var foodMountDiv = bt.parent().siblings(".foodNum");
+			if(!bt.hasClass('unchecked')){
 				cart.userNo = '<%=(String)session.getAttribute("userNo")%>';
 				cart.foodNo = bt.attr("id");
 				cart.foodMount= foodMountDiv.children("input").val();
@@ -100,46 +95,18 @@ $(document).ready(function(){
 		computeSum();
 	});
 	$("button.delete").click(function(){
-		var div = $(this).parent();
+		var div = $(this).parent().parent();
 		div.remove();
+		computeSum();
 	});
-	$("div#sumPrice").ready(function(){
+	$("#sumPrice").ready(function(){
 		computeSum();
 	});
 });
 </script>
 <style type="text/css">
-.foodNum{
-	margin-left:100px ;
-	margin-right:50px ;
-	margin-top:20px ;
-	margin-bottom:20px ;
-	text-align:center;
-	height:30px;
-	width:200px;
-	display: flex;
-}
-.txt,.foodName,.foodPrice{
-	margin-left:50px ;
-	margin-right:50px ;
-	margin-top:20px ;
-	margin-bottom:20px ;
-	text-align:right;
-	height:30px;
-	width:200px;
-}
-.items{
-	display: flex;
-	margin-top: 20px;
-    margin-left:50px;
-}
-li{
-	list-style-type:none;
-	margin-top:40px ;
-	margin-bottom:40px ;
-}
-p{
-	
+td{
+	text-align: center;
 }
 input[type="checkbox"]{
 	display:none;
@@ -180,19 +147,16 @@ input[type="button"]{
 	购物车
 	
 	<!-- 利用ul和li显示列表 -->
-	<ul>
+	<table>
+	<tbody>
 	<!-- 表头部分 -->
-	<li>
-		<div class="items">
-			<!-- 替换图标  -->
-			<div style="width:30px;
-			margin-left:50px ;
-			margin-right:50px ;"></div>
-			<div class="foodName">名称</div>
-			<div class="foodPrice">单价</div>
-			<div class="foodNum">数量</div>
-		</div>
-	</li>
+	<tr>
+		<th></th>
+		<th class="foodName">名称</th>
+		<th class="foodPrice">单价</th>
+		<th class="foodNum">数量</th>
+		<th></th>
+	</tr>
 	
 	<!-- 用循环列出购物车的列表 -->
 	
@@ -201,51 +165,48 @@ input[type="button"]{
 	List<Cart> cartItems = (List<Cart>) session.getAttribute("cartItems");
 	for(Cart cart:cartItems){ %>
 	<!-- 每个物品信息 -->
-	<li>
-		<div class="items">
+	<tr>
 			<!-- 多选替换图标(模拟多选框)  -->
-			<div id="<%=cart.getFoodNo() %>"  class="checked one"></div>
-			<!-- 多选框(被隐藏) -->
-			<input type="checkbox" checked="checked" id="food">
+			<td><div id="<%=cart.getFoodNo() %>"  class="checked one"></div></td>
 			<%
 			@SuppressWarnings("unchecked") 
 				Map<String, Food> foodMap = (Map<String, Food>) session.getAttribute("foodMap");
 				Food food = (foodMap.get(cart.getFoodNo()));
 			%>
+			
 			<!-- 餐品名、餐品价格、餐品数量区以及加减按钮  -->
-			<div class="foodName"><%=food.getFoodName()%></div>
-			<div class="foodPrice"><%=food.getFoodPrice()%></div>
-			<div class="foodNum">
+			<td class="foodName"><%=food.getFoodName()%></td>
+			<td class="foodPrice"><%=food.getFoodPrice()%></td>
+			<td class="foodNum">
 				<button class="sub" type="button">-</button>
 				<input type="text" class="foodNumText" value="<%=cart.getFoodMount()%>">
 				<button class="add" type="button">+</button>
-			</div>
-			<button class='delete'>删除</button>
-		</div>
-	</li>
+			</td>
+			<td><button class='delete'>删除</button></td>
+	</tr>
 	<%}; %>
 	<!-- 循环结束 -->
 	
 	<!-- 合计部分 -->
-		<li>
-		<div class="items">
+	<tr>
+		<th>全选</th>
+		<th></th>
+		<th>总价</th>
+		<th>总数</th>
+		<th></th>
+	</tr>
+	<tr>
 			<!-- 全选替换图标  -->
-			<div id="allSelected" class="checked all">
-			</div>
-			<!-- 全选按钮(被隐藏) -->
-			<input type="checkbox" checked="checked" id="food">
-			<!-- 为了对其的空白(可不要) -->
-			<div class="txt"></div>
+			<td><div id="allSelected" class="checked all"></div></td>
 			<!-- 总价和总数 -->
-			<div class="txt" id="sumPrice"></div>
-			<div class="txt" id="sumNum"></div>
+			<td></td>
+			<td><div id="sumPrice"></div></td>
+			<td><div id="sumNum"></div></td>
+			<td></td>
 			<!-- 结账按钮 -->
-			<input type="button" id="checkOut" value="结账">
-		</div>
-	</li>
-	<li>
-
-	</li>
-	</ul>
+	</tr>
+	</tbody>
+	</table>
+	<input type="button" id="checkOut" value="结账">
 </body>
 </html>
