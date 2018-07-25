@@ -68,13 +68,6 @@ p{
 
 <div id='show-menu'></div>
 
-<button
-  type="button"
-  class="am-btn am-btn-primary"
-  data-am-modal="{target: '#modal', closeViaDimmer: 0}">
-  Modal
-</button>
-
 <div class="am-modal am-modal-no-btn" tabindex="-1" id="modal" >
   		<div class="am-modal-dialog" style="width: 880px; height: 630px;">
     		<div class="am-modal-hd">
@@ -101,6 +94,7 @@ p{
 <![endif]-->
 <script src="../assets/js/amazeui.min.js"></script>
 <script type="text/javascript">
+
 $(document).ready(function(){
 	var ajax_option={
 			url:"GetMenuItems",
@@ -138,6 +132,8 @@ $(document).ready(function(){
         	 $("#get-items").ajaxSubmit(ajax_option);
         }
 	});
+	
+	 $("#get-items").ajaxSubmit(ajax_option);
 });
 </script>
 </body>
