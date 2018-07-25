@@ -30,8 +30,50 @@ $(document).ready(function(){
         	if(confirm("确认")){
         		$("#uploadForm").ajaxSubmit(ajax_option);
         	}
-        } 
+        },
+		rules:{
+			foodNoInput:{
+				required:true,
+				digits:true,
+				rangelength:[3,3]
+			},
+			foodNameInput:{
+				required:true,
+				maxlength:12
+			},
+			foodPriceInput:{
+				required:true,
+				digits:true
+			},
+			foodTypeInput:"required",
+			foodMountInput:{
+				required:true,
+				digits:true,
+			}
+		},
+		errorElement: "span",
+		messages:{
+			foodNoInput:{
+				required:"餐品号不能为空",
+				digits:"必须为3位的数字",
+				rangelength:"必须为3位的数字"
+			},
+			foodNameInput:{
+				required:"餐品名不能为空",
+				maxlength:"不能超过12位"
+			},
+			foodPriceInput:{
+				required:"餐品价格不能为空",
+				digits:"餐品价格只能为数字"
+			},
+			foodTypeInput:"required",
+			foodMountInput:{
+				required:"餐品库存不能为空",
+				digits:"餐品库存只能为数字"
+			}
+		}
     });
+	
 	//点击按钮
 	$(".filePicker").bind("click", function(e){
     	$("#fileImage").click();
