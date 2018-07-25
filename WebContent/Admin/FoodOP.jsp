@@ -61,6 +61,15 @@ function updateUI(){
 					$("#foodType").val("");
 				}
 			});
+			
+			$("#skipBtn").bind("click",function(){
+				if ($("#skipPage").val()!='') {
+					window.location.href="/coffeWeb/Admin/FoodOP.jsp?pageNo="+$("#skipPage").val();
+				}
+				else {
+					alert("请输入跳转的页码")
+				}
+			});
 		}
 	});
 };
@@ -74,9 +83,10 @@ $(document).ready(function(){
 	
 	//新增按钮
 	$("#insert").click(function() {	
-		    var $modal = $('#modal');
-		    $modal.modal();
 		    
+			var $modal = $('#modal');
+		    $modal.modal();
+		    $("#opTitle").html("增加餐品");
 		    $("#opName").val("insert");
 		    $("#foodNoInput").val("");
 			$("#foodNameInput").val($("").val());
@@ -105,6 +115,7 @@ $(document).ready(function(){
 		    var $modal = $('#modal');
 		    $modal.modal();
 		    
+		    $("#opTitle").html("修改餐品");
 		    $("#opName").val("update");
 		    $("#foodNoInput").val($("#foodNo").val());
 			$("#foodNameInput").val($("#foodName").val());
@@ -459,10 +470,14 @@ $(document).ready(function(){
                                     <div class="am-form-group">
                                         <div class="am-btn-toolbar">
                                             <div class="am-btn-group am-btn-group-xs">
-                                                <button type="button" class="am-btn am-btn-default am-btn-success" id="insert"><span class="am-icon-plus"></span> 添加</button>
+                                                <button type="button" class="am-btn am-btn-default am-btn-success"
+                                                 id="insert"><span class="am-icon-plus"></span> 添加</button>
                                                 
-                                                <button type="button" class="am-btn am-btn-default am-btn-warning" id="update"><span class="am-icon-archive"></span>修改</button>
-                                                <button type="button" class="am-btn am-btn-default am-btn-danger" id="delete"><span class="am-icon-trash-o"></span> 删除</button>
+                                                <button type="button" class="am-btn am-btn-default am-btn-warning"
+                                                 id="update"><span class="am-icon-archive"></span>修改</button>
+                                                
+                                                <button type="button" class="am-btn am-btn-default am-btn-danger"
+                                                  id="delete"><span class="am-icon-trash-o"></span> 删除</button>
                                             </div>
                                         </div>
                                     </div>
@@ -505,8 +520,8 @@ $(document).ready(function(){
         </div>
     </div>
     
-    <div class="am-modal am-modal-no-btn" tabindex="-1" id="modal">
-  		<div class="am-modal-dialog">
+    <div class="am-modal am-modal-no-btn" tabindex="-1" id="modal" >
+  		<div class="am-modal-dialog" style="width: 680px; height: 430px;">
     		<div class="am-modal-hd">
       			<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
     		</div>

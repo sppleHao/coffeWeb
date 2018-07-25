@@ -53,7 +53,7 @@ public class GetFood extends HttpServlet {
 			
 			if (allFoodList.isEmpty()) {
 				//TODO 如果菜品表没有元素
-				out.println("没有任何用户!");
+				out.println("<p>数据库中没有任何用户!</p>");
 				return;
 			}
 			
@@ -87,6 +87,12 @@ public class GetFood extends HttpServlet {
 			//输出
 			if (!selectFoodList.isEmpty()) {
 				Integer allPages = (selectFoodList.size()-1)/pageSize + 1;
+				if (pageNo>allPages) {
+					pageNo=allPages;
+				}
+				if (pageNo<=0) {
+					pageNo=1;
+				}
 				
 				out.println("<table width=\"100%\" class=\"am-table am-table-compact am-table-striped tpl-table-black \">");
 				out.println("<tbody>");
@@ -116,7 +122,7 @@ public class GetFood extends HttpServlet {
 				out.println("</table>");
 				out.println("<div>");
 				out.println("<div class='page_info'>");
-				out.println("共 "+selectFoodList.size()+" 条记录		");
+				out.println("共 "+selectFoodList.size()+"条记录");
 				out.println("共 "+allPages+" 页");
 				out.println("</div>");
 				out.println("<div class='page_show'>");
@@ -129,11 +135,14 @@ public class GetFood extends HttpServlet {
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+(pageNo+1)+"'>下一页</a>");
 					out.println("<a href='/coffeWeb/Admin/FoodOP.jsp?pageNo="+allPages+"'>尾页</a>");
 				}
+				out.println("跳转到<input type='text' id='skipPage' style='width:30px;color:red;'>页");
+				out.println("<button id='skipBtn'>跳转</button>");
+				
 				out.println("</div>");
 				out.println("</div>");
 			}
 			else {
-				out.println("查找不到该食物!");
+				out.println("<p>查找不到该食物!</p>");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -68,9 +68,10 @@ public class Upload extends HttpServlet {
 			
 			//操作名
 			String opName = list.get(1).getString();
+			System.out.println(opName);
 			
-			if (fileName==null&&opName.equals("insert")) {
-				out.println("must-img");
+			if (opName.equals("insert")&&fileName==null) {
+				out.print("mustImg");
 				return;
 			}
 			
