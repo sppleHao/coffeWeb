@@ -99,6 +99,10 @@ $(document).ready(function(){
 		input.val(parseInt(input.val())-1);
 		computeSum();
 	});
+	$("button.delete").click(function(){
+		var div = $(this).parent();
+		div.remove();
+	});
 	$("div#sumPrice").ready(function(){
 		computeSum();
 	});
@@ -212,10 +216,11 @@ input[type="button"]{
 			<div class="foodName"><%=food.getFoodName()%></div>
 			<div class="foodPrice"><%=food.getFoodPrice()%></div>
 			<div class="foodNum">
-				<button class="sub" type="button">sub</button>
+				<button class="sub" type="button">-</button>
 				<input type="text" class="foodNumText" value="<%=cart.getFoodMount()%>">
-				<button class="add" type="button">add</button>
+				<button class="add" type="button">+</button>
 			</div>
+			<button class='delete'>删除</button>
 		</div>
 	</li>
 	<%}; %>
