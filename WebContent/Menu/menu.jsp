@@ -52,7 +52,6 @@ img.foodImg{
 </style>
 </head>
 <body>
-	
 	<jsp:include page="../MainPage/guide.jsp"></jsp:include>
 	<form action="GetMenuItems">
 		关键字:<input type="text" name="selectParam"/>

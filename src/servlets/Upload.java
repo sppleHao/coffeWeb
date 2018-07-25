@@ -103,10 +103,12 @@ public class Upload extends HttpServlet {
 //                return;
 //            }
 			//设置保存地址
-			String saveDirectory = "d:\\test\\"+foodName+".png";
+			String paht =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
+			
+			String saveDir = foodType+java.io.File.separator+foodName+".png";
 			
 			//保存图片
-			File file = new File(saveDirectory);
+			File file = new File(paht,saveDir);
 			list.get(0).write(file);
 			
 			out.print("操作成功!");
