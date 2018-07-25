@@ -40,7 +40,7 @@ public class AddFoodToCart extends HttpServlet {
 			//得到菜单传递的参数
 			HttpSession session = request.getSession();
 			String userNo =(String) session.getAttribute("userNo"); //用户名
-			String addFoodNo =(String) session.getAttribute("addFoodNo"); //餐品号
+			String addFoodNo =request.getParameter("addFoodNo"); //餐品号
 			String addFoodNum =request.getParameter("addFoodNum"); //餐品数量
 			
 			CartDao cd = new CartDao();
