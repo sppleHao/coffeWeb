@@ -53,7 +53,7 @@ public class GetFood extends HttpServlet {
 			
 			if (allFoodList.isEmpty()) {
 				//TODO 如果菜品表没有元素
-				out.println("<p>数据库中没有任何用户!</p>");
+				out.println("<p>数据库中没有任何菜品!</p>");
 				return;
 			}
 			

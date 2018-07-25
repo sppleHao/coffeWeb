@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.R_User;
 import dao.UserDao;
-import net.sf.json.JSONArray;
 
 /**
  * 管理员在所有用户中查找相应的用户，并将信息返回到界面
@@ -51,7 +50,7 @@ public class GetUsers extends HttpServlet {
 			allUsers = ud.selectUser("*");
 			
 			if (allUsers.isEmpty()) {
-				out.println("没有任何用户!");
+				out.println("<p>数据库中没有任何用户!</p>");
 				return;
 			}
 			
@@ -82,8 +81,12 @@ public class GetUsers extends HttpServlet {
 			if(!selectUers.isEmpty()) {
 				//所有页面
 				Integer allPages = (selectUers.size()-1)/pageSize + 1;
-//				JSONArray jsonArray = JSONArray.fromObject(selectUers);
-//				out.println(jsonArray);
+				if (pageNo>allPages) {
+					pageNo=allPages;
+				}
+				if (pageNo<=0) {
+					pageNo=1;
+				}
 				
 				out.println("<table width=\"100%\" class=\"am-table am-table-compact am-table-striped tpl-table-black \" id=\"example-r\">");
 				out.println("<tbody>");
@@ -125,11 +128,14 @@ public class GetUsers extends HttpServlet {
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+(pageNo+1)+"'>下一页</a>");
 					out.println("<a href='/coffeWeb/Admin/UserOP.jsp?pageNo="+allPages+"'>尾页</a>");
 				}
+				out.println("跳转到<input type='text' id='skipPage' style='width:30px;color:red;'>页");
+				out.println("<button id='skipBtn'>跳转</button>");
+				
 				out.println("</div>");
 				out.println("</div>");
 			}
 			else {
-				out.println("查找不到该用户!");
+				out.println("<p>查找不到该用户!</p>");
 			}
 			
 		} catch (Exception e) {

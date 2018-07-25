@@ -2,18 +2,13 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -23,7 +18,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.SortedBag;
 
 import beans.Bill;
 import beans.R_Order;
@@ -36,7 +30,7 @@ import dao.OrderDao;
 @WebServlet("/User/GetLastestOrders")
 public class GetLastestOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final int List = 0;
+	private static final int ListNum = 3;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -56,7 +50,6 @@ public class GetLastestOrders extends HttpServlet {
 			request.setCharacterEncoding("UTF-8");
 			PrintWriter out = response.getWriter();
 			
-			int num=3;
 			
 			//从session中获得用户名参数
 			HttpSession session = request.getSession();
@@ -88,7 +81,7 @@ public class GetLastestOrders extends HttpServlet {
 			if (!orders.isEmpty()) {
 				out.println("<table>");
 				out.println("<tbody>");
-				int loopTime = num;
+				int loopTime = ListNum;
 				for(String orderNo :orderNos) {
 					out.println("<tr>");
 					R_Order orderItemFirst = groupByOrderNoSorteByDate.get(orderNo).get(0);

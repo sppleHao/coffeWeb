@@ -130,6 +130,8 @@ $(document).ready(function(){
 		}
 		
 	});
+	
+	//删除按钮
 	$("#delete").click(function(){
 		
 		var isHaveChecked = false;

@@ -26,31 +26,31 @@ function updateUI(){
 		success:function(data){
 			$("#userOP").html(data);
 			$("tr.info").bind("click",function(){
-				var div = $(this);
-				var userNoDiv = div.children(".userNo");
-				var userNameDiv = div.children(".userName");
+				
+				var tr = $(this);
+				
+				var userNoTd = tr.children(".userNo");
+				var userNameTd = tr.children(".userName");
 				//var passwordDiv = div.children(".password");
-				var telDiv = div.children(".tel");
-				var emailDiv = div.children(".email");
+				var telTd = tr.children(".tel");
+				var emailTd = tr.children(".email");
 				
 				
 				var bt=$(this).children(".unchecked");
-				var inputBt =bt.siblings("input");
-				if(!inputBt.is(':checked')){
+				
+				if(!bt.hasClass('checked')){
 					//no checked
 					$(".checked").removeClass("checked");
-					inputBt.prop("checked",true);
 					bt.addClass("checked");
 					
-					$("#userNo").val(userNoDiv.text());
-					$("#userName").val(userNameDiv.text());
+					$("#userNo").val(userNoTd.text());
+					$("#userName").val(userNameTd.text());
 					//$("#password").val(passwordDiv.text());
-					$("#tel").val(telDiv.text());
-					$("#email").val(emailDiv.text());
+					$("#tel").val(telTd.text());
+					$("#email").val(emailTd.text());
 				}
 				else{
 					bt.removeClass("checked");
-					inputBt.prop("checked",false);
 					
 					$("#userNo").val("");
 					$("#userName").val("");
@@ -59,15 +59,27 @@ function updateUI(){
 					$("#email").val("");
 				}
 			});
+			
+			$("#skipBtn").bind("click",function(){
+				if ($("#skipPage").val()!='') {
+					window.location.href="/coffeWeb/Admin/UserOP.jsp?pageNo="+$("#skipPage").val();
+				}
+				else {
+					alert("请输入跳转的页码")
+				}
+			});
 		}
 	});
 };
 $(document).ready(function(){
+	
+	//搜索关键字
 	$("#userOPBtn").click(function(){
 		updateUI();
 	});
+	
+	//新增按钮
 	$("#insert").click(function(){
-		if(confirm("确认修改")){
 		$.ajax({
 			url: 'AdminUserOP',
 			type:'POST',
@@ -86,8 +98,9 @@ $(document).ready(function(){
 				updateUI();
 			}
 		});
-		};
 	});
+	
+	//删除按钮
 	$("#delete").click(function(){
 		if(confirm("确认删除")){
 			$.ajax({
@@ -110,6 +123,8 @@ $(document).ready(function(){
 			});
 		}
 	});
+	
+	//修改按钮
 	$("#update").click(function(){
 		$.ajax({
 			url: 'AdminUserOP',

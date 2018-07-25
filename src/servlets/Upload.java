@@ -15,8 +15,6 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
-import com.oreilly.servlet.MultipartRequest;
-
 import beans.Food;
 import dao.FoodDao;
 
