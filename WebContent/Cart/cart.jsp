@@ -141,7 +141,6 @@ $(document).ready(function(){
 					foodNo:id
 				},
 			success:function(data){
-				alert(data);
 			}
 		});
 		div.remove();
@@ -163,6 +162,7 @@ $(document).ready(function(){
 	$("#sumPrice").ready(function(){
 		computeSum();
 	});
+
 	
 	//离开该界面后保存更新
 	$(window).bind('beforeunload',function(){
@@ -290,13 +290,13 @@ input[type="button"]{
 	</tr>
 	<tr>
 			<!-- 全选替换图标  -->
-			<td><div id="allSelected" class="checked all"></div></td>
+			<td><div id="allSelected" class="checked all unchecked"></div></td>
 			<!-- 总价和总数 -->
 			<td></td>
 			<td></td>
 			<td><div id="sumNum"></div></td>
 			<td><div id="sumPrice"></div></td>
-			<td><button class="delete-all">清空购物车</button></td>
+			<td><button class="delete-all">清空购物车</button></td>	
 			<!-- 结账按钮 -->
 	</tr>
 	</tbody>
