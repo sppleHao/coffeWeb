@@ -149,7 +149,6 @@ input[type='submit']{
 				<!-- 功能模块(更改) -->
 				<div class="user-sign-div">
 					<form method="post" id="user-signIn-form" name="user-signIn-form" action="CheckUserSignIn">
-						<input type="text" id="userNo" name="userNo" placeholder="用户名(9位)"/><br/>
 						<input type="text" id="userName" name="userName" placeholder="昵称"/><br/>
 						<input type="password" id="password" name="password" placeholder="密码"/><br/>
 						<input type="password" id="confirm_password" name="confirm_password"placeholder="确认密码"><br>

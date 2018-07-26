@@ -2,6 +2,7 @@ package servlets;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,22 +34,34 @@ public class CheckUserSignIn extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//获得参数
-		String userNo =request.getParameter("userNo");
-		String userName = request.getParameter("userName");
-		String password =request.getParameter("password");
-		String tel =request.getParameter("tel");
-		String eamil =request.getParameter("email");
-		
-		//TODO 检查是否正确输入
-		
-		R_User user = new R_User();
-		user.setUserNo(userNo);
-		user.setUserName(userName);
-		user.setPassword(password);
-		user.setTel(tel);
-		user.setEmail(eamil);
 		try {
-			UserDao ud = new UserDao();	
+			UserDao ud = new UserDao();		
+		
+			String userName = request.getParameter("userName");
+			String password =request.getParameter("password");
+			String tel =request.getParameter("tel");
+			String eamil =request.getParameter("email");
+			
+			//生成随机用户名
+			String userNo = "";
+			Random random = new Random();
+			do {
+					userNo="";
+					for (int i=0;i<9;i++)
+					{
+						userNo+=random.nextInt(10);
+					}
+			}while(!ud.selectUser(userNo).isEmpty());
+			
+			
+			R_User user = new R_User();
+			user.setUserNo(userNo);
+			user.setUserName(userName);
+			user.setPassword(password);
+			user.setTel(tel);
+			user.setEmail(eamil);
+		
+			
 			List<R_User> users = ud.selectUser(userNo);
 			if (users.isEmpty()) {
 				//如果不存在，注册成功，将user加入数据库			
