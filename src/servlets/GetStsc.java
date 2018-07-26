@@ -18,7 +18,7 @@ import dao.FoodDao;
 import net.sf.json.JSONObject;
 
 /**
- * Servlet implementation class GetStsc
+ * 统计菜品欢迎程度
  */
 @WebServlet("/Admin/GetStsc")
 public class GetStsc extends HttpServlet {

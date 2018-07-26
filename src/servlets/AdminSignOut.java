@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 /**
- * Servlet implementation class AdminSignOut
+ * 管理员登出
  */
 @WebServlet("/Admin/AdminSignOut")
 public class AdminSignOut extends HttpServlet {

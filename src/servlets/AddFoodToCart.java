@@ -16,7 +16,7 @@ import dao.CartDao;
 import dao.FoodDao;
 
 /**
- * servlet：将菜单中的餐品加入购物车
+ * 将菜单中的餐品加入购物车
  */
 @WebServlet("/Menu/AddFoodToCart")
 public class AddFoodToCart extends HttpServlet {

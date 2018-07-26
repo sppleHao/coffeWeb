@@ -10,7 +10,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import beans.Food;
 import dao.FoodDao;
@@ -40,7 +39,6 @@ public class GetMenuItems extends HttpServlet {
 		
 		try {
 			FoodDao fd = new FoodDao();
-			HttpSession session = request.getSession();
 			
 			
 			//餐品列表
@@ -63,43 +61,7 @@ public class GetMenuItems extends HttpServlet {
 					}
 					else {//关键字为空，所有菜品
 						selectFoodList = allFoodList;
-					}
-					
-//					<!-- 通过ul和li的样式设置排列方式 -->
-//					<ul>
-//					<li>
-//					<div id="nav">
-//					<!-- jstl循环输出餐品 -->
-//					<c:forEach items="${sessionScope.selectFood}" var="food" varStatus="status">
-//						<!-- 每一个餐品的div -->
-//						<div id="food">
-//						<!-- 超链接，指向isAddToCartWindow.jsp页面 -->
-//						<a href="isAddToCartWindow.jsp?addFoodNo=${food.foodNo}
-//						&addFoodName=${food.foodName}&addFoodPrice=${food.foodPrice}
-//						&addFoodMount=${food.foodMount}&addFoodType=${food.foodType}" id="${food.foodNo}">
-//							<!-- 显示图片和信息的div -->
-//							<div>
-//							<!-- jstl标签，通过类型foodType选择显示的图片的文件夹，img元素显示图片 -->
-//							<c:if test="${food.foodType=='drink'}">
-//								<img class="foodImg" alt="${food.foodName}" src="/coffeWeb/Img/drink/${food.foodName}.png">
-//							</c:if>
-//							<c:if test="${food.foodType=='snack'}">
-//								<img class="foodImg" alt="${food.foodName}" src="/coffeWeb/Img/snack/${food.foodName}.png">
-//							</c:if>
-//							</div>
-//							<!-- 显示食物名 -->
-//							${food.foodName}
-//						</a>
-//						<!-- 价格和库存 -->
-//						<br>￥：${food.foodPrice}
-//						<br>库存：${food.foodMount}
-//					</c:forEach>
-//					<!-- 循环结束 -->
-//					</div>
-//					</li>
-//					</ul>
-					
-					
+					}				
 					
 					//查找结束
 					if (!selectFoodList.isEmpty()) {//不为空，设置属性

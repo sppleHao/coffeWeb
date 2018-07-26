@@ -66,7 +66,6 @@ public class Upload extends HttpServlet {
 			
 			//操作名
 			String opName = list.get(1).getString();
-			System.out.println(opName);
 			
 			if (opName.equals("insert")&&fileName==null) {
 				out.print("mustImg");
@@ -100,17 +99,25 @@ public class Upload extends HttpServlet {
 //				if(!fileName.toLowerCase().endsWith("jpg")){
 //	                System.out.println("图片格式不是jpg");
 //	                request.setAttribute("msg", "你的图片格式不是jpg格式");
-//	                request.getRequestDispatcher("/adminjsps/admin/book/add.jsp").forward(request, response);
+//	                request.getRequestDispatcher("/adminjsps/a 	dmin/book/add.jsp").forward(request, response);
 //	                return;
 //	            }
 				//设置保存地址
-				String paht =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
+				
+				System.out.println(this.getClass().getResource(""));
+				
+				String path =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
 				
 				String saveDir = foodType+java.io.File.separator+foodName+".png";
 				
+				
 				//保存图片
-				File file = new File(paht,saveDir);
+				File file = new File(saveDir);
+				System.out.println(file);
 				list.get(0).write(file);
+			}
+			else {
+				out.println("图片无效");
 			}
 			
 			if(opName.equals("insert")) {

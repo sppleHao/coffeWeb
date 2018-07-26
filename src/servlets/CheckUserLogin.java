@@ -14,7 +14,7 @@ import beans.R_User;
 import dao.UserDao;
 
 /**
- * Servlet implementation class CheckUserLogin
+ * 检查用户登陆过程是否正确
  */
 @WebServlet("/User/CheckUserLogin")
 public class CheckUserLogin extends HttpServlet {

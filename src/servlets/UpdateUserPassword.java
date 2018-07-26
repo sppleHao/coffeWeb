@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,18 +32,30 @@ public class UpdateUserPassword extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		try {
 			//获得新密码
 			HttpSession session = request.getSession();
 			String userNo = (String) session.getAttribute("userNo");
-			String newPassword = request.getParameter("newPassword");
+			String oldPass = request.getParameter("old_pass");
+			String newPass = request.getParameter("new_pass");
 			
 			UserDao ud = new UserDao();
-			R_User userConfig = ud.selectUser(userNo).get(0);
-			userConfig.setPassword(newPassword);
-			//修改
-			ud.update(userConfig);
+			R_User user = ud.selectUser(userNo).get(0);
+			if (user.getPassword().equals(oldPass)) {
+				//原密码正确,修改
+				user.setPassword(newPass);
+				ud.update(user);
+				out.print("update_success");
+			}
+			else {
+				out.print("old_pass_error");
+			}
+			
 		} catch (Exception e) {
+			out.print(e.getMessage());
 			e.printStackTrace();
 		}
 	}
