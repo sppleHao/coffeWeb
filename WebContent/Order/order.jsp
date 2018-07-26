@@ -119,7 +119,7 @@ li{
 			<!-- 订单页头部 -->
 				<!-- 订单号和订单时间 -->
 				<div class="top-bar">
-				订单号：      <%=request.getParameter("orderNo") %><br><br>
+				订单号：    <%=request.getParameter("orderNo") %><br><br>
 				订单时间: <%=request.getParameter("orderTime")%>
 				</div> 
 			<table class="am-table am-table-bordered am-table-radius am-table-striped">
