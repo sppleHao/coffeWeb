@@ -4,7 +4,9 @@
 <head>
 <meta charset="UTF-8"> 
 <title>个人信息修改</title>
-<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
+<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <style type="text/css">
 .body-background{
 	background-color: rgba(242, 242, 242, 1);
@@ -18,7 +20,7 @@
 	box-sizing: border-box;
     box-shadow: none;
     background: inherit inherit inherit inherit inherit inherit inherit inherit inherit;
-    border-width: 1px;
+    border-width: 0px;
     border-style: solid;
     border-color: rgb(228, 228, 228);
     border-radius: 0px;
@@ -68,6 +70,7 @@
 	font-size: medium;
 }
 .hori-line img{
+	
 	position: absolute;
 	left:9.5%;
 }
@@ -86,9 +89,14 @@
     
 }
 .input-area{
-	margin-left:35%;
+	margin-left:15%;
 	
 	height:30%
+}
+.input-area form{
+	
+	margin-left:20%;
+	margin-bottom:5%;
 }
 .input-text{
 	margin-top:3%;
@@ -102,6 +110,29 @@
 	margin-left:20%;
 	margin-top:30%;
 }
+#reset{
+	margin-left:45px;
+	
+ 	width:20px;
+ 	height:20px;
+}
+#reset2{
+	margin-left:2px;
+	
+ 	width:20px;
+ 	height:20px;
+}
+#user-config
+{
+	margin-top:3%;
+	
+	
+}
+#user-pass
+{
+	margin-top:10%;
+}
+
 </style>
 </head>
 <body>
@@ -114,7 +145,7 @@
 				<!-- 图标 -->
 				<img class="icon" src="/coffeWeb/Img/icon.png">
 				<!-- 导航超链接 -->
-				<a>主页</a>
+				<a href="/coffeWeb/MainPage/index.jsp">主页</a>
 				<a href="/coffeWeb/User/userConfig.jsp">个人中心</a>
 				<a class="" href="/coffeWeb/Menu/menu.jsp">菜单</a>
 			</header>
@@ -125,17 +156,12 @@
 					<!--标签(更改) -->
 					<div class="label">
 						<img alt="" src="/coffeWeb/Img/account.png">
-						<span>登录或创建一个新账户</span>
+						<span>欢迎您，${userConfig.userName}</span>
+						<a href="/coffeWeb/User/userChange.jsp" title="点击修改个人信息" ><img id="reset" src="/coffeWeb/Img/reset.png"></a>
+						<a  title="退出登录"  href="#"><img id="reset2" class="logoff" src="/coffeWeb/Img/quit.png"></a>
 					</div>
-					<!-- 导航超链接(更改) -->
-					<div class="bar-menu">
-					<ul>
-						<li><a class="user-login" href="/coffeWeb/User/userLogin.jsp">登陆</a></li>
-						<li><a class="user-signin" href="/coffeWeb/User/userSignIn.jsp">注册</a></li>
-						<li><a class="about-us" >关于我们</a></li>
-						<li><a class="admin-login" href="/coffeWeb/Admin/adminLogin.jsp">管理员入口</a></li>
-					</ul>
-					</div>
+					</br>
+						<span>浓情共享，与君相伴</span>
 				</div>
 			</div>
 			<!-- 侧底栏(超链接) -->
@@ -171,6 +197,7 @@
 				<div class="change-info">
 					<div class="input-area">
 						<div id="user-config">
+							<p>基本信息</p>
 							<form id="config-form">
 									昵称：<input type="text" name="userName" id="userName" value="${sessionScope.userConfig.userName}"><br>
 									邮箱：<input type="text" name="email" id="email" value="${sessionScope.userConfig.email}"><br>
@@ -179,7 +206,13 @@
 									<div id='config-msg'></div>
 							</form>
 						</div>
+						<!-- 水平线 -->
+						<div class="hori-line">
+							<img  src="/coffeWeb/Img/user/u414.png">
+							
+						</div>
 						<div id="user-pass">
+							<p>密码</p>
 							<form id="pass-form">
 								原密码:<input type="password" name="old_pass" id="old_pass">	<br>			
 								新密码:<input type="password" name="new_pass" id="new_pass"><br>

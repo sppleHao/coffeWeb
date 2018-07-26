@@ -4,6 +4,8 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>主页</title> 
+<link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
+<link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
 <style type="text/css">
 /* 对全部标签对象进行初始化操作 */	
@@ -162,7 +164,7 @@
 	height:450px;
 }
 .recommend_show{
-	margin-top:47%;
+	margin-top:49%;
 	position:absolute;
 	width:100%;
 	height:210px;
@@ -192,7 +194,7 @@
 .show_shop{
 	
 	position: absolute;
-	margin-top:66.5%;
+	margin-top:68%;
 	width:100%;
 	height:150px;
 	background-color: rgba(255, 255, 255, 1);
@@ -277,9 +279,13 @@
 				<div id="box">
 					<ul>
 						<!--ul为无序列表标签,li标签对象用于进行项目列表的定义操作,即在当前项目对象之前添加一个小圆点-->
+						<li class="img-li"><img src="/coffeWeb/Img/show1.png"></li>
+						<li class="img-li"><img src="/coffeWeb/Img/show2.png"></li>
+						<li class="img-li"><img src="/coffeWeb/Img/show3.png"></li>
 						<li class="img-li"><img src="/coffeWeb/Img/change_1.jpg"></li>
 						<li class="img-li"><img src="/coffeWeb/Img/change_2.jpg"></li>
 						<li class="img-li"><img src="/coffeWeb/Img/change_3.jpg"></li>
+						
 						
 					</ul>
 					<!--在当前div当中嵌套两个div来作为图片切换的按钮-->		
@@ -288,12 +294,13 @@
 					<!--div盒子模型当中建立两个按钮标签来进行图片的切换结束-->
 	
 						<!-- 建立轮播图按钮对象开始 -->
-				<ul class="button-ul"><!-- ul为无序列表标签 -->
-					<li class="button-li" id="one"></li>
+			<!--	<ul class="button-ul"><!-- ul为无序列表标签 -->
+			<!--		<li class="button-li" id="one"></li>
 					<li class="button-li" id="two"></li>
 					<li class="button-li" id="three"></li>
 					
 				</ul>
+			 -->
 						<!-- 建立轮播图按钮对象结束 -->		
 			</div>
 		<script type="text/javascript">
@@ -422,9 +429,9 @@
 			<!-- 三张推荐图框 -->
 			
 			<div class="recommend_show">
-				<img class="recommend_show_img1" src="/coffeWeb/Img/change_1.jpg">
-				<img class="recommend_show_img2" src="/coffeWeb/Img/change_2.jpg">
-				<img class="recommend_show_img3" src="/coffeWeb/Img/change_3.jpg">
+				<img class="recommend_show_img1" src="/coffeWeb/Img/showlist1.png">
+				<img class="recommend_show_img2" src="/coffeWeb/Img/showlist2.png">
+				<img class="recommend_show_img3" src="/coffeWeb/Img/showlist3.png">
 			</div>
 			
 			<!-- 门店信息框 -->
@@ -438,7 +445,7 @@
 			
 			<!-- 版权框 -->
 			<div class="copyright">
-				<p>CopyRight©星伍克Coffee</p>
+				<p>CopyRight©星伍克Studio</p>
 			</div>
 		</div>
 	</div>

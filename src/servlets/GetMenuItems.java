@@ -78,18 +78,19 @@ public class GetMenuItems extends HttpServlet {
 							}
 //							out.println("<img class='food-item-img-info' alt='' src='/coffeWeb/Img/"
 //							+food.getFoodType()+"/"+food.getFoodName()+".png'>");
-							out.println("<img class='food-item-img-info' alt='' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"?temp="+Math.random()+"'>");
+							out.println("<img class='food-item-img-info imgshape' alt='' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"?temp="+Math.random()+"'>");
 							out.print("</div>");
 							out.print("<div class='food-item-info'>");
 							out.println("<div class='food-item-info-foodName'>"+food.getFoodName()+"</div>");
 							out.println("<div class='food-item-info-foodPrice'>￥"+food.getFoodPrice()+"</div>");
-							out.println("剩余数量:<div class='food-item-info-foodMount'>"+food.getFoodMount()+"</div>");
+							out.println("<div class='food-item-info-foodMount-div'>剩余数量:<div class='food-item-info-foodMount'>"+food.getFoodMount()+"</div></div>");
 							out.print("</div>");
 							out.print("</div>");
 							
 						}
 					}
 					else {//为空，显示查找不到菜品
+						out.print("<p>查找不到该菜品</p>");
 //						session.setAttribute("selectFood", selectFoodList);
 //						request.getRequestDispatcher("menu.jsp").forward(request, response);
 					}

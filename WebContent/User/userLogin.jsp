@@ -36,7 +36,9 @@ $(document).ready(function() {
     });
 });
 </script>
-<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
+<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <style type="text/css">
 .body-background{
 	background-image: url(/coffeWeb/Img/loginBG.png);
@@ -105,7 +107,7 @@ input[type='submit']{
 						<!-- 列表列出超链接 -->
 						<li><a class="user-login" href="/coffeWeb/User/userLogin.jsp">登陆</a></li>
 						<li><a class="user-signin" href="/coffeWeb/User/userSignIn.jsp">注册</a></li>
-						<li><a class="about-us" >关于我们</a></li>
+						<li><a class="about-us" href="/coffeWeb/User/aboutus.jsp" >关于我们</a></li>
 						<li><a class="admin-login" href="/coffeWeb/Admin/adminLogin.jsp">管理员入口</a></li>
 					</ul>
 					</div>
@@ -127,7 +129,7 @@ input[type='submit']{
 					<!-- 表单 -->
 					<form method="post" id="login-form" name="login-form" action="/coffeWeb/User/CheckUserLogin">
 					<!-- 输入文本框 -->
-					<input type="text" id="userNo" name="userNo" placeholder="用户名/邮箱/手机" value="${param.userNo}"/><br/>
+					<input type="text" id="userNo" name="userNo" placeholder="用户ID" value="${param.userNo}"/><br/>
 					<input type="password" id="password" name="password" placeholder="密码" value="${param.password}"/><br/>
 					<!-- 登陆按钮 -->
 					<input type="submit" value="登陆" />

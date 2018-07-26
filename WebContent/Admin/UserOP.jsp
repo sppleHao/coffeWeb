@@ -222,7 +222,7 @@ input[type="radio"]#select{
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img class="coffee_Logo" src="/coffeWeb/Img/icon.jpg" alt=""></a>
+                <a href="javascript:;"><img class="coffee_Logo" src="/coffeWeb/Img/adminHead.png" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">

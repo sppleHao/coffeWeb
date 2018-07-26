@@ -50,6 +50,11 @@
 	margin-bottom:20px ;
 	text-align:center;
 } 
+.food-item-info-foodMount-div{
+	display: flex;
+	justify-content:center;
+	text-align: center;
+}
 p{
 	text-align:center;
 }
@@ -179,8 +184,7 @@ img.foodImg{
 					<ul>
 						<!-- 列表列出超链接 -->
 						<li><a class="user-login" href="/coffeWeb/Menu/menu.jsp">精品推荐</a></li>
-						<li><a class="user-signin" href="/coffeWeb/Menu/menuDrink.jsp">饮品</a></li>
-						<li><a class="admin-login" href="/coffeWeb/Menu/menuSnack.jsp">餐点</a></li>
+						
 					</ul>
 					</div>
 				</div>
@@ -278,7 +282,7 @@ $(document).ready(function(){
 	     		   	 
 	     		   	 var foodName = foodInfo.children(".food-item-info-foodName").text();
 	     		   	 var foodPrice = foodInfo.children(".food-item-info-foodPrice").text();
-	     		     var foodMount = foodInfo.children(".food-item-info-foodMount").text();
+	     		     var foodMount = foodInfo.find(".food-item-info-foodMount").text();
 	        		 //alert(foodName);
 	        		 //alert(foodPrice);
 	        		 //alert(foodMount);

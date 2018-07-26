@@ -32,8 +32,14 @@ li{
 	margin-bottom:40px ;
 }
 #reset{
-	margin-left:75px;
-	margin-top:7px;
+	margin-left:45px;
+	
+ 	width:20px;
+ 	height:20px;
+}
+#reset2{
+	margin-left:2px;
+	
  	width:20px;
  	height:20px;
 }
@@ -101,6 +107,7 @@ table{
 						<img alt="" src="/coffeWeb/Img/account.png">
 						<span>欢迎您，${userConfig.userName}</span>
 						<a href="/coffeWeb/User/userChange.jsp" title="点击修改个人信息" ><img id="reset" src="/coffeWeb/Img/reset.png"></a>
+						<a  title="退出登录"  href="#"><img id="reset2" class="logoff" src="/coffeWeb/Img/quit.png"></a>
 					</div>
 					</br>
 						<span>浓情共享，与君相伴</span>
