@@ -1,0 +1,37 @@
+@charset "UTF-8";
+.body-background{
+	background-image: url(/coffeWeb/Img/loginBG.png);
+	background-size: 100% 100%;
+}
+.user-login-div{
+	font-size:23px;
+	font-weight:700;
+	padding: 24px 0;
+	box-sizing: border-box;
+    margin-top:20%;
+    margin-left:30%;
+    width: 480px;
+    height: 340px;
+    overflow: hidden;
+    max-width: 480px;
+    background-color: rgba(255,255,255,0.3);
+}
+input[type='text'],input[type='password']{
+	font-size:23px;
+	font-weight:400;
+	margin:25px;
+	width: 313px;
+    height: 55px;
+}
+input[type='submit']{
+	background:#FFF;
+	font-size:23px;
+	font-weight:700;
+	width:100px;
+	height:40px;
+	margin-left: 60%;
+}
+.error{
+	color:red;
+	font-size:20px;
+}

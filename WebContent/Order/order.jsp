@@ -5,79 +5,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html">
 <title>订单</title>
-<style type="text/css">
-/*.foodNum{
-	margin-left:100px ;
-	margin-right:50px ;
-	margin-top:10px ;
-	margin-bottom:10px ;
-	text-align:center;
-	height:30px;
-	width:200px;
-	
-}
-.txt,.foodName,.foodPrice{
-	margin-left:50px ;
-	margin-right:50px ;
-	margin-top:10px ;
-	margin-bottom:10px ;
-	text-align:center;
-	height:30px;
-	width:200px;
-}*/
-.top-bar{
-	margin-top:20px;	
-	margin-left:35px;
-	margin-bottom:15px;
-}
-.foodName,.foodPrice,.foodNum{
-	text-align:center;
-	
-	width:150px;
-	height:50px;
-
-}
-.final-div{
-	margin-left:65%;
-	display: flex;
-}
-.items{
-	display: flex;
-	
-}
-li{
-	list-style-type:none;
-	margin-top:40px ;
-	margin-bottom:40px ;
-}
-#reset{
-	margin-left:45px;
-	
- 	width:20px;
- 	height:20px;
-}
-#reset2{
-	margin-left:2px;
-	
- 	width:20px;
- 	height:20px;
-}
-.order-div{
-	margin-top: 6%;
-    margin-left: 5%;
-    width: 90%;
-   
-    box-sizing: border-box;
-    box-shadow: none;
-   
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-radius: 0px;
-}	
-</style>
 <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+<link href="/coffeWeb/CSS/order.css" type="text/css" rel="stylesheet">
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 </head>
 <body>

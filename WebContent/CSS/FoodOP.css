@@ -1,0 +1,36 @@
+@charset "UTF-8";
+.foodNo,.foodName,.foodPrice,.foodType,.foodMount,.foodImg{
+	text-align:right;
+	
+}
+.foodImg img{
+	width: 25px;
+	height: 20px;
+}
+#foodNo,#foodName,#foodPrice,#foodType,#foodMount{
+	text-align:right;
+	width:150px;
+	height:30px;
+	color:red;
+}
+.page_info{
+	display:inline-block;
+	margin-left:3%
+	text-align:left;
+}
+.page_show{
+	display:inline-block;
+	margin-left:70%;
+	text-align:right;
+}
+.unchecked{
+	background-image:url(../Img/cbu.png);
+	background-size:100% 100%;
+	width:32px;
+	
+}
+.checked{
+	background-image:url(../Img/cb.png);
+	background-size:100% 100%;
+	
+}

@@ -50,6 +50,13 @@ $(document).ready(function(){
 			  digits:true
 		  }
 	  },
+	  errorElement: "span",
+  	  errorPlacement: function(error, element) {
+		$( element )
+		.closest( "form" )
+			.find("div"+"."+element.attr( "id" ) )
+				.html( error );
+	  },
 	  message:{
 		  addFoodNum:{
 				required:"加入数量不能为空",
@@ -98,89 +105,7 @@ $(document).ready(function(){
 	});
 });
 </script>
-<style type="text/css">
-img.foodImg{
-	height:200px;
-	width:300px;
-}
-#food-img{
-	background-image: url(/coffeWeb/Img/pdbg.jpg);
-	background-size: 100% 100%;
-	width: 100%;
-	height: 50%;
-	align-items: center;
-	display: flex;
-	justify-content: center;
-	
-}
-#pd-bg{
-	width: 100%;
-	height: 100%;
-}
-#food-title{
-	text-align:center;
-	color:#f99d25;
-	border-bottom: 1px solid #000;
-}
-#food-config{
-	text-align:center;
-	display: flex;
-	justify-content: space-between;
-	border-bottom: 1px solid #000;
-	padding: 20px;
-}
-table{
-	width:100%;
-}
-#food-op{
-	padding: 10px;
-}
-#add-and-sub{
-	align-items: center;	
-	display: flex;
-	justify-content: center;
-}
-#addDiv img,#subDiv img{
-	padding:5px;
-	width:50px;
-	height: 50px;
-}
-#addFoodNum{
-	text-align:center;
-	height: 40px;
-	font-size: 30px;
-	font-weight: 400;
-}
-#add,#sub,#addToCart,#addFoodNo{
-	display: none;
-}
-#submitDiv{
-	align-items: center;	
-	display: flex;
-	justify-content: center;
-}
-#addToCartDiv{
-	background: none repeat scroll 0 0 #f99d25;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: #000;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 18px;
-    font-weight:700;
-    height: 44px;
-    line-height: 44px;
-    width: 90%;
-    min-width:120px;
-    max-width:240px;
-    text-align:center;
-    overflow: hidden;
-    transition: background 0.2s;
-	-moz-transition: background 0.2s;
-	-webkit-transition: background 0.2s;
-	-o-transition: background 0.2s;
-}
-</style>
+<link href="/coffeWeb/CSS/isAddToCart.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<div id="window" class="window" style="width: 800px; height: 600px;">
@@ -225,6 +150,7 @@ table{
 					<img alt="plus" src="/coffeWeb/Img/plus.png">
 				</div>
 			</div>
+			<div class="addFoodNum"></div>
 			<input type="text" readonly="readonly" value="" name="addFoodNo" id="addFoodNo">
 			<button type="button" id="add">add</button>
 			<button type="button" id="sub">sub</button>

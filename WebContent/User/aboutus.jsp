@@ -38,41 +38,9 @@ $(document).ready(function() {
 </script>
 <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link href="/coffeWeb/CSS/aboutus.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
-<style type="text/css">
-.body-background{
-	background-image: url(/coffeWeb/Img/aboutus.jpg);
-	background-size: 100% 100%;
-}
-.user-login-div{
-	font-size:23px;
-	font-weight:700;
-	padding: 24px 0;
-	box-sizing: border-box;
-    margin-top:20%;
-    margin-left:30%;
-    width: 480px;
-    height: 340px;
-    overflow: hidden;
-    max-width: 480px;
-    background-color: rgba(255,255,255,0.3);
-}
-input[type='text'],input[type='password']{
-	font-size:23px;
-	font-weight:400;
-	margin:25px;
-	width: 313px;
-    height: 55px;
-}
-input[type='submit']{
-	background:#FFF;
-	font-size:23px;
-	font-weight:700;
-	width:100px;
-	height:40px;
-	margin-left: 60%;
-}
-</style>
+
 </head> 
 <body>
 	<!-- 用户登陆界面 -->

@@ -6,134 +6,8 @@
 <title>个人信息修改</title>
 <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link href="/coffeWeb/CSS/userChange.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
-<style type="text/css">
-.body-background{
-	background-color: rgba(242, 242, 242, 1);
-	background-size: 100% 100%;
-}
-.user-info{
-	margin-top:2%;
-    margin-left:5%;
-    width: 90%;
-    height: 75%;
-	box-sizing: border-box;
-    box-shadow: none;
-    background: inherit inherit inherit inherit inherit inherit inherit inherit inherit;
-    border-width: 0px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-radius: 0px;
-}
-.user-config-div{
-	font-size:23px;
-	font-weight:400;
-	
-	box-sizing: border-box;
-   
-    margin-left:5%;
-    width: 90%;
-    height: 20%;
-    max-height:150px;
-    overflow: hidden;
-    max-width: 1100px;
-    background-color: #FFF;
-    padding:5px;
-    display: flex;
-   
-}
-
-
-.head-icon{
-	margin-top:35%;
-	margin-left:45%;
-	width: 70px;
-	height: 70px;
-	
-}
-.user-config{
-	margin-left: 20px;
-}
-.user-config-info{
-	
-	margin-left:0;
-}
-.user-config-info-p{
-	margin-top: 4%;
-	margin-left:10%;
-	font-size: medium;
-}
-.user-config-info-tip
-{
-	margin-top: 3%;
-	margin-left:55%;
-	font-size: medium;
-}
-.hori-line img{
-	
-	position: absolute;
-	left:9.5%;
-}
-.change-info{
-	
-	box-sizing: border-box;
-   
-    margin-left:5%;
-    width: 90%;
-    height: 80%;
-   
-    overflow: hidden;
-    max-width: 1100px;
-    background-color: #FFF;
-    padding:5px;
-    
-}
-.input-area{
-	margin-left:15%;
-	
-	height:30%
-}
-.input-area form{
-	
-	margin-left:20%;
-	margin-bottom:5%;
-}
-.input-text{
-	margin-top:3%;
-	
-}
-.change-pw{
-	margin-left:35%;
-	
-}
-.save-change{
-	margin-left:20%;
-	margin-top:30%;
-}
-#reset{
-	margin-left:45px;
-	
- 	width:20px;
- 	height:20px;
-}
-#reset2{
-	margin-left:2px;
-	
- 	width:20px;
- 	height:20px;
-}
-#user-config
-{
-	margin-top:3%;
-	
-	
-}
-#user-pass
-{
-	margin-top:10%;
-}
-
-</style>
 </head>
 <body>
 	<!-- app界面 -->
@@ -202,7 +76,8 @@
 									昵称：<input type="text" name="userName" id="userName" value="${sessionScope.userConfig.userName}"><br>
 									邮箱：<input type="text" name="email" id="email" value="${sessionScope.userConfig.email}"><br>
 									电话：<input type="text" name="tel" id="tel" value="${sessionScope.userConfig.tel}"><br>
-									<input type="submit" value="修改信息" id="submit-config-form">
+									<input type="submit" value="修改信息" id="submit-config-form" class="am-btn am-btn-success am-radius"
+									>
 									<div id='config-msg'></div>
 							</form>
 						</div>
@@ -217,7 +92,8 @@
 								原密码:<input type="password" name="old_pass" id="old_pass">	<br>			
 								新密码:<input type="password" name="new_pass" id="new_pass"><br>
 								确认新密码:<input type="password" name="confirm_new_pass" id="confirm_new_pass"><br>
-								<input type="submit" value="修改密码" id="submit-pass-form">
+								<input type="submit" value="修改密码" id="submit-pass-form" class="am-btn am-btn-success am-radius"
+								>
 								<div id="pass-msg"></div>
 							</form>
 						</div>
@@ -234,7 +110,12 @@
 <script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
-$(document).ready(function(){	
+$(document).ready(function(){
+	
+	$("img.logoff").click(function(){
+		window.location.href='UserLogOff';
+	});
+	
 	var pass_ajax_option={
 			url:"UpdateUserPassword",
 			success:function(data){

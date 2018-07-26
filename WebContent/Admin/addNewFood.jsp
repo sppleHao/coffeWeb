@@ -9,6 +9,7 @@
 <script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
+<link rel="stylesheet" href="/coffeWeb/CSS/addNewFood.css">
 $(document).ready(function(){
 	var ajax_option={
 			url:"foodUpload",
@@ -102,77 +103,6 @@ function computeSize() {
 }
 
 </script>
-<style type="text/css">
-#opName,#fileImage,#submit{
-	display: none;
-}
-#opTitle{
-	font-size: 20px;
-    font-weight:700;
-}
-.filePicker{
-	background: none repeat scroll 0 0 #00B7EE;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 18px;
-    height: 44px;
-    line-height: 44px;
-    width: 200px;
-    text-align:center;
-    margin: 0 auto 0px;
-    overflow: hidden;
-    transition: background 0.2s;
-	-moz-transition: background 0.2s;
-	-webkit-transition: background 0.2s;
-	-o-transition: background 0.2s;
-}
-.submitBtn{
-	background: none repeat scroll 0 0 #00B7EE;
-    border-radius: 3px;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
-    color: #FFFFFF;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 18px;
-    font-weight:700;
-    height: 44px;
-    line-height: 44px;
-    width: 90%;
-    min-width:120px;
-    max-width:240px;
-    text-align:center;
-    overflow: hidden;
-    transition: background 0.2s;
-	-moz-transition: background 0.2s;
-	-webkit-transition: background 0.2s;
-	-o-transition: background 0.2s;
-}
-.upload_main{
-	display: flex;
-	border:1px solid #000
-}
-.img-upload{
-	padding: 20px;
-}
-.config-upload{
-	padding: 20px;
-	border-left:1px solid #000;
-	text-align: left;
-}
-.submit-upload{
-	padding: 20px;
-	display: flex;
-	justify-content: center; 
-	align-items: center;
-	border:1px solid #000
-}
-.status_info{
-	text-align: center;
-}
-</style>
 </head>
 <body>
 	<div id="demo" class="demo" style="width: 650px; height: 400px;">

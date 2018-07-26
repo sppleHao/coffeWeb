@@ -174,45 +174,9 @@ $(document).ready(function(){
 });
 
 </script>
-<style type="text/css">
-.foodNo,.foodName,.foodPrice,.foodType,.foodMount,.foodImg{
-	text-align:right;
-	
-}
-.foodImg img{
-	width: 25px;
-	height: 20px;
-}
-#foodNo,#foodName,#foodPrice,#foodType,#foodMount{
-	text-align:right;
-	width:150px;
-	height:30px;
-	color:red;
-}
-.page_info{
-	display:inline-block;
-	margin-left:3%
-	text-align:left;
-}
-.page_show{
-	display:inline-block;
-	margin-left:70%;
-	text-align:right;
-}
-.unchecked{
-	background-image:url(../Img/cbu.png);
-	background-size:100% 100%;
-	width:32px;
-	
-}
-.checked{
-	background-image:url(../Img/cb.png);
-	background-size:100% 100%;
-	
-}
-</style>
 <!-- 美化页面配置 -->
 <meta charset="utf-8">
+	<link rel="stylesheet" href="/coffeWeb/CSS/FoodOP.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
    
     <meta name="description" content="这是一个 index 页面">

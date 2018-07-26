@@ -148,46 +148,9 @@ $(document).ready(function(){
 	updateUI();
 });
 </script>
-<style type="text/css">
-.userNo,.userName,.password,.tel,.email{
-	
-	text-align:right;
-	
-}
-#userNo,#userName,#password,#tel,#email{
-	text-align:right;
-	width:200px;
-	height:30px;
-	color:red;
-}
-.page_info{
-	display:inline-block;
-	margin-left:3%
-	text-align:left;
-}
-.page_show{
-	display:inline-block;
-	margin-left:70%;
-	text-align:right;
-	
-}
-input[type="radio"]#select{
-	display:none;
-}
-.unchecked{
-	background-image:url(../Img/cbu.png);
-	background-size:100% 100%;
-	width:32px;
-	
-}
-.checked{
-	background-image:url(../Img/cb.png);
-	background-size:100% 100%;
-	
-}
-</style>
 <!-- 美化页面配置 -->
 <meta charset="utf-8">
+	<link rel="stylesheet" href="/coffeWeb/CSS/UserOP.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
    
     <meta name="description" content="这是一个 index 页面">

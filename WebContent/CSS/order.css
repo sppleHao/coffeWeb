@@ -1,0 +1,51 @@
+@charset "UTF-8";
+.top-bar{
+	margin-top:20px;	
+	margin-left:35px;
+	margin-bottom:15px;
+}
+.foodName,.foodPrice,.foodNum{
+	text-align:center;
+	
+	width:150px;
+	height:50px;
+
+}
+.final-div{
+	margin-left:65%;
+	display: flex;
+}
+.items{
+	display: flex;
+	
+}
+li{
+	list-style-type:none;
+	margin-top:40px ;
+	margin-bottom:40px ;
+}
+#reset{
+	margin-left:45px;
+	
+ 	width:20px;
+ 	height:20px;
+}
+#reset2{
+	margin-left:2px;
+	
+ 	width:20px;
+ 	height:20px;
+}
+.order-div{
+	margin-top: 6%;
+    margin-left: 5%;
+    width: 90%;
+   
+    box-sizing: border-box;
+    box-shadow: none;
+   
+    border-width: 5px;
+    border-style: solid;
+    border-color: rgb(228, 228, 228);
+    border-radius: 0px;
+}	

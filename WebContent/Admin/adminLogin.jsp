@@ -6,53 +6,8 @@
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <meta http-equiv="Content-Type" content="text/html">
+<link rel="stylesheet" href="/coffeWeb/CSS/adminLogin.css">
 <title>管理员登陆界面</title>
-<style type="text/css">
-body{
-	height: 874.87px;
-    background: #f7f7f7;
-	display: block;
-	line-height: 160%;
-	margin: 0;
-	font-size: 16px;
-	font-weight: 700;
-	background-image: url(/coffeWeb/Img/adminbgp.jpg);
-	background-size: 100% 100%;
-}
-.admin_login_view{
-	font-size:23px;
-	font-weight:700;
-	padding: 24px 0;
-	box-sizing: border-box;
-    margin-top:15%;
-    margin-left:37%;
-    width: 480px;
-    height: 340px;
-    overflow: hidden;
-    max-width: 480px;
-    background-color: rgba(255,255,255,0.3);
-}
-input[type='text'],input[type='password']{
-	font-size:23px;
-	font-weight:400;
-	margin:25px;
-	width: 400px;
-    height: 55px;
-}
-input[type='submit']{
-	background:#FFF;
-	font-size:23px;
-	font-weight:700;
-	width:100px;
-	height:40px;
-	margin-left: 70%;
-}
-.label_info{
-	margin-top:0%;
-	height:0px;
-	margin-left:37%;
-}
-</style>
 </head>
 <body>
 	<div class="admin_login_view">

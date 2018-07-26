@@ -42,6 +42,12 @@ $(document).ready(function() {
     		
     	},
     	errorElement: "span",
+    	errorPlacement: function(error, element) {
+    		$( element )
+			.closest( "form" )
+				.find("div"+"."+element.attr( "id" ) )
+					.html( error );
+    	},
     	messages:{
     		userName:{
     			required:"昵称不能为空",
@@ -67,44 +73,8 @@ $(document).ready(function() {
 </script>
 <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link href="/coffeWeb/CSS/userSignIn.css" type="text/css" rel="stylesheet" />
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
-<style type="text/css">
-.body-background{
-	background-image: url(/coffeWeb/Img/loginBG.png);
-	background-size: 100% 100%;
-}
-.user-sign-div{
-	font-size:23px;
-	font-weight:700;
-	padding: 24px 0;
-	box-sizing: border-box;
-    margin-top:10%;
-    margin-left:30%;
-    width: 480px;
-   
-    overflow: hidden;
-    max-width: 480px;
-    background-color: rgba(255,255,255,0.3);
-}
-.user-sign-div form{
-	 margin-left:10%;
-}
-input[type='text'],input[type='password']{
-	font-size:23px;
-	font-weight:400;
-	margin:2px;
-	width: 313px;
-    height: 55px;
-}
-input[type='submit']{
-	background:#FFF;
-	font-size:23px;
-	font-weight:700;
-	width:100px;
-	height:40px;
-	margin-left: 60%;
-}
-</style>
 </head>
 <body>
 <!-- app界面 -->
@@ -155,10 +125,15 @@ input[type='submit']{
 				<div class="user-sign-div">
 					<form method="post" id="user-signIn-form" name="user-signIn-form" action="CheckUserSignIn">
 						<input type="text" id="userName" name="userName" placeholder="昵称"/><br/>
+						<div class="userName"></div>
 						<input type="password" id="password" name="password" placeholder="密码"/><br/>
+						<div class="password"></div>
 						<input type="password" id="confirm_password" name="confirm_password"placeholder="确认密码"><br>
+						<div class="confirm_password"></div>
 						<input type="text" id="tel" name="tel" placeholder="电话"/><br/>
+						<div class="tel"></div>
 						<input type="text" id="email" name="email" placeholder="邮箱"/><br/>
+						<div class="email"></div>
 						<input type="submit" value="注册">
 					</form>
 				</div>

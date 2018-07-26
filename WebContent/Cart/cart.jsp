@@ -11,6 +11,7 @@
  <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.datatables.min.css" />
  <link rel="stylesheet" href="/coffeWeb/assets/css/app.css">
  <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+ <link href="/coffeWeb/CSS/cart.css" type="text/css" rel="stylesheet">
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <title>购物车</title>
 <script type="text/javascript" src="/coffeWeb/JS/ajax.js"></script>
@@ -195,108 +196,6 @@ $(document).ready(function(){
 	});
 });
 </script>
-
-<style type="text/css">
-td{
-	text-align: center;
-}
-input[type="checkbox"]{
-	display:none;
-}
-input[type="text"]{
-	width:50px;
-	text-align:center;
-}
-input[type="button"]{
-	margin-left:200px ;
-	height:30px;
-	width:50px;
-	margin-top:20px ;
-	margin-bottom:20px ;
-}
-.checked{
-	background-image:url(../Img/cb.png);
-	display:inline-block;
-	height:30px;
-	width:30px;
-	margin-left:50px ;
-	margin-right:50px ;
-	
-	
-}
-.unchecked{
-	background-image:url(../Img/cbu.png);
-	display:inline-block;
-	height:30px;
-	width:30px;
-}
-#body1{
-	left: auto;
-    margin-left: 30%;	
-    width: 70%;
-    height:100%;
-    position: relative;
-
-   /* display: block;*/
-}
-.body-background{
-	
-	width:100%;
-	height:100%;
-	
-}
-.label{
-	box-sizing: content-box;
-	position: relative;
-	letter-spacing: 0.3px;	
-	display:flex;
-	font-size: 21px;
-	font-weight: 700;
-	line-height: 31px;
-}
-.label img{
-	width:34px;
-	height:34px;
-	margin-top:8px;
-
-}
-.label span{
-	margin-top:10px;
-}
-.cart-div{
-	margin-top: 6%;
-    margin-left: 5%;
-    width: 90%;
-   
-    box-sizing: border-box;
-    box-shadow: none;
-   
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-radius: 0px;
-}
-.cart-head{
-	margin-top:2%;
-	margin-left:45%;
-	font-size:xx-large;
-}
-.foodName,.foodPrice,.foodNum,.multy-price,.final-bar{
-	text-align:center;
-	
-	width:150px;
-	height:50px;
-
-}
-.cart-submit{
-	width:150px;
-	margin-left:42%;
-	margin-bottom:5px;
-}
-#foodMount{
-	display: none;
-}
-</style>
 
 </head>
 <body>

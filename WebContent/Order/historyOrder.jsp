@@ -15,71 +15,9 @@ $(document).ready(function(){
 	});
 });
 </script>
-<style type="text/css">
-p{
-	margin-left:50px ;
-	margin-right:50px ;
-	margin-top:20px ;
-	margin-bottom:20px ;
-	text-align:right;
-	height:30px;
-	width:200px;
-}
-
-li{
-	list-style-type:none;
-	margin-top:40px ;
-	margin-bottom:40px ;
-}
-#reset{
-	margin-left:45px;
-	
- 	width:20px;
- 	height:20px;
-}
-#reset2{
-	margin-left:2px;
-	
- 	width:20px;
- 	height:20px;
-}
-.order-div{
-	margin-top: 6%;
-    margin-left: 5%;
-    width: 90%;
-   
-    box-sizing: border-box;
-    box-shadow: none;
-   
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgb(228, 228, 228);
-    border-radius: 0px;
-}
-.order-head{
-	margin-top:2%;
-	margin-left:37%;
-	font-size:xx-large;
-}
-
-.orderNo{
-	text-align:center;
-	width:200px;
-	height:50px;
-}
-.orderTime, .orderPrice{
-	text-align:center;
-	width:150px;
-	height:50px;
-}
-
-table{
-	
-	margin-top:3%;
-}
-</style>
 <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
 <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+<link href="/coffeWeb/CSS/historyOrder.css" type="text/css" rel="stylesheet">
 <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 </head>
 <body>

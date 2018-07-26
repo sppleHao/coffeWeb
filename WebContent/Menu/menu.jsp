@@ -36,125 +36,7 @@
   <link rel="stylesheet" href="../assets/css/app.css">
   <link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
   <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
- <style type="text/css">
-#show-menu{
-     display: flex;
-     flex-wrap: wrap;
-     margin-top: 20px;
-     margin-left:50px;
-}
-.food-item{
-	margin-left:50px ;
-	margin-right:50px ;
-	margin-top:20px ;
-	margin-bottom:20px ;
-	text-align:center;
-} 
-.food-item-info-foodMount-div{
-	display: flex;
-	justify-content:center;
-	text-align: center;
-}
-p{
-	text-align:center;
-}
-
-.food-item-img-info{
-	height:170px;
-	width:170px;
-}
-#nav1 {
-	position:absolute;
-	width: 95%;
-	height:100%;
-    margin: 3% 3%;
-    display: flex;
-    float: left;
-    flex-wrap: wrap;
-   
-}
-
-#food div{
-	 margin: 20px 20px;
-     text-align:center;
-     border: 2px solid #ff9e41;
-}
-#nav ul {
-    list-style: none;
-    margin-left: -16pxpx;
-}
- 
-li {
-	list-style: none;
-   margin-left: 16px;
-   display: list-item;
-   text-align:center;
-}
- 
-#food strong {
-	text-align:center;
-}
-
-img.foodImg{
-	height:170px;
-	width:170px;
-}
-.imgshape{
-	width:170px;
-	height:170px;
-	border-radius:100%;
-	overflow:hidden;
-}
-.imgnamecss{
-                text-decoration: none;
-                font-family: "Adobe Song Std";
-                font-size: 25px;
-                color: peru;
-}
-#body1{
-	left: auto;
-    margin-left: 30%;	
-    width: 70%;
-    height:100%;
-    position: relative;
-
-   /* display: block;*/
-}
-.body-background{
-	
-	width:100%;
-	height:100%;
-	
-}
-.label{
-	box-sizing: content-box;
-	position: relative;
-	letter-spacing: 0.3px;	
-	display:flex;
-	font-size: 21px;
-	font-weight: 700;
-	line-height: 31px;
-}
-.label img{
-	width:34px;
-	height:34px;
-	margin-top:8px;
-
-}
-.label span{
-	margin-top:10px;
-}
-.no-mount img{
-	-webkit-filter: grayscale(100%);
-    -moz-filter: grayscale(100%);
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    
-    filter: grayscale(100%);
-	
-    filter: gray;
-}
- </style>
+  <link href="/coffeWeb/CSS/menu.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<!-- 整个界面 -->
@@ -255,9 +137,7 @@ img.foodImg{
 <script src="../assets/js/amazeui.ie8polyfill.min.js"></script>
 <![endif]-->
 <script src="../assets/js/amazeui.min.js"></script>
-
 <script type="text/javascript">
-
 $(document).ready(function(){
 	var ajax_option={
 			url:"GetMenuItems",
