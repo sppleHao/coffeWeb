@@ -70,7 +70,12 @@ public class GetMenuItems extends HttpServlet {
 //						request.getRequestDispatcher("menu.jsp").forward(request, response);
 						for (Food food : selectFoodList) {
 							out.println("<div class='food-item' id='"+food.getFoodNo()+"'>");
-							out.println("<div class='food-item-img'>");
+							if (food.getFoodMount()>0) {
+								out.println("<div class='food-item-img'>");
+							}
+							else {
+								out.println("<div class='food-item-img no-mount'>");
+							}
 //							out.println("<img class='food-item-img-info' alt='' src='/coffeWeb/Img/"
 //							+food.getFoodType()+"/"+food.getFoodName()+".png'>");
 							out.println("<img class='food-item-img-info' alt='' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"?temp="+Math.random()+"'>");

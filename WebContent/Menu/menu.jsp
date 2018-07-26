@@ -56,6 +56,16 @@ p{
 	height:170px;
 	width:170px;
 }
+.no-mount img{
+	-webkit-filter: grayscale(100%);
+    -moz-filter: grayscale(100%);
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    
+    filter: grayscale(100%);
+	
+    filter: gray;
+}
  </style>
 </head>
 <body>
@@ -100,6 +110,10 @@ $(document).ready(function(){
 				$("#show-menu").html(data);
 				$(".food-item-img-info").bind("click",function(){
 					 var foodImg = $(this);
+					 if (foodImg.parent().hasClass("no-mount")) {
+						 alert("这件餐品已售空，请下次及时下单");
+						 return;
+					 }
 					 var foodItem = $(this).parent().parent();
 					 var foodInfo = foodItem.children(".food-item-info");
 	        		 var $modal = $('#modal');
