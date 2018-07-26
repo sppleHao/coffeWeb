@@ -14,47 +14,6 @@ $(document).ready(function(){
 	$("button.showHistoryOrder").click(function(){
 		window.location.href='/coffeWeb/Order/historyOrder.jsp';
 	});
-	$("button.updatePassword").click(function(){
-		$("#newPassword").toggle();
-	});
-	$("button.updateConfig").click(function(){
-		$("#newConfig").toggle();
-	});
-	$("#updatePasswordBtn").click(function(){
-		var updatePassText= $("#updatePass").val();
-		var confirmPassText = $("#confirmPass").val();
-		if (updatePassText==confirmPassText) {
-			var url="UpdateUserPassword";
-			var param="newPassword="+updatePassText;
-			sendRequest(url,param,'POST' ,function() {
-		        if (xmlHttpRequest.readyState==4) {
-		            if (xmlHttpRequest.status==200) {
-		            	alert("修改成功！");
-		            	window.location.href='userConfig.jsp';
-		            }
-		        }
-		    });
-		}
-		else{
-			var info= "两次输入的密码必须相等";
-			alert(info);
-			//$("#passMess").innerText = info;
-		}
-	});
-	$("#updateConfigBtn").click(function(){
-		var url="UpdateUserConfig";
-		var param = "userName="+$("#updateUserName").val()+"&"+
-					"tel="+$("#updateTel").val()+"&"+
-					"email="+$("#updateEmail").val();
-		sendRequest(url,param,'POST' ,function() {
-	        if (xmlHttpRequest.readyState==4) {
-	            if (xmlHttpRequest.status==200) {
-	            	alert("修改成功！");
-	            	window.location.href='userConfig.jsp';
-	            }
-	        }
-	    });
-	});
 	$.ajax({
 		url:'GetLastestOrders',
 		type:'POST',
