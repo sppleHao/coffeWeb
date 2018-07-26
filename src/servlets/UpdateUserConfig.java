@@ -1,6 +1,8 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -30,6 +32,9 @@ public class UpdateUserConfig extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");
+		PrintWriter out = response.getWriter();
 		try {
 			
 			//获得新参数
@@ -49,8 +54,13 @@ public class UpdateUserConfig extends HttpServlet {
 			userConfig.setTel(tel);
 			userConfig.setEmail(email);
 			ud.update(userConfig);
+			
+			out.print("update_success");
+			session.setAttribute("userConfig", userConfig);
+			
 		} catch (Exception e) {
 			//TODO:元素重复异常
+			out.print(e.getMessage());
 			e.printStackTrace();
 		}
 	}

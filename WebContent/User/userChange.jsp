@@ -176,6 +176,7 @@
 									邮箱：<input type="text" name="email" id="email" value="${sessionScope.userConfig.email}"><br>
 									电话：<input type="text" name="tel" id="tel" value="${sessionScope.userConfig.tel}"><br>
 									<input type="submit" value="修改信息" id="submit-config-form">
+									<div id='config-msg'></div>
 							</form>
 						</div>
 						<div id="user-pass">
@@ -217,7 +218,57 @@ $(document).ready(function(){
 			}
 		};
 	
+	var config_ajax_option={
+			url:"UpdateUserConfig",
+			success:function(data){
+				if(data=="update_success"){
+					alert("修改成功");
+					location.reload();
+				}
+				else{
+					$("#config-msg").text("邮箱重复!");
+				}
+			}
+		};
+	
+	
 	//ajax提交表单
+	$("#config-form").validate({
+        submitHandler:function(form){
+        	if(confirm("确认修改？")){
+        		 $("#config-form").ajaxSubmit(config_ajax_option);
+        	}
+        },
+        rules:{
+        	userName:{
+    			required:true,
+    			maxlength:8,
+    		},
+    		email: {
+    	        required: true,
+    	        email: true
+    	    },
+    	    tel:{
+    	    	required: true,
+    	    	digits:true,
+    	    	rangelength:[11,11]
+     	    }
+        },
+        errorElement: "span",
+    	messages:{
+    		userName:{
+    			required:"昵称不能为空",
+    			maxlength:"昵称长度不能超过8位",
+    		},
+    		email:"请输入一个正确的邮箱",
+     	   	tel:{
+     		   required:"请输入长度位11位的个人电话",
+     		   digits:"电话中只能含数字",
+    	    	   rangelength:"电话号码长度为11位"
+     	   	}
+    	}
+	});
+	
 	$("#pass-form").validate({
         submitHandler:function(form){
         	if(confirm("确认修改？")){

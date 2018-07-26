@@ -53,6 +53,7 @@ public class UpdateUserPassword extends HttpServlet {
 			else {
 				out.print("old_pass_error");
 			}
+			session.setAttribute("userConfig", user);
 			
 		} catch (Exception e) {
 			out.print(e.getMessage());
