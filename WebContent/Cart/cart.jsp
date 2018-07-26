@@ -83,34 +83,113 @@ $(document).ready(function(){
 	$(".foodNumText").bind('input propertychange',function(){
 		computeSum();
 	});
+	
+	//+
 	$("button.add").click(function(){
 		var btn = $(this);
 		var input = btn.siblings("input");
-		input.val(parseInt(input.val())+1);
+		var mount = btn.siblings("#foodMount").text();
+		if(parseInt(input.val())<parseInt(mount)){
+			input.val(parseInt(input.val())+1);
+		}
+		else{
+			alert("购买数量不能超过库存(当前库存:"+ mount +")");
+		}
 		computeSum();
 	});
+	
+	//-
 	$("button.sub").click(function(){
 		var btn = $(this);
 		var input = btn.siblings("input");
-		input.val(parseInt(input.val())-1);
+		if(parseInt(input.val())>1){
+			input.val(parseInt(input.val())-1);
+		}
+		else{
+			alert("购买数量不能小于1");
+		}
 		computeSum();
 	});
+	
+	$(".foodNumText").each(function(){
+		var input = $(this);
+		input.bind('input propertychange',function(){
+			var num = input.val();
+			var mount = input.siblings("#foodMount").text();
+			  if(parseInt(num) >= parseInt(mount)){
+				  alert("数量不能超过库存量!");
+				  input.val(parseInt(mount));
+			  }
+			  if (parseInt(num) <1) {
+				  alert("数量必须是正数!");
+				  input.val(1);
+			  }
+			  computeSum();
+		});
+	});
+	
+	
 	$("button.delete").click(function(){
 		var div = $(this).parent().parent();
+		var checkIcon = div.find(".checked.one");
+		var id = checkIcon.attr("id");
+		$.ajax({
+			url: 'DeleteCartItems',
+			type:'POST',
+			async:true,
+			data:{
+					foodNo:id
+				},
+			success:function(data){
+				alert(data);
+			}
+		});
 		div.remove();
 		computeSum();
 	});
 	$("button.delete-all").click(function(){
-		$("button.delete").each(function(){
-			var div = $(this).parent().parent();
-			div.remove();
-		});
-		computeSum();
+		if(confirm("确认清空?")){
+			$.ajax({
+				url: 'DeleteAllCartItems',
+				type:'POST',
+				async:true,
+				success:function(data){
+					alert(data);
+					location.reload();
+				}
+			});
+		}
 	});
 	$("#sumPrice").ready(function(){
 		computeSum();
 	});
+	
+	//离开该界面后保存更新
+	$(window).bind('beforeunload',function(){
+		var cartList =  new Array();
+		$(".checked.one").each(function(){
+			var cart = new Object();
+			var bt= $(this);
+			var foodMountDiv = bt.parent().siblings(".foodNum");
+			cart.userNo = '<%=(String)session.getAttribute("userNo")%>';
+			cart.foodNo = bt.attr("id");
+			cart.foodMount= foodMountDiv.children("input").val();
+			cartList.push(cart);
+		 });
+		$.ajax({
+			url: 'UpdateCartItems',
+			type:'POST',
+			async:true,
+			data:{
+					list: JSON.stringify(cartList),
+				},
+			success:function(data){
+				
+			}
+		});	
+	});
 });
+
 </script>
 <style type="text/css">
 td{
@@ -146,7 +225,9 @@ input[type="button"]{
 	height:30px;
 	width:30px;
 }
-
+#foodMount{
+	display: none;
+}
 </style>
 </head>
 <body>
@@ -188,8 +269,9 @@ input[type="button"]{
 			<td class="foodPrice"><%=food.getFoodPrice()%></td>
 			<td class="foodNum">
 				<button class="sub" type="button">-</button>
-				<input type="text" class="foodNumText" value="<%=cart.getFoodMount()%>">
+				<input  type="text" class="foodNumText" value="<%=cart.getFoodMount()%>">
 				<button class="add" type="button">+</button>
+				<div id="foodMount"><%=food.getFoodMount()%></div>
 			</td>
 			<td class="multy-price"><%=food.getFoodPrice()*cart.getFoodMount()%></td>
 			<td><button class='delete'>删除</button></td>
