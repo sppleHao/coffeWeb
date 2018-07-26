@@ -1,8 +1,12 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 import javax.servlet.ServletException;
@@ -48,10 +52,22 @@ public class GetHistoryOrder extends HttpServlet {
 			//根据记录得到一个由订单号标识的一个订单所有记录形成一个MAP
 			//MAP中的链表为一个订单的所有记录
 			Map<String, List<R_Order>> groupByOrderNo = 
-					orders.stream().collect(Collectors.groupingBy(R_Order::getOrderNo));
+					orders.stream().collect(Collectors.groupingBy(R_Order::getOrderNo,TreeMap::new,Collectors.toList()));
+			
+			Set<String> orderNoSet = groupByOrderNo.keySet();
+			
+			List<String> orderNos = new ArrayList<>();
+			
+			for (String orderNo : orderNoSet) {
+				orderNos.add(orderNo);
+			}
+			
+			Collections.reverse(orderNos);
 			
 			//设置map属性
 			session.setAttribute("groupByOrderNoMap", groupByOrderNo);
+			
+			session.setAttribute("orderNoList", orderNos);
 			
 			//转到历史订单界面
 			request.getRequestDispatcher("historyOrder.jsp").forward(request, response);

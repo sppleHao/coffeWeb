@@ -36,6 +36,7 @@ public class CreateOrder extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		PrintWriter out = response.getWriter();
 		try {
 			
 			//将cart传递过来的JSON string转换成list对象
@@ -55,7 +56,7 @@ public class CreateOrder extends HttpServlet {
 				String orderNo = od.add(cartList, new Date());
 				
 				//传回参数订单
-				PrintWriter out = response.getWriter();
+				
 				out.print(orderNo);
 				
 				//将订单的总数和总价加入bill表
@@ -69,6 +70,7 @@ public class CreateOrder extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			out.print(e.getMessage());
 		}
 	}
 

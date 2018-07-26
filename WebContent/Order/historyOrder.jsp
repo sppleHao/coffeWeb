@@ -59,7 +59,8 @@ li{
 			<%
 			@SuppressWarnings("unchecked")
 				Map<String, List<R_Order>> map = (Map<String, List<R_Order>>) session.getAttribute("groupByOrderNoMap");
-				Set<String> orderNos = map.keySet();
+			@SuppressWarnings("unchecked")
+				List<String> orderNos = (List<String>) session.getAttribute("orderNoList");
 				BillDao bd = new BillDao();
 			%>
 			<%for (String orderNo : orderNos) {
