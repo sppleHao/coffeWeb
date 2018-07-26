@@ -52,13 +52,19 @@ public class GetCartItems extends HttpServlet {
 			//得到食物的Map
 			Map<String, Food> foodMap = allFoodList.stream().
 													collect(Collectors.toMap(Food::getFoodNo,Function.identity()));
+			
 			session.setAttribute("foodMap", foodMap);
 			
 			//从数据库中获得购物车内容
 			List<Cart> cartItems = cd.selectCartByUserNo(userNo);
-			session.setAttribute("cartItems", cartItems);
-			
-			request.getRequestDispatcher("cart.jsp").forward(request, response);
+			if (!cartItems.isEmpty()) {
+				session.setAttribute("cartItems", cartItems);
+				
+				request.getRequestDispatcher("cart.jsp").forward(request, response);
+			}
+			else {
+				request.getRequestDispatcher("cart-empty.jsp").forward(request, response);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

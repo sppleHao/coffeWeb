@@ -61,7 +61,7 @@ $(document).ready(function(){
   //+
   $("button#add").click(function(){
 	  var num =$("input#addFoodNum").val();
-	  var mount = '<%=request.getParameter("addFoodMount")%>';
+	  var mount = $(".food-info-mount").text();
 	  if (parseInt(num) >= parseInt(mount)) {
 		  alert("数量不能超过库存量!");
 		  $("input#addFoodNum").val(parseInt(mount));

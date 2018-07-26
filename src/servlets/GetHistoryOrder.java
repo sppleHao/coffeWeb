@@ -54,23 +54,29 @@ public class GetHistoryOrder extends HttpServlet {
 			Map<String, List<R_Order>> groupByOrderNo = 
 					orders.stream().collect(Collectors.groupingBy(R_Order::getOrderNo,TreeMap::new,Collectors.toList()));
 			
-			Set<String> orderNoSet = groupByOrderNo.keySet();
-			
-			List<String> orderNos = new ArrayList<>();
-			
-			for (String orderNo : orderNoSet) {
-				orderNos.add(orderNo);
+			if(!groupByOrderNo.isEmpty()) {
+				Set<String> orderNoSet = groupByOrderNo.keySet();
+				
+				List<String> orderNos = new ArrayList<>();
+				
+				for (String orderNo : orderNoSet) {
+					orderNos.add(orderNo);
+				}
+				
+				Collections.reverse(orderNos);
+				
+				//设置map属性
+				session.setAttribute("groupByOrderNoMap", groupByOrderNo);
+				
+				session.setAttribute("orderNoList", orderNos);
+				
+				//转到历史订单界面
+				request.getRequestDispatcher("historyOrder.jsp").forward(request, response);
+			}
+			else {
+				request.getRequestDispatcher("historyOrder-empty.jsp").forward(request, response);
 			}
 			
-			Collections.reverse(orderNos);
-			
-			//设置map属性
-			session.setAttribute("groupByOrderNoMap", groupByOrderNo);
-			
-			session.setAttribute("orderNoList", orderNos);
-			
-			//转到历史订单界面
-			request.getRequestDispatcher("historyOrder.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

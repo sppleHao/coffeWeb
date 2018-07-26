@@ -105,6 +105,9 @@ public class GetLastestOrders extends HttpServlet {
 				out.println("</tbody>");
 				out.println("</table>");
 			}
+			else {
+				out.print("<p>还没有订单,快去点餐吧！</p>");
+			}
 			
 			
 			

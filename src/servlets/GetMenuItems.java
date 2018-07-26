@@ -90,6 +90,7 @@ public class GetMenuItems extends HttpServlet {
 						}
 					}
 					else {//为空，显示查找不到菜品
+						out.print("<p>查找不到该菜品</p>");
 //						session.setAttribute("selectFood", selectFoodList);
 //						request.getRequestDispatcher("menu.jsp").forward(request, response);
 					}

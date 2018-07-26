@@ -8,17 +8,19 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
- * 确认加入的购物车的量是否大于库存量
+ * Servlet Filter implementation class CheckAdminIsLogin
  */
-@WebFilter("/CheckAddNum")
-public class CheckAddNum implements Filter {
+@WebFilter({"/Admin/adminConfig.jsp","/Admin/FoodOP.jsp","/Admin/UserOP.jsp","/Admin/stcs.jsp"})
+public class CheckAdminIsLogin implements Filter {
 
     /**
      * Default constructor. 
      */
-    public CheckAddNum() {
+    public CheckAdminIsLogin() {
         // TODO Auto-generated constructor stub
     }
 
@@ -33,11 +35,15 @@ public class CheckAddNum implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		// TODO Auto-generated method stub
-		// place your code here
-
-		// pass the request along the filter chain
-		chain.doFilter(request, response);
+		HttpServletRequest requ = (HttpServletRequest) request;
+		//HttpServletResponse resp = (HttpServletResponse) response;
+		HttpSession session = requ.getSession();
+		if (session.getAttribute("AdminConfig")==null) {
+			request.getRequestDispatcher("/Admin/adminLogin.jsp").forward(request, response);
+		}
+		else {
+			chain.doFilter(request, response);
+		}
 	}
 
 	/**
