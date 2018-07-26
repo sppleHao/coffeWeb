@@ -93,7 +93,7 @@ public class Upload extends HttpServlet {
 			food.setFoodType(foodType);
 			
 			
-			if (list.get(0)!=null){
+			if (fileName!=null){
 				
 				//设置图片
 				
@@ -104,10 +104,6 @@ public class Upload extends HttpServlet {
 //	                return;
 //	            }
 				//设置保存地址
-				
-				//String path =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
-				
-				//String saveDir = foodType+java.io.File.separator+foodName+".png";
 				
 				String saveDir = GetSrc.getFoodSaveDir(foodType, foodNo);
 				
@@ -125,9 +121,6 @@ public class Upload extends HttpServlet {
 				}
 				
 				list.get(0).write(file);
-			}
-			else {
-				out.println("图片无效");
 			}
 			
 			if(opName.equals("insert")) {

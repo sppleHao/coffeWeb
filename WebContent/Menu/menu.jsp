@@ -205,8 +205,8 @@ img.foodImg{
 		 -->
 		 <form action="GetMenuItems"  id="get-items">
 				<div class="am-g">
-  					<div class="am-u-lg-6" style="left:68%">
-   					 <div class="am-input-group" style="width: 300px;">
+  					<div class="am-u-lg-6" style="width:100%">
+   					 <div class="am-input-group" style="margin-left: 70%;">
    					 	<input type="text" name="selectParam" class="am-form-field"  style="top:1px;">
    					   <span class="am-input-group-btn" style="top:1px;" >
      					   <button class="am-btn am-btn-default" type="submit" style="background-color: #fffbd5"><span class="am-icon-search"></span> </button>

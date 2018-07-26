@@ -15,6 +15,7 @@
     <meta name="renderer" content="webkit">
     <meta http-equiv="Cache-Control" content="no-siteapp" />
     <!--  <link rel="icon" type="image/png" href="/coffeWeb/assets/i/favicon.png">--><!-- 网页logo -->
+    <link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
     <link rel="apple-touch-icon-precomposed" href="/coffeWeb/assets/i/app-icon72x72@2x.png">
     <meta name="apple-mobile-web-app-title" content="Amaze UI" />
     <script src="/coffeWeb/assets/js/echarts.min.js"></script>
@@ -44,7 +45,7 @@
         <header>
             <!-- logo -->
             <div class="am-fl tpl-header-logo">
-                <a href="javascript:;"><img class="coffee_Logo" src="/coffeWeb/Img/icon.jpg" alt=""></a>
+                <a href="javascript:;"><img class="coffee_Logo" src="/coffeWeb/Img/adminHead.png" alt=""></a>
             </div>
             <!-- 右侧内容 -->
             <div class="tpl-header-fluid">

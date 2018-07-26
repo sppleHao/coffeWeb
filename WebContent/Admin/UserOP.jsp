@@ -351,8 +351,8 @@ input[type="radio"]#select{
 
                         <!-- 退出 -->
                         <li class="am-text-sm" >
-                            <a href="/coffeWeb/Admin/adminLogin.jsp">
-                                <span class="am-icon-sign-out" ></span> 退出
+                            <a href="/coffeWeb/Admin/AdminSignOut">
+                                <span class="am-icon-sign-out"></span> 退出
                             </a>
                         </li>
                     </ul>
