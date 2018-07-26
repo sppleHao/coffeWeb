@@ -113,7 +113,7 @@ public class GetFood extends HttpServlet {
 					//out.println("<input type='radio' name='select' id='select'>");
 					out.println("<td class='foodNo'>"+food.getFoodNo()+"</td>");
 					//out.println("<td class='foodImg'><img src='/coffeWeb/Img/"+food.getFoodType()+"/"+food.getFoodName()+".png' "+">");
-					out.println("<td class='foodImg'><img id='food-img-small' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"'>");
+					out.println("<td class='foodImg'><img id='food-img-small' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"?temp="+Math.random()+"'>");
 					out.println("<td class='foodName'>"+food.getFoodName()+"</td>");
 					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</td>");
 					out.println("<td class='foodMount'>"+food.getFoodMount()+"</td>");

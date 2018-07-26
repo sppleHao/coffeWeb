@@ -73,7 +73,7 @@ public class GetMenuItems extends HttpServlet {
 							out.println("<div class='food-item-img'>");
 //							out.println("<img class='food-item-img-info' alt='' src='/coffeWeb/Img/"
 //							+food.getFoodType()+"/"+food.getFoodName()+".png'>");
-							out.println("<img class='food-item-img-info' alt='' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"'>");
+							out.println("<img class='food-item-img-info' alt='' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"?temp="+Math.random()+"'>");
 							out.print("</div>");
 							out.print("<div class='food-item-info'>");
 							out.println("<div class='food-item-info-foodName'>"+food.getFoodName()+"</div>");

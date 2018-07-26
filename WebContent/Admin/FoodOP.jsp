@@ -122,7 +122,7 @@ $(document).ready(function(){
 			$("#foodMountInput").val($("#foodMount").val());
 			$("#foodTypeInput").val($("#foodType").val());
 	
-			$("#uploadImage").attr('src','/savePath/'+$("#foodType").val()+"/"+$("#foodNo").val()+".png");
+			$("#uploadImage").attr('src','/savePath/'+$("#foodType").val()+"/"+$("#foodNo").val()+".png?temp="+Math.random());
 		}
 		else{
 			alert("请先选中一栏");

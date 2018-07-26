@@ -122,7 +122,6 @@ public class Upload extends HttpServlet {
 				if (opName.equals("update")) {
 					if(file.exists()&&file.isFile())
 			             file.delete();
-						 System.out.println("删除成功！");
 				}
 				
 				list.get(0).write(file);
