@@ -65,7 +65,9 @@ $(document).ready(function() {
     });
 });
 </script>
-<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
+<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <style type="text/css">
 .body-background{
 	background-image: url(/coffeWeb/Img/loginBG.png);
@@ -79,10 +81,13 @@ $(document).ready(function() {
     margin-top:10%;
     margin-left:30%;
     width: 480px;
-    height: 680px;
+   
     overflow: hidden;
     max-width: 480px;
     background-color: rgba(255,255,255,0.3);
+}
+.user-sign-div form{
+	 margin-left:10%;
 }
 input[type='text'],input[type='password']{
 	font-size:23px;
@@ -129,7 +134,7 @@ input[type='submit']{
 					<ul>
 						<li><a class="user-login" href="/coffeWeb/User/userLogin.jsp">登陆</a></li>
 						<li><a class="user-signin" href="/coffeWeb/User/userSignIn.jsp">注册</a></li>
-						<li><a class="about-us" >关于我们</a></li>
+						<li><a class="about-us" href="/coffeWeb/User/aboutus.jsp" >关于我们</a></li>
 						<li><a class="admin-login" href="/coffeWeb/Admin/adminLogin.jsp">管理员入口</a></li>
 					</ul>
 					</div>

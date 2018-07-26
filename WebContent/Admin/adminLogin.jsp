@@ -2,6 +2,9 @@
 <!DOCTYPE html> 
 <html>
 <head>
+<link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
+<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 <meta http-equiv="Content-Type" content="text/html">
 <title>管理员登陆界面</title>
 <style type="text/css">

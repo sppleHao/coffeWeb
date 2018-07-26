@@ -8,7 +8,7 @@
 <script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
-	$("button.logoff").click(function(){
+	$("img.logoff").click(function(){
 		window.location.href='UserLogOff';
 	});
 	$("button.showHistoryOrder").click(function(){
@@ -20,6 +20,13 @@ $(document).ready(function(){
 		async:true,
 		success:function(data){
 			$("#show-order").html(data);
+			$("tr").each(function(){
+				var tr =$(this);
+				var orderNo = tr.find(".orderNo").text();
+				tr.bind('click',function(){
+					window.location.href='/coffeWeb/Order/order.jsp?orderNo='+orderNo;
+				});
+			});
 		},
 		error:function(){
 			alert("error");
@@ -80,7 +87,7 @@ $(document).ready(function(){
     left:5%;
     top: 23%;
     width: 90%;
-    
+    height:50%;
     background-color: #FFF;
    	box-sizing: border-box;
     box-shadow: none;
@@ -125,12 +132,17 @@ input[type='submit']{
 	margin-left: 60%;
 }
 #reset{
-	margin-left:75px;
+	margin-left:45px;
 	
  	width:20px;
  	height:20px;
 }
-
+#reset2{
+	margin-left:2px;
+	
+ 	width:20px;
+ 	height:20px;
+}
 
 .orderNo{
 	text-align:center;
@@ -175,6 +187,7 @@ table{
 						<img alt="" src="/coffeWeb/Img/account.png">
 						<span>欢迎您，${userConfig.userName}</span>
 						<a href="/coffeWeb/User/userChange.jsp" title="点击修改个人信息" ><img id="reset" src="/coffeWeb/Img/reset.png"></a>
+						<a  title="退出登录"  href="#"><img id="reset2" class="logoff" src="/coffeWeb/Img/quit.png"></a>
 					</div>
 					</br>
 						<span>浓情共享，与君相伴</span>

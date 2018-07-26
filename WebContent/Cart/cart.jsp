@@ -327,8 +327,7 @@ input[type="button"]{
 					<ul>
 						<!-- 列表列出超链接 -->
 						<li><a class="user-login" href="/coffeWeb/Menu/menu.jsp">精品推荐</a></li>
-						<li><a class="user-signin" href="/coffeWeb/Menu/menuDrink.jsp">饮品</a></li>
-						<li><a class="admin-login" href="/coffeWeb/Menu/menuSnack.jsp">餐点</a></li>
+						
 					</ul>
 					</div>
 				</div>
