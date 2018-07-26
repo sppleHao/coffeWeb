@@ -68,7 +68,7 @@ $(document).ready(function(){
 	});
 });
 </script>
-<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet">
+
 <style type="text/css">
 .body-background{
 	background-color: rgba(242, 242, 242, 1);
@@ -121,7 +121,7 @@ $(document).ready(function(){
     left:5%;
     top: 23%;
     width: 90%;
-    height:60%;
+    
     background-color: #FFF;
    	box-sizing: border-box;
     box-shadow: none;
@@ -134,15 +134,16 @@ $(document).ready(function(){
 .lastest-order p{
 	display:inline-block;
 	position:relative;
-	
+	top:13px;
 	left:5.5%;
 }
 .showHistoryOrder{
 	display: inline-block;
 	position: absolute;
-	top:4%;
+	top:15px;
 	right:5%;
 }
+
 .hori-line img{
 	position: absolute;
 	left:5%;
@@ -164,8 +165,33 @@ input[type='submit']{
 	height:40px;
 	margin-left: 60%;
 }
+#reset{
+	margin-left:75px;
+	
+ 	width:20px;
+ 	height:20px;
+}
 
+
+.orderNo{
+	text-align:center;
+	width:200px;
+	height:50px;
+}
+.orderTime, .orderPrice{
+	text-align:center;
+	width:150px;
+	height:50px;
+}
+
+table{
+	
+	margin-top:3%;
+}
 </style>
+<link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.min.css" />
+<link href="/coffeWeb/CSS/pageFramework.css" type="text/css" rel="stylesheet" />
+<link rel="icon" type="image/jpg" href="/coffeWeb/Img/icon.jpg">
 </head>
 <body>
 <!-- app界面 -->
@@ -188,17 +214,12 @@ input[type='submit']{
 					<!--标签(更改) -->
 					<div class="label">
 						<img alt="" src="/coffeWeb/Img/account.png">
-						<span>登录或创建一个新账户</span>
+						<span>欢迎您，${userConfig.userName}</span>
+						<a href="/coffeWeb/User/userChange.jsp" title="点击修改个人信息" ><img id="reset" src="/coffeWeb/Img/reset.png"></a>
 					</div>
-					<!-- 导航超链接(更改) -->
-					<div class="bar-menu">
-					<ul>
-						<li><a class="user-login" href="/coffeWeb/User/userLogin.jsp">登陆</a></li>
-						<li><a class="user-signin" href="/coffeWeb/User/userSignIn.jsp">注册</a></li>
-						<li><a class="about-us" >关于我们</a></li>
-						<li><a class="admin-login" href="/coffeWeb/Admin/adminLogin.jsp">管理员入口</a></li>
-					</ul>
-					</div>
+					</br>
+						<span>浓情共享，与君相伴</span>
+					
 				</div>
 			</div>
 			<!-- 侧底栏(超链接) -->
@@ -225,15 +246,19 @@ input[type='submit']{
 					<div class="user-config-info">
 						<p >ID:${userConfig.userNo}</p>
 						<p >昵称:${userConfig.userName}</p>
+						
 					</div>
 					<div class="user-config">
 						<p>我的优惠券</p>
+						<p style="color:#FF0000;">0个</p>
 					</div>
 					<div class="user-config">
 						<p>我的星币</p>
+						<p style="color:#33CC33;">666个</p>
 					</div>
 					<div class="user-config">
 						<p>我的余额</p>
+						<p style="color:#FF9900;">999元</p>
 					</div>
 				</div>
 				<!-- <div class="user-buttons">
@@ -247,14 +272,15 @@ input[type='submit']{
 					<header id="lastest-order">
 						
 						<p><span>最近订单</span></p>
-						<button class="showHistoryOrder" style="border:none;background:#fff;display:block">更多</button>
+						<button class="showHistoryOrder" style="border:none;background:#fff;display:block">更多>></button>
 						
-						<!-- 水平线 -->
+						
+					</header>
+					<!-- 水平线 -->
 						<div class="hori-line">
 							<img  src="/coffeWeb/Img/user/u414.png">
 							<img  src="/coffeWeb/Img/user/u415.png">
 						</div>
-					</header>
 					<div id="show-order">
 						
 					</div>

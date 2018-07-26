@@ -30,7 +30,7 @@ import dao.OrderDao;
 @WebServlet("/User/GetLastestOrders")
 public class GetLastestOrders extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final int ListNum = 3;
+	private static final int ListNum = 5;
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -79,8 +79,15 @@ public class GetLastestOrders extends HttpServlet {
 			Collections.reverse(orderNos);
 			
 			if (!orders.isEmpty()) {
-				out.println("<table>");
+				out.println("<table class=\"am-table am-table-striped am-table-hover am-table-compact\">");
 				out.println("<tbody>");
+				out.println("<thead>");
+				out.println("<tr>");
+				out.println("<th class='orderNo'>"+"订单号"+"</th>");
+				out.println("<th  class='orderTime'>"+"订单时间"+"</th>");
+				out.println("<th class='orderPrice'>"+"订单总额"+"</th>");
+				out.println("</tr>");
+				out.println("</thead>");
 				int loopTime = ListNum;
 				for(String orderNo :orderNos) {
 					out.println("<tr>");
@@ -88,13 +95,15 @@ public class GetLastestOrders extends HttpServlet {
 					String orderTime =orderItemFirst.getOrderTime().toString();
 					Bill bill = bd.select(orderNo);
 					out.println("<td class='orderNo'>"+orderNo+"</td>");
-					out.println("<td class='orderPrice'>"+bill.getTotalPrice()+"</td>");
 					out.println("<td class='orderTime'>"+orderTime+"</td>");
+					out.println("<td class='orderPrice'>"+bill.getTotalPrice()+"</td>");
 					out.println("</tr>");
 					if (--loopTime==0) {
 						break;
 					}
 				}
+				out.println("</tbody>");
+				out.println("</table>");
 			}
 			
 			
