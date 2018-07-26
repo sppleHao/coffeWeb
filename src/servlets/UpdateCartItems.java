@@ -15,7 +15,7 @@ import dao.OrderDao;
 import net.sf.json.JSONArray;
 
 /**
- * Servlet implementation class UpdateCartItems
+ * 当离开购物车界面时，更新购物车表
  */
 @WebServlet("/Cart/UpdateCartItems")
 public class UpdateCartItems extends HttpServlet {
