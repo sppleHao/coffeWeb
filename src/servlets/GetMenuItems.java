@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Food;
 import dao.FoodDao;
+import util.GetSrc;
 
 /**
  * 菜单界面得到所有菜品并显示给用户
@@ -70,8 +71,9 @@ public class GetMenuItems extends HttpServlet {
 						for (Food food : selectFoodList) {
 							out.println("<div class='food-item' id='"+food.getFoodNo()+"'>");
 							out.println("<div class='food-item-img'>");
-							out.println("<img class='food-item-img-info' alt='' src='/coffeWeb/Img/"
-							+food.getFoodType()+"/"+food.getFoodName()+".png'>");
+//							out.println("<img class='food-item-img-info' alt='' src='/coffeWeb/Img/"
+//							+food.getFoodType()+"/"+food.getFoodName()+".png'>");
+							out.println("<img class='food-item-img-info' alt='' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"'>");
 							out.print("</div>");
 							out.print("<div class='food-item-info'>");
 							out.println("<div class='food-item-info-foodName'>"+food.getFoodName()+"</div>");

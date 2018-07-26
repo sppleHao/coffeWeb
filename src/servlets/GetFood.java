@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import beans.Food;
 import dao.FoodDao;
+import util.GetSrc;
 
 /**
  * 管理员在所有餐品中查找相应的餐品，并将信息返回到界面
@@ -111,7 +112,8 @@ public class GetFood extends HttpServlet {
 					out.println("<td class='unchecked'></td>");
 					//out.println("<input type='radio' name='select' id='select'>");
 					out.println("<td class='foodNo'>"+food.getFoodNo()+"</td>");
-					out.println("<td class='foodImg'><img src='/coffeWeb/Img/"+food.getFoodType()+"/"+food.getFoodName()+".png' "+">");
+					//out.println("<td class='foodImg'><img src='/coffeWeb/Img/"+food.getFoodType()+"/"+food.getFoodName()+".png' "+">");
+					out.println("<td class='foodImg'><img id='food-img-small' src='/savePath/"+GetSrc.getFoodSrc(food.getFoodType(), food.getFoodNo())+"'>");
 					out.println("<td class='foodName'>"+food.getFoodName()+"</td>");
 					out.println("<td class='foodPrice'>"+food.getFoodPrice()+"</td>");
 					out.println("<td class='foodMount'>"+food.getFoodMount()+"</td>");

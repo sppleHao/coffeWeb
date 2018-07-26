@@ -17,6 +17,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import beans.Food;
 import dao.FoodDao;
+import util.GetSrc;
 
 /**
  * 添加餐品与上传图片
@@ -104,16 +105,26 @@ public class Upload extends HttpServlet {
 //	            }
 				//设置保存地址
 				
-				System.out.println(this.getClass().getResource(""));
+				//String path =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
 				
-				String path =request.getSession().getServletContext().getRealPath("")+java.io.File.separator+"Img";
+				//String saveDir = foodType+java.io.File.separator+foodName+".png";
 				
-				String saveDir = foodType+java.io.File.separator+foodName+".png";
+				String saveDir = GetSrc.getFoodSaveDir(foodType, foodNo);
 				
 				
 				//保存图片
 				File file = new File(saveDir);
-				System.out.println(file);
+				File fileParent = file.getParentFile();
+				if (!fileParent.exists()) {
+					fileParent.mkdirs();
+				}
+				
+				if (opName.equals("update")) {
+					if(file.exists()&&file.isFile())
+			             file.delete();
+						 System.out.println("删除成功！");
+				}
+				
 				list.get(0).write(file);
 			}
 			else {

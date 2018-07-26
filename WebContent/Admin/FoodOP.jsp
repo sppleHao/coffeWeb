@@ -93,7 +93,6 @@ $(document).ready(function(){
 			$("#foodPriceInput").val($("").val());
 			$("#foodMountInput").val($("").val());
 			$("#foodTypeInput").val($("").val());
-			
 			$("#uploadImage").attr('src','/coffeWeb/Img/add_img.png');
 	 });
 	
@@ -122,8 +121,8 @@ $(document).ready(function(){
 			$("#foodPriceInput").val($("#foodPrice").val());
 			$("#foodMountInput").val($("#foodMount").val());
 			$("#foodTypeInput").val($("#foodType").val());
-			
-			$("#uploadImage").attr('src','/coffeWeb/Img/'+$("#foodType").val()+"/"+$("#foodName").val()+'.png');
+	
+			$("#uploadImage").attr('src','/savePath/'+$("#foodType").val()+"/"+$("#foodNo").val()+".png");
 		}
 		else{
 			alert("请先选中一栏");
@@ -511,7 +510,7 @@ $(document).ready(function(){
 										餐品单价:<input type="text" name="foodPrice" id="foodPrice" readonly="readonly" disabled="disabled">
 										餐品库存：<input type="text" name="foodMount" id="foodMount" readonly="readonly" disabled="disabled">
 										餐品类型：<input type="text" name="foodType" id="foodType" readonly="readonly" disabled="disabled">
-										</form>                                  
+										</form>                           
                                 </div>
                                 
                             </div>
