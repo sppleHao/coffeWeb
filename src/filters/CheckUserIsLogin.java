@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 /**
  * 过滤器，检查是否登陆，未登录的访问将转向登陆界面
  */
-@WebFilter({"/User/userConfig.jsp","/Menu/isAddToCartWindow.jsp"})//,"/Cart/cart.jsp"})
+@WebFilter({"/User/userConfig.jsp","/Menu/isAddToCartWindow.jsp","/User/userChange.jsp"})//,"/Cart/cart.jsp"})
 public class CheckUserIsLogin implements Filter {
 
     /**

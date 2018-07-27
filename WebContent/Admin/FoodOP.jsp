@@ -176,7 +176,7 @@ $(document).ready(function(){
 </script>
 <!-- 美化页面配置 -->
 <meta charset="utf-8">
-	<link rel="stylesheet" href="/coffeWeb/CSS/FoodOP.css">
+	
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
    
     <meta name="description" content="这是一个 index 页面">
@@ -192,6 +192,7 @@ $(document).ready(function(){
     <link rel="stylesheet" href="/coffeWeb/assets/css/amazeui.datatables.min.css" />
     <link rel="stylesheet" href="/coffeWeb/assets/css/app.css">
     <script src="/coffeWeb/assets/js/jquery.min.js"></script>
+    <link rel="stylesheet" href="/coffeWeb/CSS/FoodOP.css">
 
     <style type="text/css">
 		.coffee_Logo{

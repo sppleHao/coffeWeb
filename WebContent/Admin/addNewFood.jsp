@@ -4,12 +4,12 @@
 <head> 
 <meta charset="UTF-8"> 
 <title>新增餐品</title>
+<link rel="stylesheet" href="/coffeWeb/CSS/addNewFood.css">
 <script type="text/javascript" src="/coffeWeb/JS/jquery-3.3.1.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/jquery.validate.min.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/messages_zh.js"></script>
 <script type="text/javascript" src="/coffeWeb/JS/jquery-form.js"></script>
 <script type="text/javascript">
-<link rel="stylesheet" href="/coffeWeb/CSS/addNewFood.css">
 $(document).ready(function(){
 	var ajax_option={
 			url:"foodUpload",
